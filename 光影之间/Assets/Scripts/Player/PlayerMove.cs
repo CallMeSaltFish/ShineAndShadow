@@ -191,7 +191,7 @@ public class PlayerMove : MonoBehaviour {
         //下坡
         if (hit3)
         {
-            if (hit3.transform.tag == "BackGround")
+            if (hit3.transform.tag == "BackGround" || hit3.transform.tag == "Respawn")
             {
                 float offset = hit3.point.y - lastHit3.y;
                 if (rb.gravityScale > 0)

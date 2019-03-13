@@ -13,7 +13,7 @@ public class BeginGames : MonoBehaviour {
     }
 	// Use this for initialization
 	void Start () {
-        Debug.Log(PlayerPrefs.GetInt("Star"));
+        //Debug.Log(PlayerPrefs.GetInt("Star"));
         index1 = PlayerPrefs.GetInt("Star");
 
     }

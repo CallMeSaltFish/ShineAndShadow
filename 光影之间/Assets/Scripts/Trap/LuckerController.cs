@@ -14,10 +14,13 @@ public class LuckerController : MonoBehaviour {
     public GameObject endPosition;
 
     private Vector3 originPosition;
+
+    private BoxCollider2D collider2D;
 	// Use this for initialization
 	void Start () {
         originPosition = transform.position;
-        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        collider2D = gameObject.GetComponent<BoxCollider2D>();
+        collider2D.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -37,10 +40,14 @@ public class LuckerController : MonoBehaviour {
         //Debug.Log(canUp);
         if (canUp==true)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = true;
+            
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition.transform.position, luckerSpeed*0.2f);
-            if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.00002f)
+            if(Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.02f)
             {
+                collider2D.enabled = true;
+            }
+            if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.0002f)
+            {    
                 canUp = false;
             }
             //timer = 0;
@@ -48,7 +55,7 @@ public class LuckerController : MonoBehaviour {
         }
         if (canUp==false)
         {
-            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            collider2D.enabled = false;
             gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, /*endPosition.transform.position - new Vector3(0,
                 GetComponent<BoxCollider2D>().size.y * transform.localScale.y, 0)*/originPosition, luckerSpeed*0.2f);
             //timer = 0;
@@ -60,6 +67,7 @@ public class LuckerController : MonoBehaviour {
     {
         if (col.tag == "Player")
         {
+            Debug.Log(gameObject);
             Debug.Log("你已经被刺死了");
         }
     }

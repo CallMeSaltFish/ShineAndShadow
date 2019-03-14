@@ -49,6 +49,13 @@ public class MapManager : MonoBehaviour {
     public Animator passPanelAnimator;
     /*死亡面板动画状态机*/
     public Animator defeatPanelAnimator;
+
+    private BossMove BossB;
+    private BossMove BossW;
+    private BossMove BossTag;
+    private OVRScreenFade2 ovrScreenFade2;
+    private Transform BossBT;
+    private Transform BossWT;
     // Use this for initialization
     void Awake()
     {
@@ -62,8 +69,15 @@ public class MapManager : MonoBehaviour {
         groundList1 = Resources.LoadAll("Background1");
         groundList2 = Resources.LoadAll("Background2");
         mapTransform = transform.Find("Map");
+
+        BossB = GameObject.Find("BossB").GetComponent<BossMove>();
+        BossW = GameObject.Find("BossW").GetComponent<BossMove>();
+        BossTag = GameObject.FindWithTag("Boss").GetComponent<BossMove>();
+        ovrScreenFade2 = GameObject.Find("MainCamera").GetComponent<OVRScreenFade2>();
+        BossBT = GameObject.Find("BossB").GetComponent<Transform>();
+        BossWT = GameObject.Find("BossW").GetComponent<Transform>();
         //
-        if(chapter == 0)
+        if (chapter == 0)
         {
             Instantiate(Resources.Load("Prefabs/TeachingMap"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
@@ -74,12 +88,18 @@ public class MapManager : MonoBehaviour {
             Instantiate(Resources.Load("Prefabs/SecondMap"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
-        //
-        if(chapter == 2)
+        ////这里我加了ThirdMap的 把chapter 2 3换了一下
+        if (chapter == 2)
+        {
+            Instantiate(Resources.Load("Prefabs/ThirdMap"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
+        if (chapter == 3)
         {
             Instantiate(Resources.Load("Prefabs/TestMap"), new Vector3(38.5f, 3.65f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
+        //
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -100,6 +120,15 @@ public class MapManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        //获取第零层的动画
+        AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
+        if ((info.normalizedTime > 0.95f) && (info.IsName("Base Layer.EndGame Animation")))
+        {
+            Debug.Log("停止游戏");
+            Time.timeScale = 0;
+        }
+
         //更新拼图ui
         UpdateJigNum();
         //更新距离
@@ -120,11 +149,19 @@ public class MapManager : MonoBehaviour {
             Instantiate(Resources.Load("Prefabs/SecondMap"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
+
+        //这里我加了ThirdMap的 把chapter 2 3换了一下
         if (chapter == 2 && !hasMap)
+        {
+            Instantiate(Resources.Load("Prefabs/ThirdMap"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
+        if (chapter == 3 && !hasMap)
         {
             Instantiate(Resources.Load("Prefabs/TestMap"), new Vector3(38.5f, 3.65f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
+        //
 
         if (chapter != 0)
         {
@@ -133,8 +170,8 @@ public class MapManager : MonoBehaviour {
                 playerMove.enabled = true;
                 //注意这一句
                 //rotatePlayer.enabled = true;
-                GameObject.Find("BossB").GetComponent<BossMove>().enabled = true;
-                GameObject.Find("BossW").GetComponent<BossMove>().enabled = true;
+                BossB.enabled = true;
+                BossW.enabled = true;
             }
             //if (chapter != 1)
             //{
@@ -174,16 +211,16 @@ public class MapManager : MonoBehaviour {
         }
 
         /*当作游戏结束条件 进入排行榜场景*/
-        if (GameObject.FindGameObjectWithTag("Boss").GetComponent<BossMove>().IsEat == true||GameObject.Find("Player").GetComponent<PlayerMove>().IsDead==true)
+        if (BossTag.IsEat == true||playerMove.IsDead==true)
         {
-            GameObject.FindGameObjectWithTag("Boss").GetComponent<BossMove>().IsEat = false;
-            GameObject.Find("Player").GetComponent<PlayerMove>().IsDead = false;
+            BossTag.GetComponent<BossMove>().IsEat = false;
+            playerMove.IsDead = false;
             //停住人和怪兽
-            GameObject.Find("Player").GetComponent<PlayerMove>().enabled = false;
-            GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
-            GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
+            playerMove.enabled = false;
+            BossB.enabled = false;
+            BossW.enabled = false;
             //屏幕逐渐变暗
-            GameObject.Find("MainCamera").GetComponent<OVRScreenFade2>().enabled = true;
+            ovrScreenFade2.enabled = true;
             //panel.SetActive(true);
             defeatPanelAnimator.Play("EndGame Animation");
             //用于做存档点
@@ -357,7 +394,7 @@ public class MapManager : MonoBehaviour {
         passPanelAnimator.Play("EndGame Animation 0");
         Destroy(GameObject.FindWithTag("Map"));
         hasMap = false;
-        if (chapter < 2)
+        if (chapter < 3)
         {
             chapter += 1;
         }
@@ -370,7 +407,7 @@ public class MapManager : MonoBehaviour {
         Destroy(GameObject.Find("Tips"));
         Destroy(GameObject.Find("Foods"));
         Destroy(GameObject.Find("Jigs"));
-        GameObject.Find("BossB").GetComponent<Transform>().position = new Vector3(-16.2f, 1.42f, 0);
-        GameObject.Find("BossW").GetComponent<Transform>().position = new Vector3(-16.2f, -1.42f, 0);
+        BossBT.position = new Vector3(-16.2f, 1.42f, 0);
+        BossWT.position = new Vector3(-16.2f, -1.42f, 0);
     }
 }

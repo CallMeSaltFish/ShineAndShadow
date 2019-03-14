@@ -13,6 +13,8 @@ public class FollowWithPlayer : MonoBehaviour {
     private Vector3 endPosition;
     private PlayerMove playerMove;
     private MapManager mapManager;
+    private BossMove BossB;
+    private BossMove BossW;
 
     public bool isStd;
 
@@ -21,6 +23,8 @@ public class FollowWithPlayer : MonoBehaviour {
         offset = transform.position - playerTransform.position;
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
+        BossB = GameObject.Find("BossB").GetComponent<BossMove>();
+        BossW = GameObject.Find("BossW").GetComponent<BossMove>();
     }
 
     // Update is called once per frame
@@ -46,8 +50,8 @@ public class FollowWithPlayer : MonoBehaviour {
                 //Debug.Log(2);
                 if (transform.position.x - playerTransform.position.x >= offset.x - 0.1f && Input.GetMouseButtonDown(2))
                 {
-                    GameObject.Find("BossB").GetComponent<BossMove>().enabled = true;
-                    GameObject.Find("BossW").GetComponent<BossMove>().enabled = true;
+                    BossB.enabled = true;
+                    BossW.enabled = true;
                     playerMove.enabled = true;
                     isStd = true;
                     //Debug.Log(3);

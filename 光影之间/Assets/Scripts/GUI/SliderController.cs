@@ -10,11 +10,7 @@ public class SliderController : MonoBehaviour
     public GameObject player;
     public GameObject BossUp;
     public GameObject BossDown;
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+   
 
     // Update is called once per frame
     void Update()

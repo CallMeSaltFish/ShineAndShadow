@@ -1360,7 +1360,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 1
+  chapter: 2
   chapterPortalTimes: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
@@ -3217,6 +3217,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 31e9c9574825a5a42a7232f0fc70fc50,
         type: 3}
+    - target: {fileID: 68535120634480172, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68535120634480172, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1129f91414bb76147b0b145557fcf0a3, type: 3}
 --- !u!1 &2016455167

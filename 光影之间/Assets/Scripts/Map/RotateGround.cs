@@ -5,6 +5,7 @@ using UnityEngine;
 public class RotateGround : MonoBehaviour {
     private float angle = 0;
     private GameObject[] backGrounds;
+
 	// Update is called once per frame
 	void Update () {
         backGrounds = GameObject.FindGameObjectsWithTag("BackGround");

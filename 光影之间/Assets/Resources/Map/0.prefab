@@ -3091,7 +3091,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962183664821962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.1, y: -2.94, z: 0}
+  m_LocalPosition: {x: 23.6, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4234099112533130}
@@ -4005,6 +4005,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258493707}
     m_Modifications:
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.98
@@ -4049,10 +4053,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
 --- !u!1 &6424413401679245408 stripped
@@ -4074,6 +4074,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258493707}
     m_Modifications:
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5300293
@@ -4118,10 +4122,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
 --- !u!1 &6424413401927225374 stripped
@@ -4143,6 +4143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258493707}
     m_Modifications:
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.98
@@ -4186,10 +4190,6 @@ PrefabInstance:
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 062a88450e5012c4c8e624798d217abc, type: 3}

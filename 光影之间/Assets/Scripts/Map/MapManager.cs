@@ -76,30 +76,27 @@ public class MapManager : MonoBehaviour {
         ovrScreenFade2 = GameObject.Find("MainCamera").GetComponent<OVRScreenFade2>();
         BossBT = GameObject.Find("BossB").GetComponent<Transform>();
         BossWT = GameObject.Find("BossW").GetComponent<Transform>();
-        //
-        if (chapter == 0)
+        //教学关
+        if (chapter == 0 && !hasMap)
         {
-            Instantiate(Resources.Load("Prefabs/TeachingMap"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
-        //
-        if(chapter == 1)
+        //第一关
+        if (chapter == 1 && !hasMap)
         {
-            Instantiate(Resources.Load("Prefabs/SecondMap"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
-        ////这里我加了ThirdMap的 把chapter 2 3换了一下
-        if (chapter == 2)
+        //第二关
+        if (chapter == 2 && !hasMap)
         {
-            Instantiate(Resources.Load("Prefabs/ThirdMap"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
+            Debug.Log(1);
+            //rotatePlayer.playerHeight *= -1;
+            //playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         }
-        if (chapter == 3)
-        {
-            Instantiate(Resources.Load("Prefabs/TestMap"), new Vector3(38.5f, 3.65f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -144,24 +141,24 @@ public class MapManager : MonoBehaviour {
         //    return;
         //}
 
-        if(chapter == 1 && !hasMap)
+        //教学关
+        if (chapter == 0 && !hasMap)
         {
-            Instantiate(Resources.Load("Prefabs/SecondMap"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
-
-        //这里我加了ThirdMap的 把chapter 2 3换了一下
+        //第一关
+        if (chapter == 1 && !hasMap)
+        {
+            Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
+        //第二关
         if (chapter == 2 && !hasMap)
         {
-            Instantiate(Resources.Load("Prefabs/ThirdMap"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
-        if (chapter == 3 && !hasMap)
-        {
-            Instantiate(Resources.Load("Prefabs/TestMap"), new Vector3(38.5f, 3.65f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //
 
         if (chapter != 0)
         {
@@ -392,22 +389,44 @@ public class MapManager : MonoBehaviour {
     public void ChangeToNextChapter()
     {
         passPanelAnimator.Play("EndGame Animation 0");
-        Destroy(GameObject.FindWithTag("Map"));
+        GameObject[] goes;
+        goes = GameObject.FindGameObjectsWithTag("Map");
+        foreach(var go in goes)
+        {
+            Destroy(go);
+        }
         hasMap = false;
-        if (chapter < 3)
+        if (chapter < 7)
         {
             chapter += 1;
         }
-        playerTransform.position = new Vector3(-7, 0.56f, 0);
+        switch(chapter)
+        {
+            case 2:
+                playerTransform.position = new Vector3(-6, -1.6f, -2);
+                break;
+        }
         playerTransform.rotation = Quaternion.Euler(0, 0, 0);
         rb.gravityScale = 1;
-        rotatePlayer.playerHeight = 1;
-        playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        //rotatePlayer.playerHeight = 1;
+        //playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         Camera.main.transform.position = new Vector3(0, 0, -10);
         Destroy(GameObject.Find("Tips"));
         Destroy(GameObject.Find("Foods"));
         Destroy(GameObject.Find("Jigs"));
         BossBT.position = new Vector3(-16.2f, 1.42f, 0);
         BossWT.position = new Vector3(-16.2f, -1.42f, 0);
+    }
+
+    public void InstantiateSecondSubMap(int num)
+    {
+        if(num == 0)
+        {
+            Instantiate(Resources.Load("Map/2-1") as GameObject, new Vector3(83, 3.6f, 0), Quaternion.identity, mapTransform);
+        }
+        if(num == 1)
+        {
+            Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(69.3f, -0.08f, 0), Quaternion.identity, mapTransform);
+        }
     }
 }

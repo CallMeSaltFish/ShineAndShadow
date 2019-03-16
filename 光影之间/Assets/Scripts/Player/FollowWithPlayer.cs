@@ -15,9 +15,10 @@ public class FollowWithPlayer : MonoBehaviour {
     private MapManager mapManager;
     private BossMove BossB;
     private BossMove BossW;
-
+    [HideInInspector]
     public bool isStd;
-
+    [HideInInspector]
+    public bool isSpecial;
 	// Use this for initialization
 	void Start () {
         offset = transform.position - playerTransform.position;
@@ -30,7 +31,7 @@ public class FollowWithPlayer : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         endPosition = playerTransform.position + offset;
-        if(mapManager.chapter == 2)
+        if(mapManager.chapter == 2 && isSpecial)
         {
             transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x,playerTransform.position.y,transform.position.z), ref cameraVelocity, cameraSpeed);
             if(transform.position.y > 7.2)

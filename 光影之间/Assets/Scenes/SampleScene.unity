@@ -1226,6 +1226,7 @@ MonoBehaviour:
   playerTransform: {fileID: 1482411317}
   cameraSpeed: 0.5
   isStd: 0
+  isSpecial: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

@@ -43,7 +43,8 @@ public class PlayerMove : MonoBehaviour {
 
     /*判断是否死亡*/
     private bool isDead;
-
+    /*判断是否吃到符文触发*/
+    private bool isTrigger;
     /*计时器*/
     private float timer;
     private static int num;
@@ -120,7 +121,7 @@ public class PlayerMove : MonoBehaviour {
         //    GameObject a = Instantiate(flyMonster, transform.position + new Vector3(10, 0, 0), Quaternion.identity);
         //    num = 0;
         //}
-        if (canFly==true&&currentFlyNum<flyNum)
+        if (canFly == true && currentFlyNum < flyNum)
         {
             GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
             -0.5f+0.6f*randArray[i], 0), Quaternion.identity);
@@ -150,14 +151,12 @@ public class PlayerMove : MonoBehaviour {
         {
             isStop = true;
             point = hit_.point;
-            //Debug.Log(1);
         }
 
         /*移动方式*/
         //遇到传送门
         if (isStop)
         {
-            Debug.Log(point);
             transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed);
             animator.SetBool("isStop", true);
         }
@@ -247,10 +246,9 @@ public class PlayerMove : MonoBehaviour {
 
             if ((mapManager.chapter == 0 && hit_.transform.position.x - transform.position.x < 11.36f) ||
                 (mapManager.chapter == 1 && hit_.transform.position.x - transform.position.x < 13.46f) ||
-                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 10.66f))
+                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 12.66f))
             {
                 followWith.enabled = false;
-                //rotatePlayer.enabled = false;
             }
         }
 
@@ -290,8 +288,81 @@ public class PlayerMove : MonoBehaviour {
             isStop = false;
             //删除传送门
             Destroy(col.gameObject);
+            switch(mapManager.chapter)
+            {
+                case 0:
+                    anim.Play("EndGame Animation");
+                    lastHit3 = new Vector3(-7, -0.8f, 0);
+                    break;
+                case 1:
+                    switch (mapManager.chapterPortalTimes)
+                    {
+                        case 1:
+                            anim.Play("EndGame Animation");
+                            lastHit3 = new Vector3(-7, -2.4f, 0);
+                            mapManager.chapterPortalTimes = 0;
+                            break;
+                        case 0:
+                            GoIntoInternal(new Vector3(transform.position.x, transform.position.y, -2));
+                            mapManager.chapterPortalTimes = 1;
+                            break;
+                    }
+                        #region
+                    //第二个传送门
+                    //if (mapManager.chapterPortalTimes == 1)
+                    //{
+                    //    //passPanel.SetActive(true);
+                    //    anim.Play("EndGame Animation");
+                    //    lastHit3 = new Vector3(-7, -0.8f, 0);
+                    //    //变回来
+                    //    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
+                    //    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+                    //    rotatePlayer.enabled = true;
+                    //    mapManager.chapterPortalTimes = 0;
+                    //}
+                    ////第一个传送门，ps:这一组判定条件不能与上一组换顺序
+                    //if (mapManager.chapterPortalTimes == 0)
+                    //{
+                    //    //
+                    //    transform.position = new Vector3(transform.position.x, transform.position.y, -2);
+                    //    GoIntoInternal();
+                    //    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
+                    //    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+                    //    mapManager.chapterPortalTimes += 1;
+                    //}
+                        #endregion
+                    break;
+                case 2:
+                    switch(mapManager.chapterPortalTimes)
+                    {
+                        case 1:
+                            anim.Play("EndGame Animation");
+                            //lastHit3
+                            mapManager.chapterPortalTimes = 0;
+                            break;
+                        case 0:
+                            if (isTrigger)
+                            {
+                                mapManager.InstantiateSecondSubMap(0);
+                                GoIntoInternal(new Vector3(transform.position.x, transform.position.y, -2));
+                                followWith.isSpecial = true;
+                            }
+                            else
+                            {
+                                mapManager.InstantiateSecondSubMap(1);
+                                GoIntoInternal(new Vector3(38.6f, 1.2f, -2));
+                            }
+                            mapManager.chapterPortalTimes = 1;
+                            break;
+                    }
+                    break;
+                case 3:
+
+                    break;
+            }
+            #region
             //第三关
-            if (mapManager.chapter == 2)
+            /*if (mapManager.chapter == 2)
             {
                 //anim.Play("EndGame Animation");
                 GoIntoInternal();
@@ -328,28 +399,24 @@ public class PlayerMove : MonoBehaviour {
                 //passPanel.SetActive(true);
                 anim.Play("EndGame Animation");
                 lastHit3 = new Vector3(-7, -0.8f, 0);
-            }
+            }*/
+            #endregion
         }
-
+        #region
         //碰到了加分道具
         if (col.tag == "Food")
         {
             Scores += singleScore;
-            //GameObject ex= Instantiate(explosion, col.transform.position, Quaternion.identity);
-            //Destroy(col.gameObject);
-            //Destroy(ex, 0.4f);
         }
         //拼图
         if (col.tag == "Jig")
         {
             jigNum++;
-            //Destroy(col.gameObject);
         }
         //飞刀和障碍
         if (col.tag == "Trap")
         {
             IsDead = true;
-            //Debug.Log(col.name);
         }
         if (col.tag == "FlyMonster")
         {
@@ -358,34 +425,37 @@ public class PlayerMove : MonoBehaviour {
             flyNum += differentNum;
             differentNum += 2;
             canFly = true;
-            //Debug.Log("flyNum"+flyNum);
-            //Debug.Log("differentNum" + differentNum);
-            //Debug.Log(col.name);
         }
+        //符文
+        if(col.name == "Props")
+        {
+            isTrigger = true;
+            Destroy(col.gameObject);
+        }
+        //chapter2中的旋转人物触发
+        if(col.name == "Trigger")
+        {
+            rotatePlayer.enabled = true;
+        }
+        if(col.name == "Trigger1")
+        {
+            rotatePlayer.enabled = false;
+        }
+        #endregion
     }
 
     //进入里场景
-    void GoIntoInternal()
+    void GoIntoInternal(Vector3 location)
     {
         rotatePlayer.enabled = false;
         followWith.enabled = true;
         followWith.isStd = false;
-        if(rb.gravityScale < 0)
+        transform.position = location;
+        rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
+        animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        if (rb.gravityScale < 0)
         {
-            RaycastHit2D temptHit = Physics2D.Linecast(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position);
-            transform.RotateAround(new Vector3(transform.position.x, temptHit.point.y, transform.position.z), Vector3.right, 180.0f);
-            rb.gravityScale *= -1;
-            rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-            animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-            //animator.Play(Animator.StringToHash("Run"));
+            transform.Rotate(new Vector3(0, 0, 180));
         }
     }
-    //void OnTriggerStay2D(Collider2D col)
-    //{
-    //    if (col.tag == "FlyMonster")
-    //    {
-    //        canFly = false;
-    //    }
-    //}
-
 }

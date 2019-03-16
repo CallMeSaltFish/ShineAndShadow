@@ -966,7 +966,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7775978912503510865}
   m_Layer: 0
-  m_Name: ForthMap
+  m_Name: 2-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2433836844748533918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.8476515, y: -0.073744774, z: 0.19628906}
+  m_LocalPosition: {x: 10.8476515, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7127231429834287498}
@@ -1366,7 +1366,7 @@ GameObject:
   - component: {fileID: 2969650750916244682}
   m_Layer: 0
   m_Name: "\u7B2C\u4E09\u5173\uFF082\u90091\uFF09"
-  m_TagString: Untagged
+  m_TagString: BackGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

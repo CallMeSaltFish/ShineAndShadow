@@ -414,7 +414,7 @@ public class PlayerMove : MonoBehaviour {
             jigNum++;
         }
         //飞刀和障碍
-        if (col.tag == "Trap")
+        if (col.tag == "Trap"||col.tag=="DownTrap")
         {
             IsDead = true;
         }

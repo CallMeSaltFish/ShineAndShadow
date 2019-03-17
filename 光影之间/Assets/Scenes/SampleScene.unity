@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1361,7 +1361,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 2
+  chapter: 0
   chapterPortalTimes: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3212,6 +3212,12 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 197580915}
+    - target: {fileID: 114236371805037388, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: flyMonsterMove
+      value: 
+      objectReference: {fileID: 114569686397227964, guid: b6bcd2e85357cae46bf2b8bc9420e41e,
+        type: 3}
     - target: {fileID: 212333705754202572, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: m_Sprite
@@ -3227,6 +3233,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Points.Array.data[1].x
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1129f91414bb76147b0b145557fcf0a3, type: 3}

@@ -16,7 +16,7 @@ public class FlyMonsterMove : MonoBehaviour
     private float attackSpeed = 0.4f;
     private float rotateSpeed = 0.1f;
     /*0为随机生成模式 1为跟踪攻击模式*/
-    private int attackMode = 0;
+    public int attackMode = 0;
 
     public int AttackMode
     {
@@ -66,8 +66,8 @@ public class FlyMonsterMove : MonoBehaviour
         //通过Time.deltaTime实现简易的计时功能
         timer += Time.deltaTime;
         //Debug.Log(timer);
-        //每过0.5s num++,即一个num代表该飞刀实例化后度过一个0.5s
-        if (timer > 0.5)
+        //每过0.2s num++,即一个num代表该飞刀实例化后度过一个0.2s
+        if (timer > 0.2)
         {
             num++;
             timer = 0;

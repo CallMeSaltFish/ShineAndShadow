@@ -25,6 +25,7 @@ public class TipScreen : MonoBehaviour {
             player.GetComponent<PlayerMove>().enabled = true;
             player.GetComponent<PlayerMove>().isStop = false;
             tipPanel.SetActive(false);
+            GameObject.FindWithTag("Player").SendMessage("ChangeIsInteractable");
         }
 	}
     void OnTriggerEnter2D(Collider2D col)

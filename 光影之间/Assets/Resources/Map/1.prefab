@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 8436154637039085145}
   m_Layer: 0
   m_Name: FlyMonsterTriggers (2)
-  m_TagString: FlyMonster
+  m_TagString: FlyMonster3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2450,7 +2450,7 @@ GameObject:
   - component: {fileID: 2384675702796701289}
   m_Layer: 0
   m_Name: FlyMonsterTriggers (1)
-  m_TagString: FlyMonster
+  m_TagString: FlyMonster1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6884,7 +6884,7 @@ GameObject:
   - component: {fileID: 2736153462204684711}
   m_Layer: 0
   m_Name: FlyMonsterTriggers (3)
-  m_TagString: FlyMonster
+  m_TagString: FlyMonster5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8403,7 +8403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7972942744947992100}
   m_Layer: 0
-  m_Name: SecondMap
+  m_Name: 1
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

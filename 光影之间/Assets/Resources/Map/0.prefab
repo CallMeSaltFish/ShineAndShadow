@@ -1028,7 +1028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856148631}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1169.35, y: -647.84, z: 0.11927305}
+  m_LocalPosition: {x: -1169.35, y: -647.95, z: 0.11927305}
   m_LocalScale: {x: 0.22999999, y: 0.22999999, z: 0.57773}
   m_Children: []
   m_Father: {fileID: 1027954951}
@@ -2457,7 +2457,6 @@ EdgeCollider2D:
   - {x: -25.482822, y: -0.91673917}
   - {x: -24.114197, y: -0.9167396}
   - {x: -23.55816, y: -0.7558131}
-  - {x: -22.778074, y: -3.5641298}
 --- !u!68 &68145586329358024
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2474,7 +2473,6 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -22.064514, y: -3.5672345}
   - {x: -21.429396, y: -0.8704521}
   - {x: -16.635279, y: -0.85456884}
   - {x: -15.522315, y: -2.0391638}
@@ -3077,7 +3075,7 @@ GameObject:
   - component: {fileID: 4372221858879162}
   - component: {fileID: 212491292581080166}
   m_Layer: 0
-  m_Name: TeachingMap
+  m_Name: 0
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3444,7 +3442,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.7}
+  m_Size: {x: 4.219832, y: 0.21657953}
   m_EdgeRadius: 0
 --- !u!1 &3166694496149747734
 GameObject:

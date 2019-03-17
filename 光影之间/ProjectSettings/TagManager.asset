@@ -13,9 +13,12 @@ TagManager:
   - Jig
   - Tip
   - Trap
-  - FlyMonster
   - Map
   - AudioPlayer
+  - FlyMonster1
+  - FlyMonster3
+  - FlyMonster5
+  - FlyMonsterStay
   layers:
   - Default
   - TransparentFX

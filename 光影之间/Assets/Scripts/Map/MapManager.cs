@@ -69,13 +69,17 @@ public class MapManager : MonoBehaviour {
         groundList1 = Resources.LoadAll("Background1");
         groundList2 = Resources.LoadAll("Background2");
         mapTransform = transform.Find("Map");
-
         BossB = GameObject.Find("BossB").GetComponent<BossMove>();
         BossW = GameObject.Find("BossW").GetComponent<BossMove>();
         BossTag = GameObject.FindWithTag("Boss").GetComponent<BossMove>();
         ovrScreenFade2 = GameObject.Find("MainCamera").GetComponent<OVRScreenFade2>();
         BossBT = GameObject.Find("BossB").GetComponent<Transform>();
         BossWT = GameObject.Find("BossW").GetComponent<Transform>();
+        distaneText = GameObject.Find("Distance").GetComponent<Text>();
+        jigText = GameObject.Find("Jig").GetComponent<Text>();
+        rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
+        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+
         //教学关
         if (chapter == 0 && !hasMap)
         {
@@ -93,9 +97,8 @@ public class MapManager : MonoBehaviour {
         {
             Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
-            Debug.Log(1);
-            //rotatePlayer.playerHeight *= -1;
-            //playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+            rotatePlayer.playerHeight *= -1;
+            playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         }
 
         //if (chapter != 0 && chapter != 1)
@@ -106,11 +109,6 @@ public class MapManager : MonoBehaviour {
         //    /*初始化动态数组并取消勾选下栅栏*/
         //    UpdateListOfUp_Down(ups, downs);
         //}
-
-        distaneText = GameObject.Find("Distance").GetComponent<Text>();
-        jigText = GameObject.Find("Jig").GetComponent<Text>();
-        rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
-        playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         //UICamera = GameObject.Find("UI Camera").GetComponent<Camera>();
     }
 
@@ -422,7 +420,7 @@ public class MapManager : MonoBehaviour {
     {
         if(num == 0)
         {
-            Instantiate(Resources.Load("Map/2-1") as GameObject, new Vector3(83, 3.6f, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/2-1") as GameObject, new Vector3(83, 3.6f, -1), Quaternion.identity, mapTransform);
         }
         if(num == 1)
         {

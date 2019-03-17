@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField]
     private AnimationCurve curve;
     [SerializeField]
-    private float moveSpeed;
+    public float moveSpeed;
     private Rigidbody2D rb;
     private Animator animator;
     /*脚本*/
@@ -41,6 +41,8 @@ public class PlayerMove : MonoBehaviour {
     /*切关UI的panel*/
     public GameObject passPanel;
 
+    /*是否在与Tip交互*/
+    private bool isInteractable = false;
     /*判断是否死亡*/
     private bool isDead;
     /*判断是否吃到符文触发*/
@@ -56,12 +58,12 @@ public class PlayerMove : MonoBehaviour {
     private int flyNum = 0;
     /*飞刀累计个数*/
     private int currentFlyNum = 0;
-    /*组与组间相差的飞刀个数*/
-    private int differentNum = 1;
     /*允许产生飞刀*/
     private bool canFly = false;
 
     public Animator anim;
+    public FlyMonsterMove flyMonsterMove;
+
     private int[] randArray = new int[] { -2,-1,0,1,2,3,4,5 };
     private int i = 2;
     private int j = 1;
@@ -88,6 +90,18 @@ public class PlayerMove : MonoBehaviour {
         get
         {
             return isDead;
+        }
+    }
+
+    public float MoveSpeed
+    { 
+        set
+        {
+            moveSpeed = value;
+        }
+        get
+        {
+            return moveSpeed;
         }
     }
     void Awake()
@@ -123,12 +137,26 @@ public class PlayerMove : MonoBehaviour {
         //}
         if (canFly == true && currentFlyNum < flyNum)
         {
-            GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
-            -0.5f+0.6f*randArray[i], 0), Quaternion.identity);
+            if (mapManager.chapter == 1)
+            {
+                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
+                -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
+            }
+            if (mapManager.chapter == 2)
+            {
+                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y +
+                -1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+            }
             currentFlyNum++;
             i++;
             //Debug.Log("currentFlyNum" + currentFlyNum);
         }
+        if (currentFlyNum == flyNum)
+        {
+            canFly = false;
+            currentFlyNum = 0;
+        }
+
         if (moveSpeed != 0)
         {
             nowSpeed = moveSpeed;
@@ -150,6 +178,7 @@ public class PlayerMove : MonoBehaviour {
         if (hit_ && (hit_.transform.tag == "Portal" || hit_.transform.tag == "Tip") && hit_.point.x - transform.position.x <= 0.64f)
         {
             isStop = true;
+            isInteractable = true;
             point = hit_.point;
         }
 
@@ -253,7 +282,7 @@ public class PlayerMove : MonoBehaviour {
         }
 
         /*主角跳*/   /*加一个前面有传送的时候不能跳*/
-        if (Input.GetMouseButtonDown(1) && /*isGrounded*/ jumpTimes < 2)
+        if (Input.GetMouseButtonDown(1) && jumpTimes < 2 && !isInteractable)
         {
             animator.SetBool("isGrounded", false);
             rb.velocity = Vector3.zero;
@@ -286,6 +315,7 @@ public class PlayerMove : MonoBehaviour {
             GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
             transform.GetComponent<PlayerMove>().enabled = false;
             isStop = false;
+            ChangeIsInteractable();
             //删除传送门
             Destroy(col.gameObject);
             switch(mapManager.chapter)
@@ -307,30 +337,6 @@ public class PlayerMove : MonoBehaviour {
                             mapManager.chapterPortalTimes = 1;
                             break;
                     }
-                        #region
-                    //第二个传送门
-                    //if (mapManager.chapterPortalTimes == 1)
-                    //{
-                    //    //passPanel.SetActive(true);
-                    //    anim.Play("EndGame Animation");
-                    //    lastHit3 = new Vector3(-7, -0.8f, 0);
-                    //    //变回来
-                    //    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-                    //    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-                    //    rotatePlayer.enabled = true;
-                    //    mapManager.chapterPortalTimes = 0;
-                    //}
-                    ////第一个传送门，ps:这一组判定条件不能与上一组换顺序
-                    //if (mapManager.chapterPortalTimes == 0)
-                    //{
-                    //    //
-                    //    transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-                    //    GoIntoInternal();
-                    //    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-                    //    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-                    //    mapManager.chapterPortalTimes += 1;
-                    //}
-                        #endregion
                     break;
                 case 2:
                     switch(mapManager.chapterPortalTimes)
@@ -344,13 +350,13 @@ public class PlayerMove : MonoBehaviour {
                             if (isTrigger)
                             {
                                 mapManager.InstantiateSecondSubMap(0);
-                                GoIntoInternal(new Vector3(transform.position.x, transform.position.y, -2));
+                                GoIntoInternal(new Vector3(39.3f, transform.position.y, -2));
                                 followWith.isSpecial = true;
                             }
                             else
                             {
                                 mapManager.InstantiateSecondSubMap(1);
-                                GoIntoInternal(new Vector3(38.6f, 1.2f, -2));
+                                GoIntoInternal(new Vector3(39.3f, 1.2f, -2));
                             }
                             mapManager.chapterPortalTimes = 1;
                             break;
@@ -360,47 +366,6 @@ public class PlayerMove : MonoBehaviour {
 
                     break;
             }
-            #region
-            //第三关
-            /*if (mapManager.chapter == 2)
-            {
-                //anim.Play("EndGame Animation");
-                GoIntoInternal();
-                mapManager.isInternal = true;
-            }
-            //第二关
-            if (mapManager.chapter == 1)
-            {
-                //第二个传送门
-                if (mapManager.chapterPortalTimes == 1)
-                {
-                    //passPanel.SetActive(true);
-                    anim.Play("EndGame Animation");
-                    lastHit3 = new Vector3(-7, -0.8f, 0);
-                    //变回来
-                    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-                    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-                    rotatePlayer.enabled = true;
-                }
-                //第一个传送门，ps:这一组判定条件不能与上一组换顺序
-                if (mapManager.chapterPortalTimes == 0)
-                {
-                    //
-                    transform.position = new Vector3(transform.position.x, transform.position.y, -2);
-                    GoIntoInternal();
-                    rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-                    animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-                    mapManager.chapterPortalTimes += 1;
-                }
-            }
-            //第一关
-            if (mapManager.chapter == 0)
-            {
-                //passPanel.SetActive(true);
-                anim.Play("EndGame Animation");
-                lastHit3 = new Vector3(-7, -0.8f, 0);
-            }*/
-            #endregion
         }
         #region
         //碰到了加分道具
@@ -414,20 +379,50 @@ public class PlayerMove : MonoBehaviour {
             jigNum++;
         }
         //飞刀和障碍
-        if (col.tag == "Trap"||col.tag=="DownTrap")
+        if (col.tag == "Trap" || col.tag=="DownTrap")
         {
             IsDead = true;
         }
-        if (col.tag == "FlyMonster")
+        if (col.tag == "FlyMonster1")
         {
+            flyMonsterMove.attackMode = 0;
             //i = Random.Range(0, 3);
             i = 2;
-            flyNum += differentNum;
-            differentNum += 2;
+            flyNum = 1;
             canFly = true;
         }
+        if (col.tag == "FlyMonster3")
+        {
+            flyMonsterMove.attackMode = 0;
+            //i = Random.Range(0, 3);
+            i = 2;
+            flyNum = 3;
+            canFly = true;
+        }
+        if (col.tag == "FlyMonster5")
+        {
+            flyMonsterMove.attackMode = 0;
+            //i = Random.Range(0, 3);
+            i = 2;
+            flyNum = 5;
+            canFly = true;
+        }
+        if (col.tag == "FlyMonsterStay")
+        {
+            flyMonsterMove.attackMode = 1;
+            //i = Random.Range(0, 3);
+            i = 2;
+            flyNum = 1;
+            canFly = true;
+        }
+
+        if (col.tag == "Tip")
+        {
+            animator.SetBool("isStop", true);
+            isInteractable = true;
+        }
         //符文
-        if(col.name == "Props")
+        if (col.name == "Props")
         {
             isTrigger = true;
             Destroy(col.gameObject);
@@ -457,5 +452,11 @@ public class PlayerMove : MonoBehaviour {
         {
             transform.Rotate(new Vector3(0, 0, 180));
         }
+    }
+
+    //供TipScreen调用
+    void ChangeIsInteractable()
+    {
+        isInteractable = false;
     }
 }

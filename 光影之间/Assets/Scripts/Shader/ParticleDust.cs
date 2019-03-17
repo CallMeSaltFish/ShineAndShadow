@@ -13,11 +13,12 @@ public class ParticleDust : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(player.IsGrounded == false)
+		if(player.IsGrounded == false || player.moveSpeed == 0) 
         {
+            Debug.Log("11");
             particleSystem.enableEmission = false;
         }
-        if (player.IsGrounded == true)
+        if (player.IsGrounded == true && player.moveSpeed != 0) 
         {
             particleSystem.enableEmission = true;
         }

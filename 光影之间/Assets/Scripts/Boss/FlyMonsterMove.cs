@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FlyMonsterMove : MonoBehaviour
 {
@@ -13,10 +14,14 @@ public class FlyMonsterMove : MonoBehaviour
     private bool canAttack;
     /*飞行怪物速度*/
     private float moveSpeed = 0.25f;
-    private float attackSpeed = 0.4f;
+    private float attackSpeed = 0.15f;
     private float rotateSpeed = 0.1f;
     /*0为随机生成模式 1为跟踪攻击模式*/
     public int attackMode = 0;
+
+    private SpriteRenderer spriteRenderer;
+    private Texture2D whiteKnife;
+    private Texture2D blackKnife;
 
     public int AttackMode
     {
@@ -50,14 +55,17 @@ public class FlyMonsterMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
+        whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
         player = GameObject.Find("Player");
         state = MonsterState.Far;
         //transform.position=player.transform.position+new
         mapManager = GameObject.Find("Manager/Map").GetComponent<MapManager>();
-        if (mapManager.chapter == 3 || mapManager.chapter == 4)
-        {
-            attackMode = 1;
-        }
+        //if (mapManager.chapter == 3 || mapManager.chapter == 4)
+        //{
+        //    attackMode = 1;
+        //}
     }
 
     // Update is called once per frame
@@ -73,6 +81,7 @@ public class FlyMonsterMove : MonoBehaviour
             timer = 0;
         }
         JudgeState();
+        UpdateSprite();
         UpdateMonsterState();
     }
 
@@ -107,7 +116,7 @@ public class FlyMonsterMove : MonoBehaviour
     /// </summary>
     void JudgeState()
     {
-        //如果度过4个0.5s并且状态是Far，就切换到Approach
+        //如果度过4个0.2s并且状态是Far，就切换到Approach
         if (num == 1 && state == MonsterState.Far)
         {
             state = MonsterState.Approach;
@@ -120,13 +129,32 @@ public class FlyMonsterMove : MonoBehaviour
         {
             state = MonsterState.Stand2;
         }
-        if (num == 6 && state == MonsterState.Stand2)
+        if (num == 8 && state == MonsterState.Stand2)
         {
             state = MonsterState.Attack;
         }
-        if (num == 8 && state == MonsterState.Attack)
+        if (num == 10 && state == MonsterState.Attack)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// 更新贴图
+    /// </summary>
+    void UpdateSprite()
+    {
+        if (gameObject.transform.position.y < 4.6f)
+        {
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
+        if (gameObject.transform.position.y > 4.6f || gameObject.transform.position.y == 4.6f)
+        {
+            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
         }
     }
 
@@ -184,7 +212,7 @@ public class FlyMonsterMove : MonoBehaviour
     void Attack()
     {
         if (attackMode == 0 || attackMode == 1)
-            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x - 15, transform.position.y, 0), attackSpeed);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x - 8, transform.position.y, 0), attackSpeed);
     }
 
 }

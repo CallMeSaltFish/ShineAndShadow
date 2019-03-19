@@ -31,7 +31,7 @@ public class MapMaker : MonoBehaviour
             num++;
             timer = 0;
         }
-        if (num == 2)
+        if (num == 7)
         {
             num = 0;
             MakeMap();
@@ -44,6 +44,6 @@ public class MapMaker : MonoBehaviour
     /// </summary>
     void MakeMap()
     {
-        Instantiate(newFloor, new Vector3(player.transform.position.x + 10, 0 + number * 1, 0), Quaternion.identity);
+        Instantiate(newFloor, new Vector3(player.transform.position.x + 20, 0 + number * 2.6f, 0), Quaternion.identity);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour {
     /*不同的ground数组存不同难度的地图*/  
@@ -56,6 +57,8 @@ public class MapManager : MonoBehaviour {
     private OVRScreenFade2 ovrScreenFade2;
     private Transform BossBT;
     private Transform BossWT;
+    //private SpriteRenderer spriteRenderer;
+    //public FlyMonsterMove flyMonsterMove;
     // Use this for initialization
     void Awake()
     {
@@ -100,6 +103,12 @@ public class MapManager : MonoBehaviour {
             rotatePlayer.playerHeight *= -1;
             playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         }
+        //第三关
+        if (chapter == 3 && !hasMap)
+        {
+            Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -115,7 +124,6 @@ public class MapManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
         //获取第零层的动画
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 0.95f) && (info.IsName("Base Layer.EndGame Animation")))
@@ -155,6 +163,12 @@ public class MapManager : MonoBehaviour {
         if (chapter == 2 && !hasMap)
         {
             Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
+        //第三关
+        if (chapter == 3 && !hasMap)
+        {
+            Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
 

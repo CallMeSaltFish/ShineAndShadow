@@ -63,6 +63,9 @@ public class PlayerMove : MonoBehaviour {
 
     public Animator anim;
     public FlyMonsterMove flyMonsterMove;
+    private SpriteRenderer spriteRenderer;
+    private Texture2D whiteKnife;
+    private Texture2D blackKnife;
 
     private int[] randArray = new int[] { -2,-1,0,1,2,3,4,5 };
     private int i = 2;
@@ -110,6 +113,9 @@ public class PlayerMove : MonoBehaviour {
     }
     // Use this for initialization
     void Start() {
+        spriteRenderer = flyMonsterMove.GetComponent<SpriteRenderer>();
+        blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
+        whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
         rb = GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
@@ -146,6 +152,18 @@ public class PlayerMove : MonoBehaviour {
             {
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y +
                 -1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+                if (a.transform.position.y < 4.6f)
+                {
+                    SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
+                    Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                    spriteRenderer.sprite = sprite;
+                }
+                if (a.transform.position.y > 4.6f|| a.transform.position.y == 4.6f) 
+                {
+                    SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
+                    Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                    spriteRenderer.sprite = sprite;
+                }
             }
             currentFlyNum++;
             i++;

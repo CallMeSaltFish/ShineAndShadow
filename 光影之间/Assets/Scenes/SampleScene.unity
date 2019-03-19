@@ -1192,10 +1192,10 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -1218,15 +1218,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79031781e570ec1439166d62f9c84303, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b7602ea96acfa44192e24ef938a121b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1482411317}
+  playerTransform: {fileID: 893632807}
   cameraSpeed: 0.5
-  isStd: 0
-  isSpecial: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1337,6 +1335,7 @@ GameObject:
   - component: {fileID: 799680270}
   - component: {fileID: 799680271}
   - component: {fileID: 799680272}
+  - component: {fileID: 799680273}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1361,7 +1360,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 0
+  chapter: 3
   chapterPortalTimes: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
@@ -1421,6 +1420,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daee964bb08bb18439457b6c64980824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &799680273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799680267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7453c51b1bbdca4c81f4b179371c566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newFloor: {fileID: 4888202684432633437, guid: d433f65c5eb1ea4468513491cac935b9,
+    type: 3}
 --- !u!1 &827656571
 GameObject:
   m_ObjectHideFlags: 0
@@ -2108,12 +2121,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &1482411317 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4580729098638494, guid: 1129f91414bb76147b0b145557fcf0a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1889224996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1516796493
 GameObject:
   m_ObjectHideFlags: 0

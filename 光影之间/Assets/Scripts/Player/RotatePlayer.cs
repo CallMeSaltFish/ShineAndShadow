@@ -37,7 +37,7 @@ public class RotatePlayer : MonoBehaviour {
                 point = hit.point;
             }
         }
-        if (Input.GetMouseButtonDown(0) && time > 1 && hit.transform.tag == "BackGround")
+        if (Input.GetMouseButtonDown(0) && time > 1 && hit.transform.tag == "BackGround"&&hit.transform.gameObject.name!= "第三关-1")
         {
             /*主角旋转*/
             transform.RotateAround(new Vector3(transform.position.x, point.y, transform.position.z), Vector3.right, 180.0f);           

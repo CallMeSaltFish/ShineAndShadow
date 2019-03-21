@@ -10,5 +10,14 @@ public class MapMover : MonoBehaviour
     void Update()
     {
         transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
+        Destroymyself();
+    }
+
+    void Destroymyself()
+    {
+        if (moveSpeed == 2.5f&&gameObject.name!= "第三关-1")
+        {
+            Destroy(gameObject, 100);
+        }
     }
 }

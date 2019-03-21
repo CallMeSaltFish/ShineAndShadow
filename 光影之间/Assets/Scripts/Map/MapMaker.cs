@@ -26,7 +26,7 @@ public class MapMaker : MonoBehaviour
     {
         timer += Time.deltaTime;
         //Debug.Log(timer);
-        if (timer > 2)
+        if (timer > 3)
         {
             num++;
             timer = 0;
@@ -44,6 +44,6 @@ public class MapMaker : MonoBehaviour
     /// </summary>
     void MakeMap()
     {
-        Instantiate(newFloor, new Vector3(player.transform.position.x + 20, 0 + number * 2.6f, 0), Quaternion.identity);
+        Instantiate(newFloor, new Vector3(player.transform.position.x + 28, 0 + number * 2.6f, 0), Quaternion.identity);
     }
 }

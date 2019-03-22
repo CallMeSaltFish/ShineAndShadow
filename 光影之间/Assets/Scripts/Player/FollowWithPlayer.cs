@@ -43,6 +43,10 @@ public class FollowWithPlayer : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
             }
         }
+        if(mapManager.chapter == 3)
+        {
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, playerTransform.position.y, transform.position.z), ref cameraVelocity, cameraSpeed);
+        }
         else
         {
             if (!isStd)

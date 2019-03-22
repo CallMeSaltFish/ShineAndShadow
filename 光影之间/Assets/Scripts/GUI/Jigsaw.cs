@@ -11,13 +11,24 @@ public class Jigsaw : MonoBehaviour
     private GameObject jigsaw2;
     private GameObject jigsaw3;
     private GameObject jigsaw4;
-    /*拼图放置的位置*/
+    /*四块拼图*/
     private GameObject button1;
     private GameObject button2;
     private GameObject button3;
     private GameObject button4;
+    /*四个匣子*/
+    private GameObject casket1;
+    private GameObject casket2;
+    private GameObject casket3;
+    private GameObject casket4;
+
     /*拼图个数*/
     private int starNum;
+
+    /*匣子的改变*/
+    private SpriteRenderer spriteRenderer;
+    private Texture2D openCasket;//打开的匣子
+    private Texture2D closeCasket;//关上的匣子
 
     private float jigsawSpeed = 1.0f;
     /*是否允许拼图开始运动*/
@@ -35,8 +46,14 @@ public class Jigsaw : MonoBehaviour
         button2 = GameObject.Find("Canvas/Panel/Button2");
         button3 = GameObject.Find("Canvas/Panel/Button3");
         button4 = GameObject.Find("Canvas/Panel/Button4");
+        casket1 = GameObject.Find("关上的匣子1");
+        casket2 = GameObject.Find("关上的匣子2");
+        casket3 = GameObject.Find("关上的匣子3");
+        casket4 = GameObject.Find("关上的匣子4");
         starNum = PlayerPrefs.GetInt("Star");
         //starNum = 4;
+        openCasket = (Texture2D)Resources.Load("Sprites/打开的匣子");
+        closeCasket = (Texture2D)Resources.Load("Sprites/关上的匣子");
     }
 
     // Update is called once per frame
@@ -74,6 +91,30 @@ public class Jigsaw : MonoBehaviour
     /// <param name="button"></param>
     void ButtonDown(GameObject jigsaw, GameObject button, float num)
     {
+        if (num == 1)
+        {
+            SpriteRenderer spriteRenderer = casket1.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(openCasket, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
+        if (num == 2)
+        {
+            SpriteRenderer spriteRenderer = casket2.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(openCasket, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
+        if (num == 3)
+        {
+            SpriteRenderer spriteRenderer = casket3.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(openCasket, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
+        if (num == 4)
+        {
+            SpriteRenderer spriteRenderer = casket4.GetComponent<SpriteRenderer>();
+            Sprite sprite = Sprite.Create(openCasket, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+            spriteRenderer.sprite = sprite;
+        }
         jigsaw.transform.position = Vector3.Lerp(jigsaw.transform.position,
             new Vector3(Camera.main.ScreenToWorldPoint(button.transform.position).x,
             Camera.main.ScreenToWorldPoint(button.transform.position).y,
@@ -92,13 +133,25 @@ public class Jigsaw : MonoBehaviour
             Image image = button_.GetComponent<Image>();
             button_.interactable = false;
             if (num == 1)
+            {
                 button_.image.sprite = Resources.Load("拼图【黑白】/拼图【黑白】_0", typeof(Sprite)) as Sprite;
+                
+            }
             if (num == 2)
+            {
                 button_.image.sprite = Resources.Load("拼图【黑白】/拼图【黑白】_1", typeof(Sprite)) as Sprite;
+                
+            }
             if (num == 3)
+            {
                 button_.image.sprite = Resources.Load("拼图【黑白】/拼图【黑白】_2", typeof(Sprite)) as Sprite;
+                
+            }
             if (num == 4)
+            {
                 button_.image.sprite = Resources.Load("拼图【黑白】/拼图【黑白】_3", typeof(Sprite)) as Sprite;
+                
+            }
         }
     }
 }

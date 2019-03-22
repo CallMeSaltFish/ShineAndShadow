@@ -1218,13 +1218,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b7602ea96acfa44192e24ef938a121b, type: 3}
+  m_Script: {fileID: 11500000, guid: 79031781e570ec1439166d62f9c84303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 893632807}
   cameraSpeed: 0.5
+  isStd: 0
+  isSpecial: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1360,7 +1362,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 3
+  chapter: 2
   chapterPortalTimes: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}

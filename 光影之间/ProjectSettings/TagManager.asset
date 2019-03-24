@@ -19,6 +19,7 @@ TagManager:
   - FlyMonster3
   - FlyMonster5
   - FlyMonsterStay
+  - FlyMonsterCruve
   layers:
   - Default
   - TransparentFX

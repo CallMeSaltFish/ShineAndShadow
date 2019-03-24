@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 212933099751659348}
   - component: {fileID: 114569686397227964}
   - component: {fileID: 8068426011572499397}
+  - component: {fileID: 8122174777321899087}
   m_Layer: 0
   m_Name: FlyMonster
   m_TagString: Trap
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d737df1d5d5348a4e8f9456e1d2d12d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackMode: 0
+  attackMode: -1
 --- !u!61 &8068426011572499397
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -120,3 +121,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5573947, y: 0.10269499}
   m_EdgeRadius: 0
+--- !u!114 &8122174777321899087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428989434194548}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73386e04c4ff04048bef8b9fc0d97767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1
+  g: -5

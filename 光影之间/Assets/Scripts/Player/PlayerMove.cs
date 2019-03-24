@@ -113,6 +113,7 @@ public class PlayerMove : MonoBehaviour {
     }
     // Use this for initialization
     void Start() {
+        flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
         spriteRenderer = flyMonsterMove.GetComponent<SpriteRenderer>();
         blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
         whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
@@ -429,6 +430,15 @@ public class PlayerMove : MonoBehaviour {
         if (col.tag == "FlyMonsterStay")
         {
             flyMonsterMove.attackMode = 1;
+            //i = Random.Range(0, 3);
+            i = 2;
+            flyNum = 1;
+            canFly = true;
+        }
+        if (col.tag == "FlyMonsterCruve")
+        {
+            flyMonsterMove.attackMode = -1;
+            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
             //i = Random.Range(0, 3);
             i = 2;
             flyNum = 1;

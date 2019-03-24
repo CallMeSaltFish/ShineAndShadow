@@ -100,8 +100,10 @@ public class MapManager : MonoBehaviour {
         {
             Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
+            /*以下三行都是方便直接修改chapter进行演示*/
             rotatePlayer.playerHeight *= -1;
             playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+            rotatePlayer.enabled = false;
         }
         //第三关
         if (chapter == 3 && !hasMap)
@@ -128,7 +130,6 @@ public class MapManager : MonoBehaviour {
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 0.95f) && (info.IsName("Base Layer.EndGame Animation")))
         {
-            Debug.Log("停止游戏");
             Time.timeScale = 0;
         }
 
@@ -177,10 +178,9 @@ public class MapManager : MonoBehaviour {
             if (Input.GetMouseButtonDown(2) && Camera.main.transform.position.x - playerTransform.position.x >= 5.2f)
             {
                 playerMove.enabled = true;
-                //注意这一句
-                //rotatePlayer.enabled = true;
                 BossB.enabled = true;
                 BossW.enabled = true;
+                rb.velocity = new Vector3(0, 0, 0);
             }
             //if (chapter != 1)
             //{
@@ -397,7 +397,6 @@ public class MapManager : MonoBehaviour {
         chapter = n;
     }
 
-    /*从教学关到正常*/
     public void ChangeToNextChapter()
     {
         passPanelAnimator.Play("EndGame Animation 0");
@@ -415,13 +414,17 @@ public class MapManager : MonoBehaviour {
         switch(chapter)
         {
             case 2:
-                playerTransform.position = new Vector3(-6, -1.6f, -2);
+                playerTransform.position = new Vector3(-7f, -1.6f, -2f);
+                playerMove.lastHit3 = new Vector3(-7f, -2.1f, -2f);
+                rotatePlayer.enabled = false;
+                break;
+            case 3:
+                playerTransform.position = new Vector3(-7f, 0.5f, -2f);
+                //playerMove.lastHit3 = new Vector3(-7f, 0f, -2f);
                 break;
         }
         playerTransform.rotation = Quaternion.Euler(0, 0, 0);
         rb.gravityScale = 1;
-        //rotatePlayer.playerHeight = 1;
-        //playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         Camera.main.transform.position = new Vector3(0, 0, -10);
         Destroy(GameObject.Find("Tips"));
         Destroy(GameObject.Find("Foods"));

@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour {
     public bool isStop = false;
     private Vector3 point;
     private float nowSpeed;
-    private Vector3 lastHit3 = Vector3.zero;
+    public Vector3 lastHit3 = Vector3.zero;
     private int jumpTimes;
     /*遇到传送门后减速的速度*/
     public float speed;
@@ -184,8 +184,8 @@ public class PlayerMove : MonoBehaviour {
         Debug.DrawLine(transform.position + new Vector3(0.16f, 0, 0), transform.position + new Vector3(100.16f, 0, 0), Color.red);
         //检测斜坡
         //向前 短下
-        RaycastHit2D hit1 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.26f, -0.5f * rb.gravityScale, 0));
-        Debug.DrawLine(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.26f, -0.5f * rb.gravityScale, 0), Color.green);
+        RaycastHit2D hit1 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.31f, -0.5f * rb.gravityScale, 0));
+        Debug.DrawLine(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.31f, -0.5f * rb.gravityScale, 0), Color.green);
         //向前 长上
         RaycastHit2D hit2 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0));
         Debug.DrawLine(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0), Color.blue);
@@ -217,14 +217,14 @@ public class PlayerMove : MonoBehaviour {
         if (hit2 && hit1)
         {
             //上坡
-            if (Mathf.Abs(hit2.point.x - hit1.point.x) > 0.1f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround" && isGrounded)
+            if (Mathf.Abs(hit2.point.x - hit1.point.x) > 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround" && isGrounded)
             {
                 float angle = Mathf.Atan(0.1f / (hit2.point.x - hit1.point.x));
                 rb.velocity = new Vector3(0, Mathf.Tan(angle) * rb.gravityScale * moveSpeed, 0);
                 animator.SetBool("isStop", false);
             }
             //碰墙
-            if (Mathf.Abs(hit2.point.x - hit1.point.x) <= 0.1f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround")
+            if (Mathf.Abs(hit2.point.x - hit1.point.x) <= 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround")
             {
                 moveSpeed = 0;
                 animator.SetBool("isStop", true);
@@ -281,6 +281,7 @@ public class PlayerMove : MonoBehaviour {
                 lastHit3 = hit3.point;
             }
         }
+        Debug.Log(lastHit3);
 
         /*控制摄像机移动的脚本*/
         if (Camera.main.transform.position.x - transform.position.x <= 5.3f && Camera.main.transform.position.x - transform.position.x >= 5.2f)
@@ -340,14 +341,14 @@ public class PlayerMove : MonoBehaviour {
             {
                 case 0:
                     anim.Play("EndGame Animation");
-                    lastHit3 = new Vector3(-7, -0.8f, 0);
+                    //lastHit3 = new Vector3(-7, -0.8f, 0);
                     break;
                 case 1:
                     switch (mapManager.chapterPortalTimes)
                     {
                         case 1:
                             anim.Play("EndGame Animation");
-                            lastHit3 = new Vector3(-7, -2.4f, 0);
+                            //lastHit3 = new Vector3(-7, -2.4f, 0);
                             mapManager.chapterPortalTimes = 0;
                             break;
                         case 0:
@@ -361,7 +362,7 @@ public class PlayerMove : MonoBehaviour {
                     {
                         case 1:
                             anim.Play("EndGame Animation");
-                            //lastHit3
+                            //lastHit3 = new Vector3(-7f, 0f, 0f);
                             mapManager.chapterPortalTimes = 0;
                             break;
                         case 0:
@@ -466,9 +467,11 @@ public class PlayerMove : MonoBehaviour {
         transform.position = location;
         rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
         animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        //rb.gravityScale *= -1;
         if (rb.gravityScale < 0)
         {
             transform.Rotate(new Vector3(0, 0, 180));
+            rb.gravityScale *= -1;
         }
     }
 

@@ -61,7 +61,7 @@ public class FlyMonsterMove : MonoBehaviour
         player = GameObject.Find("Player");
         state = MonsterState.Far;
         //transform.position=player.transform.position+new
-        mapManager = GameObject.Find("Manager/Map").GetComponent<MapManager>();
+        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         //if (mapManager.chapter == 3 || mapManager.chapter == 4)
         //{
         //    attackMode = 1;
@@ -144,17 +144,20 @@ public class FlyMonsterMove : MonoBehaviour
     /// </summary>
     void UpdateSprite()
     {
-        if (gameObject.transform.position.y < 4.6f)
-        {
-            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
-            spriteRenderer.sprite = sprite;
-        }
-        if (gameObject.transform.position.y > 4.6f || gameObject.transform.position.y == 4.6f)
-        {
-            SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
-            spriteRenderer.sprite = sprite;
+        if (mapManager.chapter == 2)
+        { 
+            if (gameObject.transform.position.y < 4.6f)
+            {
+                SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                spriteRenderer.sprite = sprite;
+            }
+            if (gameObject.transform.position.y > 4.6f || gameObject.transform.position.y == 4.6f)
+            {
+                SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                spriteRenderer.sprite = sprite;
+            }
         }
     }
 

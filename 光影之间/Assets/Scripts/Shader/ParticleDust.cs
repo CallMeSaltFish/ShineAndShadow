@@ -15,7 +15,6 @@ public class ParticleDust : MonoBehaviour {
 	void Update () {
 		if(player.IsGrounded == false || player.moveSpeed == 0) 
         {
-            Debug.Log("11");
             particleSystem.enableEmission = false;
         }
         if (player.IsGrounded == true && player.moveSpeed != 0) 

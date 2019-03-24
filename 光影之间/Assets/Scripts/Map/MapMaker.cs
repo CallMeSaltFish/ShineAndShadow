@@ -14,10 +14,12 @@ public class MapMaker : MonoBehaviour
     private int number = 0;
 
     private GameObject player;
+    private MapManager mapManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         player = GameObject.FindWithTag("Player");
     }
 
@@ -44,6 +46,7 @@ public class MapMaker : MonoBehaviour
     /// </summary>
     void MakeMap()
     {
+        if(mapManager.chapter==3)
         Instantiate(newFloor, new Vector3(player.transform.position.x + 28, 0 + number * 2.6f, 0), Quaternion.identity);
     }
 }

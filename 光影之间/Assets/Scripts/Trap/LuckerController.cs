@@ -118,8 +118,7 @@ public class LuckerController : MonoBehaviour
     {
         if (col.tag == "Player")
         {
-            Debug.Log(gameObject);
-            Debug.Log("你已经被刺死了");
+
         }
     }
 }

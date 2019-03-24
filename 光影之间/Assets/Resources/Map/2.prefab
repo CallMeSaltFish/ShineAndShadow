@@ -129,7 +129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1236523024407921865
 Transform:
   m_ObjectHideFlags: 0
@@ -356,7 +356,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -22.5, y: -2.44}
+  - {x: -24, y: -2.44}
   - {x: -12.45, y: -2.44}
   - {x: -12.45, y: -3.2}
   - {x: -7.15, y: -3.2}
@@ -1669,7 +1669,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.22, y: 0.46}
+  m_Size: {x: 0.15995911, y: 0.3472564}
   m_EdgeRadius: 0
 --- !u!1 &6593749664417738510
 GameObject:
@@ -2004,7 +2004,7 @@ PrefabInstance:
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.22
+      value: 36.72
       objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}

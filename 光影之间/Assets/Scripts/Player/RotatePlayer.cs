@@ -14,7 +14,6 @@ public class RotatePlayer : MonoBehaviour {
     //目标正下（上）方的地面上的一点
     private Vector3 point;
     //点击左键旋转CD
-    private int stdTime = 2;
     private float time = 0;
 
     // Use this for initialization
@@ -31,14 +30,15 @@ public class RotatePlayer : MonoBehaviour {
         Debug.DrawLine(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position, Color.yellow);
         if (hit)
         {
-            //Debug.Log(1);
             if (hit.transform.tag == "BackGround")
             {
                 point = hit.point;
             }
         }
-        if (Input.GetMouseButtonDown(0) && time > 1 && hit.transform.tag == "BackGround"&&hit.transform.gameObject.name!= "第三关-1")
+        Debug.Log(hit.transform.tag + " " + hit.transform.name + " " + time);
+        if (Input.GetMouseButtonDown(0) && time > 1 && hit.transform.tag == "BackGround" && hit.transform.name != "第三关-1")
         {
+            Debug.Log(1);
             /*主角旋转*/
             transform.RotateAround(new Vector3(transform.position.x, point.y, transform.position.z), Vector3.right, 180.0f);           
             rb.gravityScale *= -1;

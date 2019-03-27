@@ -20,19 +20,21 @@ public class PlayerMove : MonoBehaviour {
     public bool isStop = false;
     private Vector3 point;
     private float nowSpeed;
+    [HideInInspector]
     public Vector3 lastHit3 = Vector3.zero;
-    private int jumpTimes;
     /*遇到传送门后减速的速度*/
     public float speed;
     /*跳跃的力量*/
     [Header("跳跃高度")]
     public float jumpSpeed;
     /*单个加分道具分数*/
-    private int singleScore = 5;
+    //private int singleScore = 5;
     /*已收集拼图个数*/
+    [HideInInspector]
     public int jigNum = 0;
     /*吃加分道具后所得总分数*/
-    public int Scores = 0;
+    [HideInInspector]
+    public int scores = 0;
     public GameObject explosion;
 
     /*存档点位置*/
@@ -47,9 +49,6 @@ public class PlayerMove : MonoBehaviour {
     private bool isDead;
     /*判断是否吃到符文触发*/
     private bool isTrigger;
-    /*计时器*/
-    private float timer;
-    private static int num;
 
     /*飞刀怪*/
     public GameObject flyMonster;
@@ -122,7 +121,6 @@ public class PlayerMove : MonoBehaviour {
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         followWith = GameObject.Find("MainCamera").GetComponent<FollowWithPlayer>();
         rotatePlayer = GetComponent<RotatePlayer>();
-        jumpTimes = 0;
         mapManager.chapterPortalTimes = 0;
         //transform.position = savePos;
     }
@@ -257,7 +255,6 @@ public class PlayerMove : MonoBehaviour {
                     {
                         animator.SetBool("isDrop", true);
                         isGrounded = false;
-                        jumpTimes = 1;
                     }
                 }
                 if (rb.gravityScale < 0)
@@ -276,13 +273,11 @@ public class PlayerMove : MonoBehaviour {
                     {
                         animator.SetBool("isDrop", true);
                         isGrounded = false;
-                        jumpTimes = 1;
                     }
                 }
                 lastHit3 = hit3.point;
             }
         }
-        Debug.Log(lastHit3);
 
         /*控制摄像机移动的脚本*/
         if (Camera.main.transform.position.x - transform.position.x <= 5.3f && Camera.main.transform.position.x - transform.position.x >= 5.2f)
@@ -302,15 +297,18 @@ public class PlayerMove : MonoBehaviour {
         }
 
         /*主角跳*/   /*加一个前面有传送的时候不能跳*/
-        if (Input.GetMouseButtonDown(1) && jumpTimes < 2 && !isInteractable)
+        if (isGrounded && Input.GetMouseButtonDown(1) && !isInteractable)
         {
             animator.SetBool("isGrounded", false);
             rb.velocity = Vector3.zero;
             rb.AddForce(new Vector3(0, jumpSpeed * rb.gravityScale, 0), ForceMode2D.Impulse);
             isGrounded = false;
-            jumpTimes++;
         }
-
+        //if(!isGrounded && Input.GetMouseButtonDown(0))
+        //{
+        //    rb.velocity = Vector3.zero;
+        //    rb.AddForce(new Vector3(0, jumpSpeed * -rb.gravityScale, 0), ForceMode2D.Impulse);
+        //}
     }
 
 
@@ -321,7 +319,6 @@ public class PlayerMove : MonoBehaviour {
             isGrounded = true;
             animator.SetBool("isGrounded", true);
             animator.SetBool("isDrop", false);
-            jumpTimes = 0;
         }
     }
 
@@ -353,7 +350,7 @@ public class PlayerMove : MonoBehaviour {
                             mapManager.chapterPortalTimes = 0;
                             break;
                         case 0:
-                            GoIntoInternal(new Vector3(transform.position.x, transform.position.y, -2));
+                            GoIntoInternal(new Vector3(transform.position.x, transform.position.y + 1f, -2f));
                             mapManager.chapterPortalTimes = 1;
                             break;
                     }
@@ -391,7 +388,7 @@ public class PlayerMove : MonoBehaviour {
         //碰到了加分道具
         if (col.tag == "Food")
         {
-            Scores += singleScore;
+            scores++;
         }
         //拼图
         if (col.tag == "Jig")
@@ -474,13 +471,13 @@ public class PlayerMove : MonoBehaviour {
         rotatePlayer.enabled = false;
         followWith.enabled = true;
         followWith.isStd = false;
-        transform.position = location;
         rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
         animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
         //rb.gravityScale *= -1;
         if (rb.gravityScale < 0)
         {
-            transform.Rotate(new Vector3(0, 0, 180));
+            transform.Rotate(new Vector3(180, 0, 0));
+            transform.position = location;
             rb.gravityScale *= -1;
         }
     }

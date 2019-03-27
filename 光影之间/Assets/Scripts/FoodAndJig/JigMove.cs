@@ -13,7 +13,7 @@ public class JigMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        jigUI = GameObject.Find("Canvas/UIImage/JigImage");
+        jigUI = GameObject.Find("Canvas/JigImage");
     }
 
     // Update is called once per frame

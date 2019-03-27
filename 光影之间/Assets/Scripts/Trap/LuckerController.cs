@@ -44,8 +44,8 @@ public class LuckerController : MonoBehaviour
         collider2D.enabled = false;
         player = GameObject.FindWithTag("Player");
         rotatePlayer = player.GetComponent<RotatePlayer>();
-        mapManager = GameObject.Find("Manager/Map").GetComponent<MapManager>();
-        if (mapManager.chapter == 3 || mapManager.chapter == 4)
+        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
+        if (mapManager.chapter == 2)
         {
             attackMode = 1;
         }

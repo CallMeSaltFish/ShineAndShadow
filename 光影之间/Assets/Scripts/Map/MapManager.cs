@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour {
     /*不同的ground数组存不同难度的地图*/  
@@ -24,8 +23,6 @@ public class MapManager : MonoBehaviour {
     //遮罩为ui的camera用来实现游戏结束后场景渐暗效果
     //private Camera UICamera;
     private Animator playerAnimator;
-    /*上坡的角度*/
-    private float angle = 0;
     private GameObject[] backGrounds;
     /*传送门有没有*/
     private bool hasPortal = false;
@@ -62,6 +59,7 @@ public class MapManager : MonoBehaviour {
     // Use this for initialization
     void Awake()
     {
+        //chapter = PlayerPrefs.GetInt("Chapter");
         Time.timeScale = 0;
     }
 
@@ -309,7 +307,7 @@ public class MapManager : MonoBehaviour {
 
     public void IntoRuleScene()
     {
-        PlayerPrefs.SetInt("index", playerMove.Scores);
+        PlayerPrefs.SetInt("index", playerMove.scores);
         SceneManager.LoadScene("ScoresList");
     }
     public void IntoJigsawScene()
@@ -317,13 +315,28 @@ public class MapManager : MonoBehaviour {
         PlayerPrefs.SetInt("Star", playerMove.jigNum);
         SceneManager.LoadScene("Achieve");
     }
+
     public void IntoThisScene()
     {
-        SceneManager.LoadScene("SampleScene");
+        if(playerMove.scores >= 5)
+        {
+            playerMove.scores -= 5;
+            SceneManager.LoadScene("SampleScene");
+            PlayerPrefs.SetInt("Chapter", chapter);
+            //UI
+            Debug.Log("cost five points");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Chapter", 1);
+            //UI
+            Debug.Log("you have not enough score to replay");
+        }
     }
+
     private void UpdateJigNum()
     {
-        jigText.text = "拼图：" + (playerMove.jigNum).ToString();
+        jigText.text = "X " + (playerMove.jigNum).ToString();
     }
 
     private void UpdateDistance()

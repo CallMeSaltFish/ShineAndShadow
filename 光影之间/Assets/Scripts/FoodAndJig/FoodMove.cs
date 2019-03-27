@@ -11,7 +11,7 @@ public class FoodMove : MonoBehaviour {
     private bool isEat=false;
 	// Use this for initialization
 	void Start () {
-        foodUI = GameObject.Find("Canvas/UIImage/FoodImage");
+        foodUI = GameObject.Find("Canvas/FoodImage");
 	}
 	
 	// Update is called once per frame

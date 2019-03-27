@@ -10,12 +10,11 @@ public class GetScore : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         scoreText = GameObject.Find("Score").GetComponent<Text>();
-        scoreText.text = "得分：0";
         playerMove = GameObject.Find("Player").GetComponent<PlayerMove>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        scoreText.text = "得分："+(playerMove.Scores).ToString();
+        scoreText.text = "X " + playerMove.scores.ToString();
 	}
 }

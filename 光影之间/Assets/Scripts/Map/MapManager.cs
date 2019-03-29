@@ -126,7 +126,7 @@ public class MapManager : MonoBehaviour {
     {
         //获取第零层的动画
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
-        if ((info.normalizedTime > 0.95f) && (info.IsName("Base Layer.EndGame Animation")))
+        if ((info.normalizedTime > 1f) && (info.IsName("Base Layer.EndGame Animation")))
         {
             Time.timeScale = 0;
         }

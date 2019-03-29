@@ -58,10 +58,11 @@ public class FlyMonsterMove : MonoBehaviour
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
         whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         state = MonsterState.Far;
         //transform.position=player.transform.position+new
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
+        gameObject.GetComponent<FlyMonsterMoveCruve>().enabled = false;
         //if (mapManager.chapter == 3 || mapManager.chapter == 4)
         //{
         //    attackMode = 1;
@@ -167,7 +168,7 @@ public class FlyMonsterMove : MonoBehaviour
     void Far()
     {
         if (attackMode == 0 || attackMode == 1)
-            transform.position = new Vector3(player.transform.position.x + 12, transform.position.y, 0);
+            transform.position = new Vector3(player.transform.position.x + 14, transform.position.y, 0);
     }
 
     /// <summary>

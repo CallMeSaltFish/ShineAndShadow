@@ -20,6 +20,9 @@ TagManager:
   - FlyMonster5
   - FlyMonsterStay
   - FlyMonsterCruve
+  - StartPoint
+  - EndPoint
+  - DownTrap
   layers:
   - Default
   - TransparentFX

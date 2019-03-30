@@ -1362,7 +1362,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 0
+  chapter: 3
   chapterPortalTimes: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
@@ -1434,8 +1434,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7453c51b1bbdca4c81f4b179371c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newFloor: {fileID: 4888202684432633437, guid: d433f65c5eb1ea4468513491cac935b9,
-    type: 3}
+  newFloor:
+  - {fileID: 4888202684432633437, guid: d433f65c5eb1ea4468513491cac935b9, type: 3}
+  - {fileID: 4888202684432633437, guid: a340ad60106e90547a2ca89b72df7e38, type: 3}
+  - {fileID: 4888202684432633437, guid: 557624e647bec124db2114b78aa4eed7, type: 3}
+  - {fileID: 4888202684432633437, guid: bb42e16f78a47e749907ac6dfcf038e4, type: 3}
+  - {fileID: 4040570194193544996, guid: b8a07862f9ac22342bde7db2be12e9ec, type: 3}
+  - {fileID: 4040570194193544996, guid: f1cd9584001551646a47a3ef40c55985, type: 3}
+  - {fileID: 4040570194193544996, guid: 63c11c3e958dce849b1b8d49bad18589, type: 3}
+  - {fileID: 4040570194193544996, guid: 2fbc074c92efaff4f9e637d193b5f58a, type: 3}
 --- !u!1 &827656571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,17 +3209,17 @@ PrefabInstance:
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
+      value: 0.451022
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
-      value: -1
+      value: -0.451022
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -1
+      value: -0.451022
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
@@ -3222,7 +3229,7 @@ PrefabInstance:
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
-      value: -1
+      value: -0.451022
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
@@ -3237,7 +3244,7 @@ PrefabInstance:
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outWeight
-      value: 0
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
@@ -3247,7 +3254,7 @@ PrefabInstance:
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
-      value: -1
+      value: -0.451022
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
@@ -3257,7 +3264,7 @@ PrefabInstance:
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inWeight
-      value: 0
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 198672853842781658, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
@@ -3369,7 +3376,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4882058858013458, guid: 1129f91414bb76147b0b145557fcf0a3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.099999
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 4882058858013458, guid: 1129f91414bb76147b0b145557fcf0a3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

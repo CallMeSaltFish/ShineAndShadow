@@ -17,8 +17,8 @@ public class FlyMonsterMoveCruve : MonoBehaviour
 
     void Start()
     {
-        pointA = GameObject.Find("StartPoint").transform;
-        pointB = GameObject.Find("EndPoint").transform;
+        pointA = GameObject.FindGameObjectWithTag("StartPoint").transform;
+        pointB = GameObject.FindGameObjectWithTag("EndPoint").transform;
         // 将物体置于A点
         transform.position = pointA.position;
 

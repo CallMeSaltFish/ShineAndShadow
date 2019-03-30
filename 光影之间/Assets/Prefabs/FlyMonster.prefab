@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 212933099751659348}
   - component: {fileID: 114569686397227964}
   - component: {fileID: 8068426011572499397}
-  - component: {fileID: 8122174777321899087}
+  - component: {fileID: 2480205113650234630}
   m_Layer: 0
   m_Name: FlyMonster
   m_TagString: Trap
@@ -121,7 +121,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5573947, y: 0.10269499}
   m_EdgeRadius: 0
---- !u!114 &8122174777321899087
+--- !u!114 &2480205113650234630
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -52,6 +52,8 @@ public class PlayerMove : MonoBehaviour {
 
     /*飞刀怪*/
     public GameObject flyMonster;
+    /*是否启用抛物线运动脚本*/
+    //private bool flyCruveState;
 
     /*一组飞刀总个数*/
     private int flyNum = 0;
@@ -60,13 +62,16 @@ public class PlayerMove : MonoBehaviour {
     /*允许产生飞刀*/
     private bool canFly = false;
 
-    public Animator anim;
+    public Animator anim;       
     public FlyMonsterMove flyMonsterMove;
     private SpriteRenderer spriteRenderer;
     private Texture2D whiteKnife;
     private Texture2D blackKnife;
     private GameObject myBackParticle;
-    public float angle = 0;
+    /*上坡坡度*/
+    public float angle1 = 0;
+    /*下坡坡度*/
+    public float angle2 = 0;
 
     private int[] randArray = new int[] { -2,-1,0,1,2,3,4,5 };
     private int i = 2;
@@ -112,8 +117,8 @@ public class PlayerMove : MonoBehaviour {
     }
     // Use this for initialization
     void Start() {
+        //flyCruveState = false;
         myBackParticle = GameObject.Find("Player/Particle System");
-        flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
         spriteRenderer = flyMonsterMove.GetComponent<SpriteRenderer>();
         blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
         whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
@@ -128,6 +133,7 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
         //准备用于生成飞刀怪
         //timer += Time.deltaTime;
         ////Debug.Log(timer);
@@ -143,15 +149,25 @@ public class PlayerMove : MonoBehaviour {
         //}
         if (canFly == true && currentFlyNum < flyNum)
         {
-            if (mapManager.chapter == 1)
+            if (mapManager.chapter == 1) 
             {
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
                 -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
+                
             }
             if (mapManager.chapter == 2)
             {
+                //if (flyCruveState)
+                //{
+                    Debug.Log("启用抛物线");
+                    //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+                //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
+                    //flyCruveState = false;
+                //}
                 //Debug.Log(transform.position.y - 0.5f + 0.6f * randArray[i]);
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 14, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+                //a.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+                
                 if (a.transform.position.y < 4.6f)
                 {
                     SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
@@ -164,6 +180,11 @@ public class PlayerMove : MonoBehaviour {
                     Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
                     spriteRenderer.sprite = sprite;
                 }
+            }
+            if (mapManager.chapter == 3)
+            {
+                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
+                gameObject.transform.position.y-0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
             }
             currentFlyNum++;
             i++;
@@ -212,7 +233,7 @@ public class PlayerMove : MonoBehaviour {
         {
             transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
             animator.SetBool("isStop", false);
-            angle = 0;
+            angle1 = 0;
         }
         //上坡
         if (hit2 && hit1)
@@ -220,8 +241,8 @@ public class PlayerMove : MonoBehaviour {
             //上坡
             if (Mathf.Abs(hit2.point.x - hit1.point.x) > 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround" && isGrounded)
             {
-                angle = Mathf.Atan(0.1f / (hit2.point.x - hit1.point.x));
-                rb.velocity = new Vector3(0, Mathf.Tan(angle) * rb.gravityScale * moveSpeed, 0);
+                angle1 = Mathf.Atan(0.1f / (hit2.point.x - hit1.point.x));
+                rb.velocity = new Vector3(0, Mathf.Tan(angle1) * rb.gravityScale * moveSpeed, 0);
                 animator.SetBool("isStop", false);
             }
             //碰墙
@@ -243,11 +264,12 @@ public class PlayerMove : MonoBehaviour {
                 float offset = hit3.point.y - lastHit3.y;
                 if (rb.gravityScale > 0)
                 {
-                    if (offset < -0.01 && offset > -1 && isGrounded)//下滑
+                    if (offset < -0.01 && offset > -0.5 && isGrounded)//下滑
                     {
                         animator.SetBool("isSlip", true);
-                        angle = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
-                        rb.velocity = new Vector3(0, Mathf.Tan(angle) * rb.gravityScale * moveSpeed, 0) * (-1);
+                        angle2 = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
+                        rb.velocity = new Vector3(0, Mathf.Tan(angle2) * rb.gravityScale * moveSpeed, 0) * (-1);
+                        angle1 = -angle2;
                     }
                     else
                     {
@@ -264,8 +286,9 @@ public class PlayerMove : MonoBehaviour {
                     if (offset > 0.01 && offset < 1 && isGrounded)//下滑
                     {
                         animator.SetBool("isSlip", true);
-                        angle = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
-                        rb.velocity = new Vector3(0, Mathf.Tan(angle) * rb.gravityScale * moveSpeed, 0) * (-1);
+                        angle1 = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
+                        rb.velocity = new Vector3(0, Mathf.Tan(angle1) * rb.gravityScale * moveSpeed, 0) * (-1);
+                        angle1 = -angle2;
                     }
                     else
                     {
@@ -312,7 +335,8 @@ public class PlayerMove : MonoBehaviour {
             rb.AddForce(new Vector3(0, jumpSpeed * -rb.gravityScale, 0), ForceMode2D.Impulse);
         }
 
-        myBackParticle.transform.rotation = Quaternion.Euler(Mathf.Tan(angle) * Mathf.Rad2Deg, -90, 0);
+        myBackParticle.transform.rotation = Quaternion.Euler(Mathf.Tan(angle1) * Mathf.Rad2Deg, -90, 0);
+        //Debug.Log(rotatePlayer.playerHeight); 
     }
 
 
@@ -343,6 +367,7 @@ public class PlayerMove : MonoBehaviour {
             }
             GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
             GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
+            moveSpeed = 0;
             transform.GetComponent<PlayerMove>().enabled = false;
             isStop = false;
             ChangeIsInteractable();
@@ -352,18 +377,16 @@ public class PlayerMove : MonoBehaviour {
             {
                 case 0:
                     anim.Play("EndGame Animation");
-                    //lastHit3 = new Vector3(-7, -0.8f, 0);
                     break;
                 case 1:
                     switch (mapManager.chapterPortalTimes)
                     {
                         case 1:
                             anim.Play("EndGame Animation");
-                            //lastHit3 = new Vector3(-7, -2.4f, 0);
                             mapManager.chapterPortalTimes = 0;
                             break;
                         case 0:
-                            GoIntoInternal(new Vector3(transform.position.x, transform.position.y + 1f, -2f));
+                            GoIntoInternal(new Vector3(transform.position.x, -0.605f, -2f));
                             mapManager.chapterPortalTimes = 1;
                             break;
                     }
@@ -373,20 +396,19 @@ public class PlayerMove : MonoBehaviour {
                     {
                         case 1:
                             anim.Play("EndGame Animation");
-                            //lastHit3 = new Vector3(-7f, 0f, 0f);
                             mapManager.chapterPortalTimes = 0;
                             break;
                         case 0:
                             if (isTrigger)
                             {
                                 mapManager.InstantiateSecondSubMap(0);
-                                GoIntoInternal(new Vector3(39.3f, transform.position.y, -2));
+                                GoIntoInternal(new Vector3(39.3f, transform.position.y, -2f));
                                 followWith.isSpecial = true;
                             }
                             else
                             {
                                 mapManager.InstantiateSecondSubMap(1);
-                                GoIntoInternal(new Vector3(39.3f, 1.2f, -2));
+                                GoIntoInternal(new Vector3(39.3f, 1.2f, -2f));
                             }
                             mapManager.chapterPortalTimes = 1;
                             break;
@@ -401,6 +423,7 @@ public class PlayerMove : MonoBehaviour {
         //碰到了加分道具
         if (col.tag == "Food")
         {
+            col.gameObject.GetComponent<TrailRenderer>().enabled = true;
             scores++;
         }
         //拼图
@@ -415,6 +438,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonster1")
         {
+            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
             flyMonsterMove.attackMode = 0;
             //i = Random.Range(0, 3);
             i = 2;
@@ -423,6 +447,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonster3")
         {
+            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
             flyMonsterMove.attackMode = 0;
             //i = Random.Range(0, 3);
             i = 2;
@@ -431,6 +456,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonster5")
         {
+            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
             flyMonsterMove.attackMode = 0;
             //i = Random.Range(0, 3);
             i = 2;
@@ -439,6 +465,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonsterStay")
         {
+            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
             flyMonsterMove.attackMode = 1;
             //i = Random.Range(0, 3);
             i = 2;
@@ -447,8 +474,10 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonsterCruve")
         {
-            flyMonsterMove.attackMode = -1;
+            Debug.Log("碰到曲线");
+            //flyCruveState = true;
             flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+            flyMonsterMove.attackMode = -1;
             //i = Random.Range(0, 3);
             i = 2;
             flyNum = 1;
@@ -484,14 +513,17 @@ public class PlayerMove : MonoBehaviour {
         rotatePlayer.enabled = false;
         followWith.enabled = true;
         followWith.isStd = false;
-        rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
-        animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-        //rb.gravityScale *= -1;
+        transform.position = location;
         if (rb.gravityScale < 0)
         {
             transform.Rotate(new Vector3(180, 0, 0));
-            transform.position = location;
             rb.gravityScale *= -1;
+        }
+        else
+        {
+            rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
+            animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+
         }
     }
 

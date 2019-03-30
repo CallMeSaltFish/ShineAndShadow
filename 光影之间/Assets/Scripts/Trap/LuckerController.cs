@@ -45,7 +45,7 @@ public class LuckerController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         rotatePlayer = player.GetComponent<RotatePlayer>();
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
-        if (mapManager.chapter == 2)
+        if (mapManager.chapter == 3 || mapManager.chapter == 2) 
         {
             attackMode = 1;
         }
@@ -95,14 +95,16 @@ public class LuckerController : MonoBehaviour
         }
         if (attackMode == 1)
         {
-            if ((Vector3.Distance(player.transform.position, transform.position) < 2.0f)&&
-                (((rotatePlayer.playerHeight>0)&&(gameObject.tag=="DownTrap"))||((rotatePlayer.playerHeight<0)&&(gameObject.tag=="Trap"))))
+            if ((Vector3.Distance(player.transform.position, transform.position) < 4.0f)&&
+                (((rotatePlayer.playerHeight < 0) && (gameObject.tag == "Trap")) || ((rotatePlayer.playerHeight > 0) && (gameObject.tag == "DownTrap")))) 
             {
-
+                //Debug.Log(rotatePlayer.playerHeight);
+                //Debug.Log(gameObject.tag);
                 gameObject.transform.position = Vector3.Lerp(gameObject.transform.position, endPosition.transform.position, luckerSpeed * 0.2f);
                 if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.02f)
                 {
                     collider2D.enabled = true;
+                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -4);
                 }
                 if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.0002f)
                 {
@@ -111,14 +113,6 @@ public class LuckerController : MonoBehaviour
                 //timer = 0;
                 //Debug.Log(1);
             }
-        }
-    }
-    //这个碰撞检测在正式场景中被其它方式取代
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "Player")
-        {
-
         }
     }
 }

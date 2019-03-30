@@ -62,7 +62,7 @@ public class FlyMonsterMove : MonoBehaviour
         state = MonsterState.Far;
         //transform.position=player.transform.position+new
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
-        gameObject.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+        //gameObject.GetComponent<FlyMonsterMoveCruve>().enabled = false;
         //if (mapManager.chapter == 3 || mapManager.chapter == 4)
         //{
         //    attackMode = 1;

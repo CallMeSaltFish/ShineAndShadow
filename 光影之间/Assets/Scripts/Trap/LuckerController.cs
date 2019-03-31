@@ -45,7 +45,7 @@ public class LuckerController : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         rotatePlayer = player.GetComponent<RotatePlayer>();
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
-        if (mapManager.chapter == 3 || mapManager.chapter == 2) 
+        if (mapManager.chapter == 3 || mapManager.chapter == 2)
         {
             attackMode = 1;
         }
@@ -95,8 +95,8 @@ public class LuckerController : MonoBehaviour
         }
         if (attackMode == 1)
         {
-            if ((Vector3.Distance(player.transform.position, transform.position) < 4.0f)&&
-                (((rotatePlayer.playerHeight < 0) && (gameObject.tag == "Trap")) || ((rotatePlayer.playerHeight > 0) && (gameObject.tag == "DownTrap")))) 
+            if ((Vector3.Distance(player.transform.position, transform.position) < 4.0f) &&
+                (((rotatePlayer.playerHeight < 0) && (gameObject.tag == "Trap")) || ((rotatePlayer.playerHeight > 0) && (gameObject.tag == "DownTrap"))))
             {
                 //Debug.Log(rotatePlayer.playerHeight);
                 //Debug.Log(gameObject.tag);
@@ -104,7 +104,7 @@ public class LuckerController : MonoBehaviour
                 if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.02f)
                 {
                     collider2D.enabled = true;
-                    gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -4);
+                    //gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
                 }
                 if (Vector3.Distance(gameObject.transform.position, endPosition.transform.position) < 0.0002f)
                 {

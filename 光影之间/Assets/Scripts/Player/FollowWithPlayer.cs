@@ -33,15 +33,7 @@ public class FollowWithPlayer : MonoBehaviour {
         endPosition = playerTransform.position + offset;
         if(mapManager.chapter == 2 && isSpecial)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x,playerTransform.position.y,transform.position.z), ref cameraVelocity, cameraSpeed);
-            if(transform.position.y > 7.2)
-            {
-                transform.position = new Vector3(transform.position.x, 7.2f, transform.position.z);
-            }
-            if(transform.position.y < 0)
-            {
-                transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
-            }
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, Mathf.Clamp(playerTransform.position.y, 0f, 7.2f), transform.position.z), ref cameraVelocity, cameraSpeed);
         }
         if(mapManager.chapter == 3)
         {
@@ -52,20 +44,17 @@ public class FollowWithPlayer : MonoBehaviour {
             if (!isStd)
             {
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, transform.position.y, endPosition.z), ref cameraVelocity, cameraSpeed);
-                //Debug.Log(2);
                 if (transform.position.x - playerTransform.position.x >= offset.x - 0.1f && Input.GetMouseButtonDown(2))
                 {
                     BossB.enabled = true;
                     BossW.enabled = true;
                     playerMove.enabled = true;
                     isStd = true;
-                    //Debug.Log(3);
                 }
             }
             if (isStd)
             {
                 transform.position = new Vector3(endPosition.x, transform.position.y, endPosition.z);
-                //Debug.Log(1);
             }
         }
     }

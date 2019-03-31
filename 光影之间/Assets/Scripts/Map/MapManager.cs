@@ -31,6 +31,7 @@ public class MapManager : MonoBehaviour {
     public List<GameObject> ups = new List<GameObject>();
     public List<GameObject> downs = new List<GameObject>();
     public GameObject panel;
+    [HideInInspector]
     public bool isInternal = false;
     private bool change = false;
     /*所有地图的父物体，统一放置*/

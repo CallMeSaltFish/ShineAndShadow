@@ -993,7 +993,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 8.511648}
+  m_Size: {x: 0.16938958, y: 8.511648}
   m_EdgeRadius: 0
 --- !u!1 &4533698837308465810
 GameObject:
@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894050536322241647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.63, y: -3, z: 1.3320312}
+  m_LocalPosition: {x: -37.03, y: -3, z: 1.3320312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2062171435142281318}
@@ -1251,7 +1251,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 5.901004}
+  m_Size: {x: 0.11158848, y: 5.901004}
   m_EdgeRadius: 0
 --- !u!1 &5910118723717897072
 GameObject:
@@ -1978,11 +1978,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062171435142281318}
     m_Modifications:
-    - target: {fileID: 936219849248729727, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
-        type: 3}
-      propertyPath: m_Name
-      value: Portal_Wall
-      objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2037,6 +2032,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 936219849248729727, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal_Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2, type: 3}

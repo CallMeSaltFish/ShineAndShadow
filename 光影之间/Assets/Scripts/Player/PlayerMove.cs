@@ -133,7 +133,8 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
+        //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
+
         //准备用于生成飞刀怪
         //timer += Time.deltaTime;
         ////Debug.Log(timer);
@@ -321,7 +322,7 @@ public class PlayerMove : MonoBehaviour {
             }
         }
 
-        /*主角跳*/   /*加一个前面有传送的时候不能跳*/
+        /*主角跳*/
         if (isGrounded && Input.GetMouseButtonDown(1) && !isInteractable)
         {
             animator.SetBool("isGrounded", false);
@@ -372,8 +373,8 @@ public class PlayerMove : MonoBehaviour {
             isStop = false;
             ChangeIsInteractable();
             //删除传送门
-            Destroy(col.gameObject);
-            switch(mapManager.chapter)
+            col.transform.position += new Vector3(0f, 100f, 0f);
+            switch (mapManager.chapter)
             {
                 case 0:
                     anim.Play("EndGame Animation");
@@ -402,7 +403,7 @@ public class PlayerMove : MonoBehaviour {
                             if (isTrigger)
                             {
                                 mapManager.InstantiateSecondSubMap(0);
-                                GoIntoInternal(new Vector3(39.3f, transform.position.y, -2f));
+                                GoIntoInternal(new Vector3(39.3f, -1.88794f, -2f));
                                 followWith.isSpecial = true;
                             }
                             else

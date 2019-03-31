@@ -146,7 +146,7 @@ public class FlyMonsterMove : MonoBehaviour
     void UpdateSprite()
     {
         if (mapManager.chapter == 2)
-        { 
+        {
             if (gameObject.transform.position.y < 4.6f)
             {
                 SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -154,6 +154,23 @@ public class FlyMonsterMove : MonoBehaviour
                 spriteRenderer.sprite = sprite;
             }
             if (gameObject.transform.position.y > 4.6f || gameObject.transform.position.y == 4.6f)
+            {
+                SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                spriteRenderer.sprite = sprite;
+            }
+        }
+        if (mapManager.chapter == 3)
+        {
+            //给飞刀加一根射线，若检测到射线射到了带background标签的物体，则说明飞刀位于黑色楼梯内部
+            RaycastHit2D _hit = Physics2D.Linecast(transform.position + new Vector3(-1.0f, 0.0f, 0.0f), transform.position + new Vector3(-100.0f, 0.0f, 0.0f));
+            if (_hit && _hit.transform.tag == "BackGround")
+            {
+                SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+                Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                spriteRenderer.sprite = sprite;
+            }
+            else
             {
                 SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
                 Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
@@ -219,4 +236,8 @@ public class FlyMonsterMove : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x - 8, transform.position.y, 0), attackSpeed);
     }
 
+    //void OnTriggerEnter2D(Collision2D col)
+    //{
+    //    if(col.tag=)
+    //}
 }

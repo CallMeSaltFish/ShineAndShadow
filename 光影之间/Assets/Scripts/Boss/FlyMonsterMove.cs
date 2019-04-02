@@ -163,7 +163,8 @@ public class FlyMonsterMove : MonoBehaviour
         if (mapManager.chapter == 3)
         {
             //给飞刀加一根射线，若检测到射线射到了带background标签的物体，则说明飞刀位于黑色楼梯内部
-            RaycastHit2D _hit = Physics2D.Linecast(transform.position + new Vector3(-1.0f, 0.0f, 0.0f), transform.position + new Vector3(-100.0f, 0.0f, 0.0f));
+            RaycastHit2D _hit = Physics2D.Linecast(transform.position + new Vector3(0.0f, 0.07f, 0.0f), transform.position + new Vector3(0.0f, 10.0f, 0.0f), 1, -0.4f, -0.05f);//???
+            Debug.DrawLine(transform.position + new Vector3(0.0f, 0.07f, 0.0f), transform.position + new Vector3(0.0f, 10.0f, 0.0f));
             if (_hit && _hit.transform.tag == "BackGround")
             {
                 SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();

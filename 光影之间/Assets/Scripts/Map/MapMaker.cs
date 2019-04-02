@@ -16,11 +16,12 @@ public class MapMaker : MonoBehaviour
     private GameObject player;
     private MapManager mapManager;
     private float newPositionY;
+    private float newPositionX;
 
     // Start is called before the first frame update
     void Start()
     {
-        newPositionY = -1.15f;
+        newPositionY = -1.50f;
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         player = GameObject.FindWithTag("Player");
     }
@@ -35,7 +36,7 @@ public class MapMaker : MonoBehaviour
             num++;
             timer = 0;
         }
-        if (num == 7)
+        if (num == 5)
         {
             num = 0;
             MakeMap();
@@ -53,50 +54,60 @@ public class MapMaker : MonoBehaviour
             int a = Random.Range(0, 35);
             if (number == 1)
             {
-                Instantiate(newFloor[4], new Vector3(player.transform.position.x + 26, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                Instantiate(newFloor[4], new Vector3(newPositionX +110, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                 newPositionY += 1.5f;
+                newPositionX += 160;
+                //newPositionX += 50;
             }
             if (number > 1)
             {
                 if ((a < 2 && a > 0) || a == 0)
                 {
-                    Instantiate(newFloor[0], new Vector3(player.transform.position.x + 26, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
+                    newPositionX += 50;
                 }
                 if (a > 1 && a < 4)
                 {
-                    Instantiate(newFloor[1], new Vector3(player.transform.position.x + 26, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
+                    newPositionX += 50;
                 }
                 if (a > 3 && a < 8)
                 {
-                    Instantiate(newFloor[2], new Vector3(player.transform.position.x + 26, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
+                    newPositionX += 50;
                 }
                 if (a > 7 && a < 14)
                 {
-                    Instantiate(newFloor[3], new Vector3(player.transform.position.x + 26, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
+                    newPositionX += 50;
                 }
                 if (a > 13 && a < 17)
                 {
-                    Instantiate(newFloor[4], new Vector3(player.transform.position.x + 26, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
+                    newPositionX += 50;
                 }
                 if (a > 16 && a < 20)
                 {
-                    Instantiate(newFloor[5], new Vector3(player.transform.position.x + 26, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
+                    newPositionX += 50;
                 }
                 if (a > 19 && a < 26)
                 {
-                    Instantiate(newFloor[6], new Vector3(player.transform.position.x + 26, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
+                    newPositionX += 50;
                 }
                 if (a > 25 && a < 35)
                 {
-                    Instantiate(newFloor[7], new Vector3(player.transform.position.x + 26, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
+                    newPositionX += 50;
                 }
             }
         }

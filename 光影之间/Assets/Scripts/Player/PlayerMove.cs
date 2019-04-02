@@ -357,15 +357,6 @@ public class PlayerMove : MonoBehaviour {
         //传送门
         if (col.tag == "Portal")
         {
-            if (mapManager.chapter == 2||mapManager.chapter==1) 
-            {
-                ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
-                /*改变颜色*/
-                ps.startColor = new Color(255 - ps.startColor.r, 255 - ps.startColor.g, 255 - ps.startColor.b);
-                //Debug.Log(ps.startColor);
-                /*改变旋转方向*/
-                ps.startRotation3D = new Vector3(180 - ps.startRotation3D.x, ps.startRotation3D.y, ps.startRotation3D.z);
-            }
             GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
             GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
             moveSpeed = 0;

@@ -17,6 +17,10 @@ public class RotatePlayer : MonoBehaviour {
     //点击左键旋转CD
     private float time = 0;
 
+    //当前人物的颜色（用播的动画表示）
+    bool whiteAnim;
+    bool blackAnim;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -28,6 +32,8 @@ public class RotatePlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
+        whiteAnim = animator.GetCurrentAnimatorStateInfo(0).IsName("RunWhite");
+        blackAnim = animator.GetCurrentAnimatorStateInfo(0).IsName("Run");
         /*用此射线检测来取旋转点*/
         RaycastHit2D hit = Physics2D.Linecast(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position);
         Debug.DrawLine(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position, Color.yellow);
@@ -52,13 +58,43 @@ public class RotatePlayer : MonoBehaviour {
                 new Vector3(transform.position.x,transform.position.y + 1.35f * playerHeight,transform.position.z),
                Quaternion.identity);//旋转改为坡度
 
+            //人物翻转时粒子特效的四种情况
+            if (playerHeight > 0 && whiteAnim) { 
+                ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
+                /*改变颜色*/
+                ps.startColor = new Color(0, 0, 0);
+                //Debug.Log(ps.startColor);
+                /*改变旋转方向*/
+                ps.startRotation3D = new Vector3(180 , ps.startRotation3D.y, ps.startRotation3D.z);
+            }
+            if (playerHeight > 0 && blackAnim)
+            {
+                ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
+                /*改变颜色*/
+                ps.startColor = new Color(255, 255, 255);
+                //Debug.Log(ps.startColor);
+                /*改变旋转方向*/
+                ps.startRotation3D = new Vector3(180, ps.startRotation3D.y, ps.startRotation3D.z);
+            }
+            if (playerHeight < 0 && whiteAnim)
+            {
+                ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
+                /*改变颜色*/
+                ps.startColor = new Color(0, 0, 0);
+                //Debug.Log(ps.startColor);
+                /*改变旋转方向*/
+                ps.startRotation3D = new Vector3(0, ps.startRotation3D.y, ps.startRotation3D.z);
+            }
+            if (playerHeight < 0 && blackAnim)
+            {
+                ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
+                /*改变颜色*/
+                ps.startColor = new Color(255, 255, 255);
+                //Debug.Log(ps.startColor);
+                /*改变旋转方向*/
+                ps.startRotation3D = new Vector3(0, ps.startRotation3D.y, ps.startRotation3D.z);
+            }
 
-            ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
-            /*改变颜色*/
-            ps.startColor = new Color(255 - ps.startColor.r, 255 - ps.startColor.g, 255 - ps.startColor.b);
-            //Debug.Log(ps.startColor);
-            /*改变旋转方向*/
-            ps.startRotation3D = new Vector3(180 - ps.startRotation3D.x, ps.startRotation3D.y, ps.startRotation3D.z);
             //Debug.Log(ps.startRotation3D);
             Destroy(explosions, 1.0f);
             playerHeight = -playerHeight;

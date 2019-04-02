@@ -1598,7 +1598,7 @@ EdgeCollider2D:
   m_Points:
   - {x: -5.4, y: -0.8}
   - {x: -5.4, y: 1.2}
-  - {x: -1.64, y: 1.2}
+  - {x: -1.03, y: 1.2}
 --- !u!1 &5264999184406170334
 GameObject:
   m_ObjectHideFlags: 0

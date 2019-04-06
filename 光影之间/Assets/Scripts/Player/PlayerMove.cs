@@ -203,14 +203,14 @@ public class PlayerMove : MonoBehaviour {
         }
         //向前 检测传送门
         RaycastHit2D hit_ = Physics2D.Linecast(transform.position + new Vector3(0.16f, 0, 0), transform.position + new Vector3(100.66f, 0, 0), 1 << LayerMask.NameToLayer("Portal"));
-        Debug.DrawLine(transform.position + new Vector3(0.16f, 0, 0), transform.position + new Vector3(100.16f, 0, 0), Color.red);
+        //Debug.DrawLine(transform.position + new Vector3(0.16f, 0, 0), transform.position + new Vector3(100.16f, 0, 0), Color.red);
         //检测斜坡
         //向前 短下
         RaycastHit2D hit1 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.31f, -0.5f * rb.gravityScale, 0));
-        Debug.DrawLine(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.31f, -0.5f * rb.gravityScale, 0), Color.green);
+        //Debug.DrawLine(transform.position + new Vector3(0.16f, -0.5f * rb.gravityScale, 0), transform.position + new Vector3(0.31f, -0.5f * rb.gravityScale, 0), Color.green);
         //向前 长上
         RaycastHit2D hit2 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0));
-        Debug.DrawLine(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0), Color.blue);
+        //Debug.DrawLine(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0), Color.blue);
         //向下 检测下坡还是峭壁
         RaycastHit2D hit3 = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale);
         //Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale, Color.cyan);
@@ -400,7 +400,7 @@ public class PlayerMove : MonoBehaviour {
                             else
                             {
                                 mapManager.InstantiateSecondSubMap(1);
-                                GoIntoInternal(new Vector3(39.3f, 1.2f, -2f));
+                                GoIntoInternal(new Vector3(39.9f, 1.02342f, -2f));
                             }
                             mapManager.chapterPortalTimes = 1;
                             break;
@@ -426,7 +426,7 @@ public class PlayerMove : MonoBehaviour {
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            //IsDead = true;
+            IsDead = true;
         }
         if (col.tag == "FlyMonster1")
         {

@@ -4,10 +4,11 @@ using System.Collections;
 //淡入淡出跳转场景
 public class SceneLoad : MonoBehaviour
 {
+    private int startChapter;
     //载入图的绘制深度
     public int guiDepth = 0;
     //要加载的场景名
-    public string levelToLoad = "";
+    public string levelToLoad;
     //载入界面图片
     public Texture2D splashLogo;
     //淡入淡出速度
@@ -98,11 +99,12 @@ public class SceneLoad : MonoBehaviour
     }
 
     //外部调用接口执行淡入淡出转场景
-    public void StartSplash()
+    public void StartSplash(int i)
     {
         //splashLogo.height = 1000;
         //splashLogo.width = 1000;
         status = FadeStatus.FadeIn;
+        startChapter = i;
     }
 
     void Update()
@@ -146,6 +148,10 @@ public class SceneLoad : MonoBehaviour
                 if ((Application.levelCount) >= 1 && (levelToLoad != ""))
                 {
                     Application.LoadLevel(levelToLoad);
+                    //
+                    //MapManager mm = GameObject.FindWithTag("GameController").GetComponent<MapManager>();
+                    
+
                 }
             }
         }
@@ -155,7 +161,23 @@ public class SceneLoad : MonoBehaviour
             {
                 if ((Application.levelCount >= 1) || (levelToLoad != ""))
                 {
-                    Application.LoadLevel(levelToLoad);
+                    MapManager mm = GameObject.Find("Manager").GetComponent<MapManager>();
+                    if (startChapter == 0)
+                    {
+                        mm.chapter = 0;
+                        Debug.Log(1);
+                    }
+                    if (startChapter == 1)
+                    {
+                        mm.chapter = 1;
+                    }
+                    if (startChapter == 2)
+                    {
+                        //继续游戏
+                    }
+                    //Application.LoadLevel(levelToLoad);
+                    Debug.Log(1);
+ 
                 }
             }
             else

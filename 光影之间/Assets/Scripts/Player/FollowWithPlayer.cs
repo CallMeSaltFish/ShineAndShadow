@@ -29,7 +29,7 @@ public class FollowWithPlayer : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void LateUpdate () {
         endPosition = playerTransform.position + offset;
         if(mapManager.chapter == 2 && isSpecial)
         {

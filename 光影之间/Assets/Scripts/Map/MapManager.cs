@@ -55,6 +55,8 @@ public class MapManager : MonoBehaviour {
     private OVRScreenFade2 ovrScreenFade2;
     private Transform BossBT;
     private Transform BossWT;
+    private MapMaker mapMaker;
+
     //private SpriteRenderer spriteRenderer;
     //public FlyMonsterMove flyMonsterMove;
     // Use this for initialization
@@ -66,6 +68,7 @@ public class MapManager : MonoBehaviour {
 
     void Start()
     {
+        mapMaker = this.gameObject.GetComponent<MapMaker>();
         playerMove = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         rotatePlayer = GameObject.FindWithTag("Player").GetComponent<RotatePlayer>();
         groundList1 = Resources.LoadAll("Background1");
@@ -109,6 +112,7 @@ public class MapManager : MonoBehaviour {
         {
             Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
             hasMap = true;
+            mapMaker.enabled = true;
         }
 
         //if (chapter != 0 && chapter != 1)
@@ -455,7 +459,7 @@ public class MapManager : MonoBehaviour {
         }
         if(num == 1)
         {
-            Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(69.3f, -0.08f, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(83.6f, -0.08f, 0), Quaternion.identity, mapTransform);
         }
     }
 }

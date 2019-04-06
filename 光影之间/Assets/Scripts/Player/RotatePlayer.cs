@@ -36,7 +36,7 @@ public class RotatePlayer : MonoBehaviour {
         blackAnim = animator.GetCurrentAnimatorStateInfo(0).IsName("Run");
         /*用此射线检测来取旋转点*/
         RaycastHit2D hit = Physics2D.Linecast(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position);
-        Debug.DrawLine(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position, Color.yellow);
+        //Debug.DrawLine(transform.position + new Vector3(0, -0.7f, 0) * rb.gravityScale, transform.position, Color.yellow);
         if (hit)
         {
             if (hit.transform.tag == "BackGround")
@@ -44,7 +44,6 @@ public class RotatePlayer : MonoBehaviour {
                 point = hit.point;
             }
         }
-        //Debug.Log(hit.transform.tag + " " + hit.transform.name + " " + time);
         if (Input.GetMouseButtonDown(0) && time > 1 && hit.transform.tag == "BackGround" && hit.transform.name != "第三关-1")
         {
             //Debug.Log(1);

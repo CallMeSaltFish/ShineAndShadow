@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 4888202684432633439, guid: d433f65c5eb1ea4468513491cac935b9,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7014166206547724166, guid: d433f65c5eb1ea4468513491cac935b9,
         type: 3}
       propertyPath: m_Points.Array.data[2].x

@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 571b8eface984c14994433db37d50608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 2
 --- !u!68 &7014166206547724166
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -1228,10 +1228,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.6490006
@@ -1284,6 +1280,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1304,10 +1304,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.8638337
@@ -1360,6 +1356,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1380,10 +1380,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (8)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.3628345
@@ -1436,6 +1432,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (8)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1456,10 +1456,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.5780008
@@ -1512,6 +1508,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1532,10 +1532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.220834
@@ -1588,6 +1584,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1608,10 +1608,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (7)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.005834
@@ -1664,6 +1660,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1684,10 +1684,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (4)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.9348335
@@ -1740,6 +1736,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1760,10 +1760,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (5)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.291834
@@ -1816,6 +1812,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.7692308
       objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}
       propertyPath: m_Enabled
@@ -1836,10 +1836,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4888202684432633438}
     m_Modifications:
-    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
-      propertyPath: m_Name
-      value: Food (6)
-      objectReference: {fileID: 0}
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.720001
@@ -1891,6 +1887,10 @@ PrefabInstance:
     - target: {fileID: 4486694497696816, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.7692308
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932899823185206, guid: 062a88450e5012c4c8e624798d217abc, type: 3}
+      propertyPath: m_Name
+      value: Food (6)
       objectReference: {fileID: 0}
     - target: {fileID: 22460146737550743, guid: 062a88450e5012c4c8e624798d217abc,
         type: 3}

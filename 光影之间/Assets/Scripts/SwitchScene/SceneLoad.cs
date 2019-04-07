@@ -4,7 +4,7 @@ using System.Collections;
 //淡入淡出跳转场景
 public class SceneLoad : MonoBehaviour
 {
-    private int startChapter;
+    public int startChapter;
     //载入图的绘制深度
     public int guiDepth = 0;
     //要加载的场景名
@@ -161,20 +161,6 @@ public class SceneLoad : MonoBehaviour
             {
                 if ((Application.levelCount >= 1) || (levelToLoad != ""))
                 {
-                    MapManager mm = GameObject.Find("Manager").GetComponent<MapManager>();
-                    if (startChapter == 0)
-                    {
-                        mm.chapter = 0;
-                        Debug.Log(1);
-                    }
-                    if (startChapter == 1)
-                    {
-                        mm.chapter = 1;
-                    }
-                    if (startChapter == 2)
-                    {
-                        //继续游戏
-                    }
                     //Application.LoadLevel(levelToLoad);
                     Debug.Log(1);
  

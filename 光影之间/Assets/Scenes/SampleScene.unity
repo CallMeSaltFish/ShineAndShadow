@@ -3170,6 +3170,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 114569686397227964, guid: b6bcd2e85357cae46bf2b8bc9420e41e,
         type: 3}
+    - target: {fileID: 114236371805037388, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: jumpFallexplosion
+      value: 
+      objectReference: {fileID: 1950574595408592, guid: da206074079d82c4fa2972cafd3ff27a,
+        type: 3}
     - target: {fileID: 212333705754202572, guid: 1129f91414bb76147b0b145557fcf0a3,
         type: 3}
       propertyPath: m_Sprite

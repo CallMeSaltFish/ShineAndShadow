@@ -36,6 +36,8 @@ public class PlayerMove : MonoBehaviour {
     [HideInInspector]
     public int scores = 0;
     public GameObject explosion;
+    /*人物从高处落到地面的粒子特效*/
+    public GameObject jumpFallexplosion;
 
     /*存档点位置*/
     private Vector3 savePos;
@@ -133,6 +135,14 @@ public class PlayerMove : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        for(int a = 0; a < Mathf.Abs(rb.velocity.y); a++)
+        {
+            if (IsGrounded) { 
+                GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position, Quaternion.identity);
+                Destroy(jumpfallexplosion, 0.3f);
+            }
+        }
+        //Debug.Log(rb.velocity.y);
         //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
 
         //准备用于生成飞刀怪

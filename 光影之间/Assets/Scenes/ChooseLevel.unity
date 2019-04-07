@@ -882,6 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c122e1aeeb377aa4b8995cec68d4983f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startChapter: 0
   guiDepth: 1
   levelToLoad: SampleScene
   splashLogo: {fileID: 2800000, guid: a63b88d80c9e6f74ea1064ab842bec59, type: 3}

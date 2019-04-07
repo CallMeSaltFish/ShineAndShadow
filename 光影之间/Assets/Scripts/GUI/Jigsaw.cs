@@ -51,7 +51,7 @@ public class Jigsaw : MonoBehaviour
         casket3 = GameObject.Find("关上的匣子3");
         casket4 = GameObject.Find("关上的匣子4");
         starNum = PlayerPrefs.GetInt("Star");
-        //starNum = 4;
+        starNum = 4;
         openCasket = (Texture2D)Resources.Load("Sprites/打开的匣子");
         closeCasket = (Texture2D)Resources.Load("Sprites/关上的匣子");
     }

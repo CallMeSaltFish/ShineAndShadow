@@ -36,7 +36,7 @@ public class MapMaker : MonoBehaviour
             num++;
             timer = 0;
         }
-        if (num == 5)
+        if (num == 2)
         {
             num = 0;
             MakeMap();
@@ -54,10 +54,10 @@ public class MapMaker : MonoBehaviour
             int a = Random.Range(0, 35);
             if (number == 1)
             {
-                Instantiate(newFloor[4], new Vector3(newPositionX +110, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                Instantiate(newFloor[4], new Vector3(newPositionX +55, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                 newPositionY += 1.5f;
-                newPositionX += 160;
-                //newPositionX += 50;
+                newPositionX += 79.25f;
+                //newPositionX += 42.5f;
             }
             if (number > 1)
             {
@@ -65,49 +65,49 @@ public class MapMaker : MonoBehaviour
                 {
                     Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 1 && a < 4)
                 {
                     Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 3 && a < 8)
                 {
                     Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 7 && a < 14)
                 {
                     Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 13 && a < 17)
                 {
                     Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 16 && a < 20)
                 {
                     Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 19 && a < 26)
                 {
                     Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
                 if (a > 25 && a < 35)
                 {
                     Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
                     newPositionY += 1.5f;
-                    newPositionX += 50;
+                    newPositionX += 24.25f;
                 }
             }
         }

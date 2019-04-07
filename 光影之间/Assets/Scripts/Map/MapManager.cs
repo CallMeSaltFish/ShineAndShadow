@@ -56,6 +56,7 @@ public class MapManager : MonoBehaviour {
     private Transform BossBT;
     private Transform BossWT;
     private MapMaker mapMaker;
+    private SceneLoad sceneLoad;
 
     //private SpriteRenderer spriteRenderer;
     //public FlyMonsterMove flyMonsterMove;
@@ -68,6 +69,8 @@ public class MapManager : MonoBehaviour {
 
     void Start()
     {
+        /*打包时用*/
+        //sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
         mapMaker = this.gameObject.GetComponent<MapMaker>();
         playerMove = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         rotatePlayer = GameObject.FindWithTag("Player").GetComponent<RotatePlayer>();
@@ -85,35 +88,40 @@ public class MapManager : MonoBehaviour {
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
-        //教学关
-        if (chapter == 0 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //第一关
-        if (chapter == 1 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //第二关
-        if (chapter == 2 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-            /*以下三行都是方便直接修改chapter进行演示*/
-            rotatePlayer.playerHeight *= -1;
-            playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-            rotatePlayer.enabled = false;
-        }
-        //第三关
-        if (chapter == 3 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-            mapMaker.enabled = true;
-        }
+        /*打包时用*/
+        //if (sceneLoad != null)
+        //{ 
+        //    chapter=sceneLoad.startChapter;
+            //教学关
+            if (chapter == 0 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+            }
+            //第一关
+            if (chapter == 1 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+            }
+            //第二关
+            if (chapter == 2 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                /*以下三行都是方便直接修改chapter进行演示*/
+                rotatePlayer.playerHeight *= -1;
+                playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+                rotatePlayer.enabled = false;
+            }
+            //第三关
+            if (chapter == 3 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                mapMaker.enabled = true;
+            }
+        //}
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -341,7 +349,7 @@ public class MapManager : MonoBehaviour {
 
     private void UpdateJigNum()
     {
-        jigText.text = "X " + (playerMove.jigNum).ToString();
+        //jigText.text = "X " + (playerMove.jigNum).ToString();
     }
 
     private void UpdateDistance()

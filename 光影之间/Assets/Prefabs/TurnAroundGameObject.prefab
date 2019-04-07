@@ -600,7 +600,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 5
     size3D: 0
     rotation3D: 1
     gravityModifier:
@@ -4766,7 +4766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4443487561370586}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TurnAroundGameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

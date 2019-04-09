@@ -436,7 +436,7 @@ public class PlayerMove : MonoBehaviour {
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            IsDead = true;
+            //IsDead = true;
         }
         if (col.tag == "FlyMonster1")
         {

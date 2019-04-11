@@ -29,6 +29,10 @@ public class PlayerMove : MonoBehaviour {
     public float jumpSpeed;
     /*单个加分道具分数*/
     //private int singleScore = 5;
+    /*吃食物的音乐*/
+    public int foodMusic = 0;
+    /*吃拼图的音乐*/
+    public int jigMusic = 0;
     /*已收集拼图个数*/
     [HideInInspector]
     public int jigNum = 0;
@@ -38,6 +42,10 @@ public class PlayerMove : MonoBehaviour {
     public GameObject explosion;
     /*人物从高处落到地面的粒子特效*/
     public GameObject jumpFallexplosion;
+    /*是否允许生成人物从高处落到地面的粒子特效*/
+    private bool canMakeJumpFall = false;
+    /*高处落下的粒子系统*/
+    private ParticleSystem jumpFallPS;
 
     /*存档点位置*/
     private Vector3 savePos;
@@ -77,6 +85,8 @@ public class PlayerMove : MonoBehaviour {
 
     private int[] randArray = new int[] { -2,-1,0,1,2,3,4,5 };
     private int i = 2;
+    /*记录是当前帧的刚体*/
+    private float localVelocity;
 
     public bool IsGrounded
     {
@@ -120,6 +130,7 @@ public class PlayerMove : MonoBehaviour {
     // Use this for initialization
     void Start() {
         //flyCruveState = false;
+        jumpFallPS = jumpFallexplosion.GetComponentInChildren<ParticleSystem>();
         myBackParticle = GameObject.Find("Player/Particle System");
         spriteRenderer = flyMonsterMove.GetComponent<SpriteRenderer>();
         blackKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀");
@@ -132,16 +143,32 @@ public class PlayerMove : MonoBehaviour {
         mapManager.chapterPortalTimes = 0;
         //transform.position = savePos;
     }
-
     // Update is called once per frame
     void Update() {
-        for(int a = 0; a < Mathf.Abs(rb.velocity.y); a++)
+        if (rb.velocity.y != 0)
         {
-            if (IsGrounded) { 
-                GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position, Quaternion.identity);
-                Destroy(jumpfallexplosion, 0.3f);
-            }
+            localVelocity = rb.velocity.y;
         }
+        if (!IsGrounded)
+        {
+            canMakeJumpFall = true;
+        }
+        if (IsGrounded&&canMakeJumpFall)
+        {
+            jumpFallPS.startSpeed = 3*localVelocity;
+            if (rotatePlayer.playerHeight > 0)
+            {
+                jumpFallexplosion.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            if (rotatePlayer.playerHeight < 0)
+            {
+                jumpFallexplosion.transform.rotation = Quaternion.Euler(0, 0, -180);
+            }
+            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position, Quaternion.identity);//位置要改
+            canMakeJumpFall = false;
+            Destroy(jumpfallexplosion, 1.0f);
+        }
+         
         //Debug.Log(rb.velocity.y);
         //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
 
@@ -427,11 +454,13 @@ public class PlayerMove : MonoBehaviour {
         {
             col.gameObject.GetComponent<TrailRenderer>().enabled = true;
             scores++;
+            foodMusic ++;
         }
         //拼图
         if (col.tag == "Jig")
         {
             jigNum++;
+            jigMusic++;
         }
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")

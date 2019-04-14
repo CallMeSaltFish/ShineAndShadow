@@ -23,6 +23,7 @@ TagManager:
   - StartPoint
   - EndPoint
   - DownTrap
+  - SceneSwitchManager
   layers:
   - Default
   - TransparentFX

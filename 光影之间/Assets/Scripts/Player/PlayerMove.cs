@@ -351,7 +351,7 @@ public class PlayerMove : MonoBehaviour {
         if (hit_ && hit_.transform.tag == "Portal")
         {
 
-            if ((mapManager.chapter == 0 && hit_.transform.position.x - transform.position.x < 11.36f) ||
+            if ((mapManager.chapter == 0 && hit_.transform.position.x - transform.position.x < 12.66f) ||
                 (mapManager.chapter == 1 && hit_.transform.position.x - transform.position.x < 13.46f) ||
                 (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 12.66f))
             {
@@ -465,7 +465,8 @@ public class PlayerMove : MonoBehaviour {
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            //IsDead = true;
+            IsDead = true;
+            PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
         if (col.tag == "FlyMonster1")
         {

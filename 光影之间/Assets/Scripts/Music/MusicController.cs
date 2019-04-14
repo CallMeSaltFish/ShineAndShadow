@@ -8,12 +8,11 @@ public class MusicController : MonoBehaviour {
     private string SceneName;
     private AudioSource audioSource;
     public AudioClip[] songs;
-    private GameObject[] audioPlayers;
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
-        audioPlayers = GameObject.FindGameObjectsWithTag("AudioPlayer");
+        GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("AudioPlayer");
         if(audioPlayers.Length == 2)
         {
             Destroy(audioPlayers[1]);

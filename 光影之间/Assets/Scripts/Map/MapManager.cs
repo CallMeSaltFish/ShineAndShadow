@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour {
     private float std_x = 0f;
     private Text distaneText;
     private Text jigText;
+    private Text alarming;
     private Rigidbody2D rb;
     private Vector3 cameraPosition;
     //遮罩为ui的camera用来实现游戏结束后场景渐暗效果
@@ -60,18 +61,19 @@ public class MapManager : MonoBehaviour {
 
     //private SpriteRenderer spriteRenderer;
     //public FlyMonsterMove flyMonsterMove;
+
     // Use this for initialization
     void Awake()
     {
-        //chapter = PlayerPrefs.GetInt("Chapter");
         Time.timeScale = 0;
     }
 
     void Start()
     {
         /*打包时用*/
-        //sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
-        mapMaker = this.gameObject.GetComponent<MapMaker>();
+        sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+
+        mapMaker = GetComponent<MapMaker>();
         playerMove = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         rotatePlayer = GameObject.FindWithTag("Player").GetComponent<RotatePlayer>();
         groundList1 = Resources.LoadAll("Background1");
@@ -85,13 +87,23 @@ public class MapManager : MonoBehaviour {
         BossWT = GameObject.Find("BossW").GetComponent<Transform>();
         distaneText = GameObject.Find("Distance").GetComponent<Text>();
         jigText = GameObject.Find("Jig").GetComponent<Text>();
+        alarming = GameObject.Find("Alarming").GetComponent<Text>();
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
         /*打包时用*/
-        //if (sceneLoad != null)
-        //{ 
-        //    chapter=sceneLoad.startChapter;
+        if (sceneLoad != null)
+        {
+            if (PlayerPrefs.HasKey("Chapter"))
+            {
+                chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+                //Debug.Log(1);
+            }
+            else
+            {
+                chapter = sceneLoad.startChapter;
+                //Debug.Log(2);
+            }
             //教学关
             if (chapter == 0 && !hasMap)
             {
@@ -121,7 +133,7 @@ public class MapManager : MonoBehaviour {
                 hasMap = true;
                 mapMaker.enabled = true;
             }
-        //}
+        }
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -141,7 +153,7 @@ public class MapManager : MonoBehaviour {
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 1f) && (info.IsName("Base Layer.EndGame Animation")))
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         //更新拼图ui
@@ -231,7 +243,7 @@ public class MapManager : MonoBehaviour {
         }
 
         /*当作游戏结束条件 进入排行榜场景*/
-        if (BossTag.IsEat == true||playerMove.IsDead==true)
+        if (BossTag.IsEat == true||playerMove.IsDead == true)
         {
             BossTag.GetComponent<BossMove>().IsEat = false;
             playerMove.IsDead = false;
@@ -335,16 +347,28 @@ public class MapManager : MonoBehaviour {
         {
             playerMove.scores -= 5;
             SceneManager.LoadScene("SampleScene");
-            PlayerPrefs.SetInt("Chapter", chapter);
             //UI
-            Debug.Log("cost five points");
+            alarming.text = "重新开始，消耗五枚硬币";
         }
         else
         {
-            PlayerPrefs.SetInt("Chapter", 1);
             //UI
-            Debug.Log("you have not enough score to replay");
+            alarming.text = "你的硬币不足五枚，无法重新开始";
         }
+        StartCoroutine("SlowDisapper");
+    }
+
+    IEnumerator SlowDisapper()
+    {
+        Color color = alarming.color;
+        for (float i = 1f;i >= 0;i -= 0.01f)
+        {
+            color.a = i;
+            alarming.color = color;
+            //yield return null;
+            yield return new WaitForSeconds(0.02f);
+        }
+        alarming.text = "";
     }
 
     private void UpdateJigNum()
@@ -420,7 +444,7 @@ public class MapManager : MonoBehaviour {
     /*选关*/
     public void ChooseChapter(int n)
     {
-        chapter = n;
+        //chapter = n;
     }
 
     public void ChangeToNextChapter()
@@ -428,7 +452,7 @@ public class MapManager : MonoBehaviour {
         passPanelAnimator.Play("EndGame Animation 0");
         GameObject[] goes;
         goes = GameObject.FindGameObjectsWithTag("Map");
-        foreach(var go in goes)
+        foreach(GameObject go in goes)
         {
             Destroy(go);
         }
@@ -439,6 +463,13 @@ public class MapManager : MonoBehaviour {
         }
         switch(chapter)
         {
+            case 1:
+                playerTransform.position = new Vector3(-7f, -0.6f, -2f);
+                playerMove.lastHit3 = new Vector3(-7f, -1.16f, -2f);
+                rotatePlayer.enabled = false;
+                rotatePlayer.playerHeight *= -1;
+                playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+                break;
             case 2:
                 playerTransform.position = new Vector3(-7f, -1.6f, -2f);
                 playerMove.lastHit3 = new Vector3(-7f, -2.1f, -2f);

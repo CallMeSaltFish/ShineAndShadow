@@ -56,6 +56,7 @@ public class SceneLoad : MonoBehaviour
 
     void Start()
     {
+
         //是否自动淡入淡出
         if (startAutomatically)
         {
@@ -91,6 +92,12 @@ public class SceneLoad : MonoBehaviour
             DontDestroyOnLoad(this);
             //DontDestroyOnLoad(Camera.main);
         }
+        GameObject[] goes = GameObject.FindGameObjectsWithTag("SceneSwitchManager");
+        if(goes.Length == 2)
+        {
+            DestroyImmediate(goes[0]);
+        }
+        PlayerPrefs.DeleteKey("Chapter");
         //判断待加载场景是否为空
         if ((Application.levelCount <= 1) || (levelToLoad == ""))
         {

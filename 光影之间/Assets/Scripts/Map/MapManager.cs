@@ -19,6 +19,12 @@ public class MapManager : MonoBehaviour {
     private Text distaneText;
     private Text jigText;
     private Text alarming;
+    /*关于声音设置*/
+    private Slider volumeSlider;
+    private Toggle volumeToggle;
+    private AudioSource bgmAudio;
+    private float volume;
+
     private Rigidbody2D rb;
     private Vector3 cameraPosition;
     //遮罩为ui的camera用来实现游戏结束后场景渐暗效果
@@ -45,10 +51,12 @@ public class MapManager : MonoBehaviour {
     public int chapterPortalTimes;
     /*防止地图重复加载*/
     private bool hasMap;
-    /*通关动画状态机*/
+    /*通关面板动画状态机*/
     public Animator passPanelAnimator;
     /*死亡面板动画状态机*/
     public Animator defeatPanelAnimator;
+    /*暂停面板动画状态机*/
+    private Animator pausePanelAnimator;
 
     private BossMove BossB;
     private BossMove BossW;
@@ -72,7 +80,9 @@ public class MapManager : MonoBehaviour {
     void Start()
     {
         /*打包时用*/
-        //sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+        sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+        Screen.SetResolution(1280, 720, false);
+
 
         mapMaker = this.GetComponent<MapMaker>();
         mapMakerIn4 = this.GetComponent<MapMakerIn4>();
@@ -90,22 +100,26 @@ public class MapManager : MonoBehaviour {
         distaneText = GameObject.Find("Distance").GetComponent<Text>();
         jigText = GameObject.Find("Jig").GetComponent<Text>();
         alarming = GameObject.Find("Alarming").GetComponent<Text>();
+        volumeSlider = GameObject.Find("Canvas/PausePanel/Volume").GetComponent<Slider>();
+        volumeToggle = GameObject.Find("Canvas/PausePanel/IsMute").GetComponent<Toggle>();
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-
+        pausePanelAnimator = GameObject.Find("Canvas/PausePanel").GetComponent<Animator>();
+        bgmAudio = GameObject.FindWithTag("AudioPlayer").GetComponent<AudioSource>();
+        volume = bgmAudio.volume;
         /*打包时用*/
-        //if (sceneLoad != null)
-        //{
-        //    if (PlayerPrefs.HasKey("Chapter"))
-        //    {
-        //        chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-        //        //Debug.Log(1);
-        //    }
-        //    else
-        //    {
-        //        chapter = sceneLoad.startChapter;
-        //        //Debug.Log(2);
-        //    }
+        if (sceneLoad != null)
+        {
+            if (PlayerPrefs.HasKey("Chapter"))
+            {
+                chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+                //Debug.Log(1);
+            }
+            else
+            {
+                chapter = sceneLoad.startChapter;
+                //Debug.Log(2);
+            }
             //教学关
             if (chapter == 0 && !hasMap)
             {
@@ -142,7 +156,7 @@ public class MapManager : MonoBehaviour {
                 hasMap = true;
                 mapMakerIn4.enabled = true;
             }
-        //}
+        }
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -158,6 +172,7 @@ public class MapManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(volume.ToString());
         //获取第零层的动画
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 1f) && (info.IsName("Base Layer.EndGame Animation")))
@@ -170,11 +185,16 @@ public class MapManager : MonoBehaviour {
         //更新距离
         UpdateDistance();
         //lenceSwitch();
-        if (Input.anyKey)
+        if (Input.GetMouseButtonDown(2))
         {
             Time.timeScale = 1;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 0;
+            pausePanelAnimator.Play("EndGame Animation");
+        }
         //if (groundList1 == null || groundList2 == null)
         //{
         //    return;
@@ -514,6 +534,48 @@ public class MapManager : MonoBehaviour {
         if(num == 1)
         {
             Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(83.6f, -0.08f, 0), Quaternion.identity, mapTransform);
+        }
+    }
+
+    //外部接口供Button调用
+    public void ContinueGame()
+    {
+        pausePanelAnimator.Play("EndGame Animation 0");
+        Time.timeScale = 1;
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    //外部接口供音量设置按钮调用
+    public void OnValueChange()
+    {
+        bgmAudio.volume = volumeSlider.value;
+        if(bgmAudio.volume != 0)
+        {
+            volume = bgmAudio.volume;
+        }
+        if (volumeSlider.value == 0)
+        {
+            volumeToggle.isOn = true;
+        }
+        else
+        {
+            volumeToggle.isOn = false;
+        }
+    }
+    public void Mute()
+    {
+        if (!volumeToggle.isOn)
+        {
+            volumeSlider.value = volume;
+            bgmAudio.volume = volume;
+        }
+        if (volumeToggle.isOn)
+        {
+            volumeSlider.value = 0f;
+            bgmAudio.volume = 0f;
         }
     }
 }

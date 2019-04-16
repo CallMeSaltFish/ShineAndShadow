@@ -57,6 +57,7 @@ public class MapManager : MonoBehaviour {
     private Transform BossBT;
     private Transform BossWT;
     private MapMaker mapMaker;
+    private MapMakerIn4 mapMakerIn4;
     private SceneLoad sceneLoad;
 
     //private SpriteRenderer spriteRenderer;
@@ -71,9 +72,10 @@ public class MapManager : MonoBehaviour {
     void Start()
     {
         /*打包时用*/
-        sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+        //sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
 
-        mapMaker = GetComponent<MapMaker>();
+        mapMaker = this.GetComponent<MapMaker>();
+        mapMakerIn4 = this.GetComponent<MapMakerIn4>();
         playerMove = GameObject.FindWithTag("Player").GetComponent<PlayerMove>();
         rotatePlayer = GameObject.FindWithTag("Player").GetComponent<RotatePlayer>();
         groundList1 = Resources.LoadAll("Background1");
@@ -92,18 +94,18 @@ public class MapManager : MonoBehaviour {
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
 
         /*打包时用*/
-        if (sceneLoad != null)
-        {
-            if (PlayerPrefs.HasKey("Chapter"))
-            {
-                chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-                //Debug.Log(1);
-            }
-            else
-            {
-                chapter = sceneLoad.startChapter;
-                //Debug.Log(2);
-            }
+        //if (sceneLoad != null)
+        //{
+        //    if (PlayerPrefs.HasKey("Chapter"))
+        //    {
+        //        chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //        //Debug.Log(1);
+        //    }
+        //    else
+        //    {
+        //        chapter = sceneLoad.startChapter;
+        //        //Debug.Log(2);
+        //    }
             //教学关
             if (chapter == 0 && !hasMap)
             {
@@ -133,7 +135,14 @@ public class MapManager : MonoBehaviour {
                 hasMap = true;
                 mapMaker.enabled = true;
             }
-        }
+            //第四关
+            if (chapter == 4 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                mapMakerIn4.enabled = true;
+            }
+        //}
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -193,6 +202,12 @@ public class MapManager : MonoBehaviour {
         if (chapter == 3 && !hasMap)
         {
             Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+            hasMap = true;
+        }
+        //第四关
+        if(chapter == 4 && !hasMap)
+        {
+            Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
 

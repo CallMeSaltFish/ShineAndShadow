@@ -164,7 +164,7 @@ public class PlayerMove : MonoBehaviour {
             {
                 jumpFallexplosion.transform.rotation = Quaternion.Euler(0, 0, -180);
             }
-            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position, Quaternion.identity);//位置要改
+            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position-new Vector3(-0.5f,rb.gravityScale*0.55f,0.0f), Quaternion.identity);//位置要改
             canMakeJumpFall = false;
             Destroy(jumpfallexplosion, 1.0f);
         }
@@ -219,7 +219,7 @@ public class PlayerMove : MonoBehaviour {
                     spriteRenderer.sprite = sprite;
                 }
             }
-            if (mapManager.chapter == 3)
+            if (mapManager.chapter == 3 || mapManager.chapter == 4) 
             {
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
                 gameObject.transform.position.y-0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
@@ -465,7 +465,7 @@ public class PlayerMove : MonoBehaviour {
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            IsDead = true;
+            //IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
         if (col.tag == "FlyMonster1")

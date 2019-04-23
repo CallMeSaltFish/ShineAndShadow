@@ -6,7 +6,7 @@ public class OVRScreenFade2 : MonoBehaviour
     [SerializeField]
     private Material m_Material;
 
-    public float fadeTime = 2.0f;
+    public float fadeTime = 1.0f;
     public Color fadeColor = new Color(0.01f, 0.01f, 0.01f, 0.0f);
 
     private Material fadeMaterial = null;

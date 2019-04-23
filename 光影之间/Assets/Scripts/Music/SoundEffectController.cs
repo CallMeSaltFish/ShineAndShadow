@@ -14,6 +14,8 @@ public class SoundEffectController : MonoBehaviour
     private int foodMusic;
     /*吃拼图的音乐*/
     private int jigMusic;
+    /*落至地面的音乐*/
+    private int groundMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class SoundEffectController : MonoBehaviour
     {
         getFoodMusic();
         getJigMusic();
+        getGroundMusic();
     }
 
     void GetSceneName()
@@ -67,6 +70,18 @@ public class SoundEffectController : MonoBehaviour
             {
                 audioSource.clip = songs[2];
                 audioSource.Play(); jigMusic++;
+            }
+        }
+    }
+
+    void getGroundMusic()
+    {
+        if (playerMove != null)
+        {
+            if (playerMove.groundMusic > groundMusic)
+            {
+                audioSource.clip = songs[3];
+                audioSource.Play();groundMusic++;
             }
         }
     }

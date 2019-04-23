@@ -17,7 +17,7 @@ public class MapMover : MonoBehaviour
     {
         if (moveSpeed == 2f && gameObject.name != "第三关-1")
         {
-            Destroy(gameObject, 50.0f);
+            Destroy(gameObject, 200.0f);
         }
     }
 }

@@ -29,10 +29,17 @@ public class PlayerMove : MonoBehaviour {
     public float jumpSpeed;
     /*单个加分道具分数*/
     //private int singleScore = 5;
+
+    /*落至地面的音乐*/
+    public int groundMusic = 0;
     /*吃食物的音乐*/
     public int foodMusic = 0;
     /*吃拼图的音乐*/
     public int jigMusic = 0;
+
+
+    /*吃到了攻击怪物道具*/
+    private bool eatJig = false;
     /*已收集拼图个数*/
     [HideInInspector]
     public int jigNum = 0;
@@ -147,7 +154,7 @@ public class PlayerMove : MonoBehaviour {
     void Update() {
         if (rb.velocity.y != 0)
         {
-            localVelocity = rb.velocity.y;
+            localVelocity = Mathf.Abs(2.0f * rb.velocity.y);
         }
         if (!IsGrounded)
         {
@@ -155,16 +162,18 @@ public class PlayerMove : MonoBehaviour {
         }
         if (IsGrounded&&canMakeJumpFall)
         {
-            jumpFallPS.startSpeed = 3*localVelocity;
+            groundMusic++;
+            rb.velocity = new Vector2(rb.velocity.x, 0);
+            jumpFallPS.startSpeed = 0.1f*localVelocity;
             if (rotatePlayer.playerHeight > 0)
             {
-                jumpFallexplosion.transform.rotation = Quaternion.Euler(0, 0, 0);
+                jumpFallPS.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             if (rotatePlayer.playerHeight < 0)
             {
-                jumpFallexplosion.transform.rotation = Quaternion.Euler(0, 0, -180);
+                jumpFallPS.transform.rotation = Quaternion.Euler(180, 0, 0);
             }
-            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position-new Vector3(-0.5f,rb.gravityScale*0.55f,0.0f), Quaternion.identity);//位置要改
+            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position-new Vector3(-0.5f,rb.gravityScale*0.35f,0.0f), Quaternion.identity);//位置要改
             canMakeJumpFall = false;
             Destroy(jumpfallexplosion, 1.0f);
         }
@@ -222,7 +231,7 @@ public class PlayerMove : MonoBehaviour {
             if (mapManager.chapter == 3 || mapManager.chapter == 4) 
             {
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
-                gameObject.transform.position.y-0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
+                gameObject.transform.position.y-0.6f + 0.6f * randArray[i], 0), Quaternion.identity);
             }
             currentFlyNum++;
             i++;
@@ -279,6 +288,7 @@ public class PlayerMove : MonoBehaviour {
             //上坡
             if (Mathf.Abs(hit2.point.x - hit1.point.x) > 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround" && isGrounded)
             {
+                Debug.Log("在上坡");
                 angle1 = Mathf.Atan(0.1f / (hit2.point.x - hit1.point.x));
                 rb.velocity = new Vector3(0, Mathf.Tan(angle1) * rb.gravityScale * moveSpeed, 0);
                 animator.SetBool("isStop", false);
@@ -306,6 +316,7 @@ public class PlayerMove : MonoBehaviour {
                     {
                         animator.SetBool("isSlip", true);
                         angle2 = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
+                        Debug.Log("下坡");
                         rb.velocity = new Vector3(0, Mathf.Tan(angle2) * rb.gravityScale * moveSpeed, 0) * (-1);
                         angle1 = -angle2;
                     }
@@ -461,39 +472,83 @@ public class PlayerMove : MonoBehaviour {
         {
             jigNum++;
             jigMusic++;
+            eatJig = true;
         }
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            //IsDead = true;
+            IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
-        if (col.tag == "FlyMonster1")
+        //飞刀和障碍
+        if (col.tag == "FlyMonster" && mapManager.chapter != 4) 
         {
-            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
-            flyMonsterMove.attackMode = 0;
-            //i = Random.Range(0, 3);
-            i = 2;
-            flyNum = 1;
-            canFly = true;
+            IsDead = true;
+            PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
-        if (col.tag == "FlyMonster3")
-        {
-            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
-            flyMonsterMove.attackMode = 0;
-            //i = Random.Range(0, 3);
-            i = 2;
-            flyNum = 3;
-            canFly = true;
+        if (mapManager.chapter != 4) { 
+            if (col.tag == "FlyMonster1")
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 1;
+                canFly = true;
+                eatJig = false;
+            }
+            if (col.tag == "FlyMonster3")
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 3;
+                canFly = true;
+                eatJig = false;
+            }
+            if (col.tag == "FlyMonster5")
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 5;
+                canFly = true;
+                eatJig = false;
+            }
         }
-        if (col.tag == "FlyMonster5")
-        {
-            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
-            flyMonsterMove.attackMode = 0;
-            //i = Random.Range(0, 3);
-            i = 2;
-            flyNum = 5;
-            canFly = true;
+        if (mapManager.chapter == 4) { 
+            if (col.tag == "FlyMonster1" && eatJig) 
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 1;
+                canFly = true;
+                eatJig = false;
+            }
+            if (col.tag == "FlyMonster3" && eatJig) 
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 3;
+                canFly = true;
+                eatJig = false;
+            }
+            if (col.tag == "FlyMonster5" && eatJig)
+            {
+                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                flyMonsterMove.attackMode = 0;
+                //i = Random.Range(0, 3);
+                i = 2;
+                flyNum = 5;
+                canFly = true;
+                eatJig = false;
+            }
         }
         if (col.tag == "FlyMonsterStay")
         {

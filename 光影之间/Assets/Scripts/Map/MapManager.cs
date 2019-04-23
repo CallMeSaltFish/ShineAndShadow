@@ -113,7 +113,7 @@ public class MapManager : MonoBehaviour {
             if (PlayerPrefs.HasKey("Chapter"))
             {
                 chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-                //Debug.Log(1);
+                Debug.Log(1);
             }
             else
             {
@@ -148,6 +148,7 @@ public class MapManager : MonoBehaviour {
                 Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
                 hasMap = true;
                 mapMaker.enabled = true;
+                Debug.Log("hhh");
             }
             //第四关
             if (chapter == 4 && !hasMap)
@@ -157,6 +158,57 @@ public class MapManager : MonoBehaviour {
                 mapMakerIn4.enabled = true;
             }
         }
+        ///*打包时用*/
+        //if (sceneLoad != null)
+        //{
+        //if (PlayerPrefs.HasKey("Chapter"))
+        //{
+        //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //    Debug.Log(1);
+        //}
+        //else
+        //{
+        //    chapter = sceneLoad.startChapter;
+        //    //Debug.Log(2);
+        //}
+        //教学关
+        //if (chapter == 0 && !hasMap)
+        //{
+        //    Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+        //    hasMap = true;
+        //}
+        //第一关
+        //if (chapter == 1 && !hasMap)
+        //{
+        //    Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+        //    hasMap = true;
+        //}
+        //第二关
+        //if (chapter == 2 && !hasMap)
+        //{
+        //    Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+        //    hasMap = true;
+        //    /*以下三行都是方便直接修改chapter进行演示*/
+        //    rotatePlayer.playerHeight *= -1;
+        //    playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        //    rotatePlayer.enabled = false;
+        //}
+        //第三关
+        //if (chapter == 3 && !hasMap)
+        //{
+        //    Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+        //    hasMap = true;
+        //    mapMaker.enabled = true;
+        //    Debug.Log("hhh");
+        //}
+        //第四关
+        //if (chapter == 4 && !hasMap)
+        //{
+        //    Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+        //    hasMap = true;
+        //    mapMakerIn4.enabled = true;
+        //}
+
 
         //if (chapter != 0 && chapter != 1)
         //{
@@ -177,7 +229,7 @@ public class MapManager : MonoBehaviour {
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 1f) && (info.IsName("Base Layer.EndGame Animation")))
         {
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
         }
 
         //更新拼图ui
@@ -283,6 +335,8 @@ public class MapManager : MonoBehaviour {
             BossTag.GetComponent<BossMove>().IsEat = false;
             playerMove.IsDead = false;
             //停住人和怪兽
+            mapMaker.enabled = false;
+            mapMakerIn4.enabled = false;
             playerMove.enabled = false;
             BossB.enabled = false;
             BossW.enabled = false;

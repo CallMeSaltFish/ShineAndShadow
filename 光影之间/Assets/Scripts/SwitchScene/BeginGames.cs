@@ -28,4 +28,8 @@ public class BeginGames : MonoBehaviour {
         this.sceneName = name;
         SceneManager.LoadScene(sceneName);
     }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

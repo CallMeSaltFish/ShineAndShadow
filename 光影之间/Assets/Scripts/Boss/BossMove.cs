@@ -12,15 +12,22 @@ public class BossMove : MonoBehaviour {
     [Header("是否被杀死")]
     private bool isEat;
 
+    /*判断Boss本身的血量*/
+    [SerializeField]
+    [Header("Boss是否被杀死")]
+    public int bossBlood = 300;
+
     private Rigidbody2D playerRigidbody;
     private GameObject bossB;
     private GameObject bossW;
+    private MapManager mapManager;
 
     private Transform bossTransform;
     private float std;
 
 	// Use this for initialization
 	void Start () {
+        mapManager = GameObject.FindWithTag("GameController").GetComponent<MapManager>();
         playerRigidbody = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
         //bossB = GameObject.Find("BossB");
         //bossW = GameObject.Find("BossW");
@@ -84,9 +91,14 @@ public class BossMove : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.tag == "Player")
         {
             isEat = true;
+        }
+        if (col.tag == "FlyMonster" && mapManager.chapter == 4) 
+        {
+            Debug.Log("Boss扣血了");
+            bossBlood -= 30;
         }
     }
 }

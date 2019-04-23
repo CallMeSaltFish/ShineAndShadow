@@ -112,6 +112,7 @@ public class SceneLoad : MonoBehaviour
         //splashLogo.width = 1000;
         status = FadeStatus.FadeIn;
         startChapter = i;
+        Debug.Log("更换新场景");
     }
 
     void Update()

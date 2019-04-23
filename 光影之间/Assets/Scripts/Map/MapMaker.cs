@@ -14,9 +14,12 @@ public class MapMaker : MonoBehaviour
     private int number = 0;
 
     private GameObject player;
+    private PlayerMove playerMove;
     private MapManager mapManager;
     private float newPositionY;
     private float newPositionX;
+
+    private int scores;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +27,13 @@ public class MapMaker : MonoBehaviour
         newPositionY = -1.20f;
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         player = GameObject.FindWithTag("Player");
+        playerMove = player.GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        scores = playerMove.scores;
         timer += Time.fixedDeltaTime;
         //Debug.Log(timer);
         if (timer > 3)
@@ -40,6 +45,7 @@ public class MapMaker : MonoBehaviour
         {
             num = 0;
             MakeMap();
+            Debug.Log("生成地图");
             number++;
         }
     }
@@ -60,54 +66,61 @@ public class MapMaker : MonoBehaviour
                 //newPositionX += 42.5f;
             }
             if (number > 1)
-            {
-                if ((a < 2 && a > 0) || a == 0)
+            { 
+                    if ((a < 2 && a > 0) || a == 0)
+                    {
+                        Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                        newPositionY += 2.8f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 1 && a < 4)
+                    {
+                        Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                        newPositionY += 2.8f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 3 && a < 8)
+                    {
+                        Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                        newPositionY += 2.8f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 7 && a < 14)
+                    {
+                        Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                        newPositionY += 2.8f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 13 && a < 17)
+                    {
+                        Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                        newPositionY += 1.5f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 16 && a < 20)
+                    {
+                        Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                        newPositionY += 1.5f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 19 && a < 26)
+                    {
+                        Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                        newPositionY += 1.5f;
+                        newPositionX += 24.25f;
+                    }
+                    if (a > 25 && a < 35)
+                    {
+                        Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                        newPositionY += 1.5f;
+                        newPositionX += 24.25f;
+                    }
+                if (scores > 10)
                 {
-                    Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    Instantiate(newFloor[8], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
                     newPositionY += 2.8f;
                     newPositionX += 24.25f;
-                }
-                if (a > 1 && a < 4)
-                {
-                    Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
-                    newPositionY += 2.8f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 3 && a < 8)
-                {
-                    Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
-                    newPositionY += 2.8f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 7 && a < 14)
-                {
-                    Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
-                    newPositionY += 2.8f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 13 && a < 17)
-                {
-                    Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
-                    newPositionY += 1.5f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 16 && a < 20)
-                {
-                    Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
-                    newPositionY += 1.5f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 19 && a < 26)
-                {
-                    Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
-                    newPositionY += 1.5f;
-                    newPositionX += 24.25f;
-                }
-                if (a > 25 && a < 35)
-                {
-                    Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
-                    newPositionY += 1.5f;
-                    newPositionX += 24.25f;
+                    this.enabled = false;
                 }
             }
         }

@@ -9,7 +9,7 @@ public class TipScreen : MonoBehaviour {
     private bool isReading=false;
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
         box = GetComponent<BoxCollider2D>();
         //tipPanel = GameObject.Find("Canvas/TipPanel");
 	}
@@ -25,7 +25,7 @@ public class TipScreen : MonoBehaviour {
             player.GetComponent<PlayerMove>().enabled = true;
             player.GetComponent<PlayerMove>().isStop = false;
             tipPanel.SetActive(false);
-            GameObject.FindWithTag("Player").SendMessage("ChangeIsInteractable");
+            player.SendMessage("ChangeIsInteractable");
         }
 	}
     void OnTriggerEnter2D(Collider2D col)

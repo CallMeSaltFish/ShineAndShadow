@@ -595,7 +595,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "\u9000\u51FA\u6E38\u620F"
+  m_Text: "\u8FD4  \u56DE"
 --- !u!222 &90666702
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -749,7 +749,7 @@ RectTransform:
   - {fileID: 412851512}
   - {fileID: 1776443982}
   m_Father: {fileID: 1852804218}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -781,7 +781,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c537e14ed2a193b49971197b208b3549, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1018,12 +1018,12 @@ RectTransform:
   - {fileID: 557365449}
   - {fileID: 2120499000}
   m_Father: {fileID: 1852804218}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1303, y: 772}
-  m_SizeDelta: {x: 194.8, y: 289.5}
+  m_AnchoredPosition: {x: 0, y: 1630}
+  m_SizeDelta: {x: 192.59, y: 285.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &354123524
 Animator:
@@ -2062,6 +2062,7 @@ MonoBehaviour:
   isInternal: 0
   chapter: 1
   chapterPortalTimes: 0
+  isPause: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
 --- !u!4 &799680269
@@ -2659,7 +2660,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1852804218}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3179,7 +3180,7 @@ GameObject:
   - component: {fileID: 1482527856}
   - component: {fileID: 1482527855}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4177,7 +4178,7 @@ RectTransform:
   - {fileID: 2031348074}
   - {fileID: 828271831}
   m_Father: {fileID: 1852804218}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4209,7 +4210,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c537e14ed2a193b49971197b208b3549, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -4815,10 +4816,10 @@ RectTransform:
   - {fileID: 12574277}
   - {fileID: 364777048}
   - {fileID: 55394222}
-  - {fileID: 954535812}
   - {fileID: 354123523}
   - {fileID: 197580913}
   - {fileID: 1765732596}
+  - {fileID: 954535812}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

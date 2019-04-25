@@ -51,6 +51,8 @@ public class MapManager : MonoBehaviour {
     public int chapterPortalTimes;
     /*防止地图重复加载*/
     private bool hasMap;
+    /*暂停面板*/
+    public bool isPause;
     /*通关面板动画状态机*/
     public Animator passPanelAnimator;
     /*死亡面板动画状态机*/
@@ -80,7 +82,9 @@ public class MapManager : MonoBehaviour {
     void Start()
     {
         /*打包时用*/
-        sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+        //sceneLoad = GameObject.Find("sceneSwitchManager").GetComponent<SceneLoad>();
+        //bgmAudio = GameObject.FindWithTag("AudioPlayer").GetComponent<AudioSource>();
+        //volume = bgmAudio.volume;
         Screen.SetResolution(1280, 720, false);
 
 
@@ -105,22 +109,74 @@ public class MapManager : MonoBehaviour {
         rb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
         playerAnimator = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         pausePanelAnimator = GameObject.Find("Canvas/PausePanel").GetComponent<Animator>();
-        bgmAudio = GameObject.FindWithTag("AudioPlayer").GetComponent<AudioSource>();
-        volume = bgmAudio.volume;
+        isPause = false;
+
+        ///*打包时用*/
+        //if (sceneLoad != null)
+        //{
+        //    if (PlayerPrefs.HasKey("Chapter"))
+        //    {
+        //        chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //        Debug.Log(1);
+        //    }
+        //    else
+        //    {
+        //        chapter = sceneLoad.startChapter;
+        //        Debug.Log(2);
+        //    }
+        //    //教学关
+        //    if (chapter == 0 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //    }
+        //    //第一关
+        //    if (chapter == 1 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //    }
+        //    //第二关
+        //    if (chapter == 2 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        /*以下三行都是方便直接修改chapter进行演示*/
+        //        rotatePlayer.playerHeight *= -1;
+        //        playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        //        rotatePlayer.enabled = false;
+        //    }
+        //    //第三关
+        //    if (chapter == 3 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        mapMaker.enabled = true;
+        //        Debug.Log("hhh");
+        //    }
+        //    //第四关
+        //    if (chapter == 4 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        mapMakerIn4.enabled = true;
+        //    }
+        //}
+
         /*打包时用*/
-        if (sceneLoad != null)
-        {
-            if (PlayerPrefs.HasKey("Chapter"))
-            {
-                chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-                Debug.Log(1);
-            }
-            else
-            {
-                chapter = sceneLoad.startChapter;
-                //Debug.Log(2);
-            }
-            //教学关
+        //if (sceneLoad != null)
+        //{
+            //if (PlayerPrefs.HasKey("Chapter"))
+            //{
+            //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+            //    Debug.Log(1);
+            //}
+            //else
+            //{
+            //    chapter = sceneLoad.startChapter;
+            //    Debug.Log(2);
+            //}
+            // 教学关
             if (chapter == 0 && !hasMap)
             {
                 Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
@@ -157,70 +213,19 @@ public class MapManager : MonoBehaviour {
                 hasMap = true;
                 mapMakerIn4.enabled = true;
             }
-        }
-        ///*打包时用*/
-        //if (sceneLoad != null)
-        //{
-        //if (PlayerPrefs.HasKey("Chapter"))
-        //{
-        //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-        //    Debug.Log(1);
-        //}
-        //else
-        //{
-        //    chapter = sceneLoad.startChapter;
-        //    //Debug.Log(2);
-        //}
-        //教学关
-        //if (chapter == 0 && !hasMap)
-        //{
-        //    Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
-        //    hasMap = true;
-        //}
-        //第一关
-        //if (chapter == 1 && !hasMap)
-        //{
-        //    Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
-        //    hasMap = true;
-        //}
-        //第二关
-        //if (chapter == 2 && !hasMap)
-        //{
-        //    Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
-        //    hasMap = true;
-        //    /*以下三行都是方便直接修改chapter进行演示*/
-        //    rotatePlayer.playerHeight *= -1;
-        //    playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-        //    rotatePlayer.enabled = false;
-        //}
-        //第三关
-        //if (chapter == 3 && !hasMap)
-        //{
-        //    Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
-        //    hasMap = true;
-        //    mapMaker.enabled = true;
-        //    Debug.Log("hhh");
-        //}
-        //第四关
-        //if (chapter == 4 && !hasMap)
-        //{
-        //    Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
-        //    hasMap = true;
-        //    mapMakerIn4.enabled = true;
-        //}
 
 
-        //if (chapter != 0 && chapter != 1)
-        //{
-        //    /*改一下来测试*/
-        //    lastGround = Instantiate(groundList1[0], cameraPosition, Quaternion.identity, mapTransform) as GameObject;
-        //    thisGround = Instantiate(groundList1[0], new Vector3(15.8f, 0, 0), lastGround.transform.rotation, mapTransform) as GameObject;
-        //    /*初始化动态数组并取消勾选下栅栏*/
-        //    UpdateListOfUp_Down(ups, downs);
+            //if (chapter != 0 && chapter != 1)
+            //{
+            //    /*改一下来测试*/
+            //    lastGround = Instantiate(groundList1[0], cameraPosition, Quaternion.identity, mapTransform) as GameObject;
+            //    thisGround = Instantiate(groundList1[0], new Vector3(15.8f, 0, 0), lastGround.transform.rotation, mapTransform) as GameObject;
+            //    /*初始化动态数组并取消勾选下栅栏*/
+            //    UpdateListOfUp_Down(ups, downs);
+            //}
+            //UICamera = GameObject.Find("UI Camera").GetComponent<Camera>();
         //}
-        //UICamera = GameObject.Find("UI Camera").GetComponent<Camera>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -229,7 +234,7 @@ public class MapManager : MonoBehaviour {
         AnimatorStateInfo info = defeatPanelAnimator.GetCurrentAnimatorStateInfo(0);
         if ((info.normalizedTime > 1f) && (info.IsName("Base Layer.EndGame Animation")))
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
         }
 
         //更新拼图ui
@@ -237,7 +242,7 @@ public class MapManager : MonoBehaviour {
         //更新距离
         UpdateDistance();
         //lenceSwitch();
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(2) && !isPause)
         {
             Time.timeScale = 1;
         }
@@ -245,7 +250,10 @@ public class MapManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 0;
+            rotatePlayer.enabled = false;
+            playerMove.enabled = false;
             pausePanelAnimator.Play("EndGame Animation");
+            isPause = true;
         }
         //if (groundList1 == null || groundList2 == null)
         //{
@@ -274,6 +282,7 @@ public class MapManager : MonoBehaviour {
         if (chapter == 3 && !hasMap)
         {
             Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+            //mapMaker.enabled = true;
             hasMap = true;
         }
         //第四关
@@ -434,17 +443,17 @@ public class MapManager : MonoBehaviour {
     {
         if(playerMove.scores >= 5)
         {
-            playerMove.scores -= 5;
-            SceneManager.LoadScene("SampleScene");
             //UI
             alarming.text = "重新开始，消耗五枚硬币";
+            StartCoroutine("SlowDisapper");
         }
         else
         {
             //UI
             alarming.text = "你的硬币不足五枚，无法重新开始";
+            StopCoroutine("SlowDisapper");
+            StartCoroutine("SlowDisapper");
         }
-        StartCoroutine("SlowDisapper");
     }
 
     IEnumerator SlowDisapper()
@@ -452,10 +461,14 @@ public class MapManager : MonoBehaviour {
         Color color = alarming.color;
         for (float i = 1f;i >= 0;i -= 0.01f)
         {
+            yield return new WaitForSeconds(0.005f);
             color.a = i;
             alarming.color = color;
-            //yield return null;
-            yield return new WaitForSeconds(0.02f);
+        }
+        if (playerMove.scores >= 5)
+        {
+            playerMove.scores -= 5;
+            SceneManager.LoadScene("SampleScene");
         }
         alarming.text = "";
     }
@@ -595,13 +608,16 @@ public class MapManager : MonoBehaviour {
     public void ContinueGame()
     {
         pausePanelAnimator.Play("EndGame Animation 0");
+        rotatePlayer.enabled = true;
+        playerMove.enabled = true;
+        isPause = false;
         Time.timeScale = 1;
     }
     public void ExitGame()
     {
         Application.Quit();
     }
-
+    
     //外部接口供音量设置按钮调用
     public void OnValueChange()
     {

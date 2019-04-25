@@ -269,7 +269,7 @@ public class PlayerMove : MonoBehaviour {
         }
 
         /*移动方式*/
-        //遇到传送门
+        //遇到传送门或者指示板
         if (isStop)
         {
             transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed);
@@ -278,17 +278,19 @@ public class PlayerMove : MonoBehaviour {
         //平地
         else
         {
+            if (mapManager.chapter != 3)
+            {
+                animator.SetBool("isStop", false);
+            }
             transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
-            animator.SetBool("isStop", false);
             angle1 = 0;
         }
         //上坡
-        if (hit2 && hit1)
+        if (hit2 && hit1 && isGrounded)
         {
             //上坡
             if (Mathf.Abs(hit2.point.x - hit1.point.x) > 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround" && isGrounded)
             {
-                Debug.Log("在上坡");
                 angle1 = Mathf.Atan(0.1f / (hit2.point.x - hit1.point.x));
                 rb.velocity = new Vector3(0, Mathf.Tan(angle1) * rb.gravityScale * moveSpeed, 0);
                 animator.SetBool("isStop", false);
@@ -296,7 +298,11 @@ public class PlayerMove : MonoBehaviour {
             //碰墙
             if (Mathf.Abs(hit2.point.x - hit1.point.x) <= 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround")
             {
-                moveSpeed = 0;
+                if(mapManager.chapter != 3)
+                {
+                    moveSpeed = 0;
+                    Debug.Log(1);
+                }
                 animator.SetBool("isStop", true);
             }
         }
@@ -374,6 +380,8 @@ public class PlayerMove : MonoBehaviour {
         if (isGrounded && Input.GetMouseButtonDown(1) && !isInteractable)
         {
             animator.SetBool("isGrounded", false);
+            if(mapManager.chapter == 3)
+                animator.SetBool("isStop", false);
             rb.velocity = Vector3.zero;
             rb.AddForce(new Vector3(0, jumpSpeed * rb.gravityScale, 0), ForceMode2D.Impulse);
             isGrounded = false;
@@ -385,7 +393,6 @@ public class PlayerMove : MonoBehaviour {
         }
 
         myBackParticle.transform.rotation = Quaternion.Euler(Mathf.Tan(angle1) * Mathf.Rad2Deg, -90, 0);
-        //Debug.Log(rotatePlayer.playerHeight); 
     }
 
 

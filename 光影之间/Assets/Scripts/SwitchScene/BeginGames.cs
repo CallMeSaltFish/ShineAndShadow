@@ -25,6 +25,13 @@ public class BeginGames : MonoBehaviour {
     public void Switch(string name)
     {
         PlayerPrefs.SetInt("Star", index1);
+        //PlayerPrefs.SetInt("Chapter", 1);
+        GameObject go =  GameObject.FindGameObjectWithTag("GameController");
+        if(go != null)
+        {
+            Time.timeScale = 1;
+            go.GetComponent<MapManager>().isPause = false;
+        }
         this.sceneName = name;
         SceneManager.LoadScene(sceneName);
     }

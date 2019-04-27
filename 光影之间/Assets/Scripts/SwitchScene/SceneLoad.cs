@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+ 
 //淡入淡出跳转场景
 public class SceneLoad : MonoBehaviour
 {
+    const float a = 0.1f;
+    const float b = 11.0f;
     public int startChapter;
     //载入图的绘制深度
     public int guiDepth = 0;
     //要加载的场景名
     public string levelToLoad;
     //载入界面图片
-    public Texture2D splashLogo;
+    public Texture2D[] splashLogo;
     //淡入淡出速度
     public float fadeSpeed = 0.8f;
     //等待时间
@@ -44,6 +46,7 @@ public class SceneLoad : MonoBehaviour
     private GameObject oldCamGO;
     //载入图绘制范围
     private Rect splashLogoPos = new Rect();
+    //private Rect splashLogoPos1 = new Rect();
     //载入图位置
     public enum LogoPositioning
     {
@@ -72,20 +75,28 @@ public class SceneLoad : MonoBehaviour
         //载入图位置大小判断
         if (logoPositioning == LogoPositioning.Centered)
         {
-            splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo.width * 0.5f);
-            splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo.height * 0.5f);
+            for (int i = 0; i < 8; i++) { 
+                splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo[i].width * 0.5f) + 10 *b;
+                splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo[i].height * 0.5f) + 80 * b;
 
-            splashLogoPos.width = splashLogo.width;
-            splashLogoPos.height = splashLogo.height;
+                splashLogoPos.width = splashLogo[i].width * a;
+                splashLogoPos.height = splashLogo[i].height * a;
+
+            }
         }
         else
         {
-            splashLogoPos.x = 0;
-            splashLogoPos.y = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo[i].width * 0.5f);
+                splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo[i].height * 0.5f);
 
-            splashLogoPos.width = Screen.width;
-            splashLogoPos.height = Screen.height;
+                splashLogoPos.width = splashLogo[i].width;
+                splashLogoPos.height = splashLogo[i].height;
+
+            }
         }
+
 
         if (splashType == SplashType.LoadNextLevelThenFadeOut)
         {
@@ -130,7 +141,7 @@ public class SceneLoad : MonoBehaviour
                 }
                 break;
             case FadeStatus.FadeOut:
-                alpha += -fadeSpeed * Time.deltaTime;
+                alpha += -fadeSpeed * 3 * Time.deltaTime;
                 break;
         }
     }
@@ -139,11 +150,24 @@ public class SceneLoad : MonoBehaviour
     {
         //图片Alpha控制
         GUI.depth = guiDepth;
-        if (splashLogo != null)
+        if (splashLogo[0] != null)
         {
+            //if (alpha > (0 + 1) * 0.15f)
+                //splashLogo[i + 1] = null;
             GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, Mathf.Clamp01(alpha));
-            GUI.DrawTexture(splashLogoPos, splashLogo);
+            GUI.DrawTexture(splashLogoPos, splashLogo[0]);
         }
+        for (int i = 0; i < 8; i++)
+        {
+            if (splashLogo[i] != null)
+            { 
+                GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, Mathf.Clamp01(alpha));
+                GUI.DrawTexture(splashLogoPos, splashLogo[i]);
+            }
+            if (alpha > (i + 1) * 0.14f)
+                splashLogo[7 - i] = null;
+        }
+        
         if (alpha > 1.0f)
         {
             status = FadeStatus.FadeWaiting;

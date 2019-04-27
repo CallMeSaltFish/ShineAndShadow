@@ -484,13 +484,13 @@ public class PlayerMove : MonoBehaviour {
         //飞刀和障碍
         if (col.tag == "Trap" || col.tag=="DownTrap")
         {
-            IsDead = true;
+            //IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
         //飞刀和障碍
         if (col.tag == "FlyMonster" && mapManager.chapter != 4) 
         {
-            IsDead = true;
+            //IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
         if (mapManager.chapter != 4) { 

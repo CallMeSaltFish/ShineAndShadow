@@ -18,64 +18,56 @@ public class BossMove : MonoBehaviour {
     public int bossBlood = 300;
 
     private Rigidbody2D playerRigidbody;
-    private GameObject bossB;
-    private GameObject bossW;
     private MapManager mapManager;
 
     private Transform bossTransform;
     private float std;
-
+    //private bool isChange;
 	// Use this for initialization
 	void Start () {
         mapManager = GameObject.FindWithTag("GameController").GetComponent<MapManager>();
         playerRigidbody = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-        //bossB = GameObject.Find("BossB");
-        //bossW = GameObject.Find("BossW");
         bossTransform = this.GetComponent<Transform>();
+        //isChange = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //if(bossTransform.position.y > 0)
-        //{
-        //    std = 1;
-        //}else
-        //{
-        //    std = -1;
-        //}
-        //RaycastHit2D ray = Physics2D.Linecast(bossTransform.position + new Vector3(1.5f, -2f * std, 0), bossTransform.position + new Vector3(7.5f, -2 * std, 0));
-        //Debug.DrawLine(bossTransform.position + new Vector3(1.5f, -2f * std, 0), bossTransform.position + new Vector3(7.5f, -2 * std, 0), Color.red);
 
-        //if()
         transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
+        // if(isChange)
+        // {
+        //     BossHurt1();
+        //     isChange = false;
+        // }
+        /*之前设定的在某半部分待的时间越久，Boss的移动速度就会越来越快*/
+        //if (playerRigidbody.gravityScale > 0)
+        //{
+        //    if(bossTransform.name == "BossB")
+        //    {
+        //        moveSpeed = Mathf.Lerp(3 , 4.5f, 0.4f);
+        //    }
+        //    else if(bossTransform.name == "BossW")
+        //    {
+        //        moveSpeed = Mathf.Lerp(moveSpeed, 1.5f, 0.4f);
+        //    }
+        //}
+        //if(playerRigidbody.gravityScale < 0)
+        //{
+        //    if (bossTransform.name == "BossB")
+        //    {
+        //        moveSpeed = Mathf.Lerp(moveSpeed, 1.5f, 0.4f);
+        //    }
+        //    else if (bossTransform.name == "BossW")
+        //    {
+        //        moveSpeed = Mathf.Lerp(3, 4.5f, 0.4f);
+        //    }
+        //}
+        //if(Mathf.Abs(bossTransform.position.x - playerRigidbody.transform.position.x) >= 7)
+        //{
+        //    moveSpeed = 3f;
+        //}
 
-        if (playerRigidbody.gravityScale > 0)
-        {
-            if(bossTransform.name == "BossB")
-            {
-                moveSpeed = Mathf.Lerp(3 , 4.5f, 0.4f);
-            }
-            else if(bossTransform.name == "BossW")
-            {
-                moveSpeed = Mathf.Lerp(moveSpeed, 1.5f, 0.4f);
-            }
-        }
-        else if(playerRigidbody.gravityScale < 0)
-        {
-            if (bossTransform.name == "BossB")
-            {
-                moveSpeed = Mathf.Lerp(moveSpeed, 1.5f, 0.4f);
-            }
-            else if (bossTransform.name == "BossW")
-            {
-                moveSpeed = Mathf.Lerp(3, 4.5f, 0.4f);
-            }
-        }
-
-        if(Mathf.Abs(bossTransform.position.x - playerRigidbody.transform.position.x) >= 7)
-        {
-            moveSpeed = 3f;
-        }
     }
     /*isEat的属性 供外界调用*/
     public bool IsEat
@@ -89,6 +81,7 @@ public class BossMove : MonoBehaviour {
             isEat = value;
         }
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player")
@@ -98,7 +91,69 @@ public class BossMove : MonoBehaviour {
         if (col.tag == "FlyMonster" && mapManager.chapter == 4) 
         {
             Debug.Log("Boss扣血了");
+            //StopCoroutine("BossHurt");
+            //StartCoroutine("BossHurt");
+            //isChange = true;
             bossBlood -= 30;
         }
+    }
+    void BossHurt1()
+    {
+        SpriteRenderer sp = this.GetComponent<SpriteRenderer>();
+        Color color = sp.color;
+        float[] hp = { 0.5f, 1 };
+        for (int i = 0; i < hp.Length; i++)
+        {
+            color.a = hp[i];
+            while (sp.color.a >= hp[i])
+            {
+                sp.color = Color.Lerp(sp.color, color, 0.1f);
+            }
+            Debug.Log(1);
+        }
+    }
+
+    IEnumerator BossHurt()
+    {
+        SpriteRenderer sp = this.GetComponent<SpriteRenderer>();
+        Color color = sp.color;
+        //for(float i = 1f;i >= 0.5f;i -= 0.001f)
+        //{
+        //    color.a = i;
+        //    sp.color = color;
+        //    yield return new WaitForSeconds(0.005f);
+        //}
+        //for (float i = 0.5f; i <= 1f; i += 0.001f)
+        //{
+        //    color.a = i;
+        //    sp.color = color;
+        //    yield return new WaitForSeconds(0.005f);
+        //}
+        float[] hp = { 0.5f, 1 };
+        for(int i = 0;i < hp.Length; i++)
+        {
+            color.a = hp[i];
+            while(sp.color.a != hp[i])
+            {
+                sp.color = Color.Lerp(sp.color, color, 0.1f);
+                yield return null;
+            }
+            Debug.Log(1);
+        }
+        //color.a = 0.5f;
+        //while(sp.color.a != 0.5f)
+        //{
+        //    sp.color = Color.Lerp(sp.color, color, 0.5f);
+        //    Debug.Log(1);
+        //    yield return null;
+        //}
+        //color.a = 1f;
+        //while (sp.color.a != 1)
+        //{
+        //    Debug.Log(2);
+        //    Debug.Log(color.a);
+        //    sp.color = Color.Lerp(sp.color, color, 0.5f);
+        //    yield return null;
+        //}
     }
 }

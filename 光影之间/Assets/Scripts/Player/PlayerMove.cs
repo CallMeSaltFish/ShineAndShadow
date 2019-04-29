@@ -129,7 +129,7 @@ public class PlayerMove : MonoBehaviour {
         {
             return moveSpeed;
         }
-    }
+    }  
     void Awake()
     {
         savePos = new Vector3(PlayerPrefs.GetInt("playerPosition"), 0.549f, 0);
@@ -360,7 +360,8 @@ public class PlayerMove : MonoBehaviour {
         }
 
         /*控制摄像机移动的脚本*/
-        if (Camera.main.transform.position.x - transform.position.x <= 5.3f && Camera.main.transform.position.x - transform.position.x >= 5.2f)
+        if ((Camera.main.transform.position.x - transform.position.x <= 5.3f && mapManager.chapter != 4/*&& Camera.main.transform.position.x - transform.position.x >= 5.2f*/)
+            ||(mapManager.chapter == 4 && Camera.main.transform.position.x - transform.position.x <= 2.7f))
         {
             followWith.enabled = true;
             followWith.isStd = true;

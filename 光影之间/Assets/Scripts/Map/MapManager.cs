@@ -159,6 +159,8 @@ public class MapManager : MonoBehaviour {
         //    {
         //        Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
         //        hasMap = true;
+        //        BossB.enabled = true;
+        //        BossW.enabled = true;
         //        mapMakerIn4.enabled = true;
         //    }
         //}
@@ -166,18 +168,18 @@ public class MapManager : MonoBehaviour {
         /*打包时用*/
         //if (sceneLoad != null)
         //{
-            //if (PlayerPrefs.HasKey("Chapter"))
-            //{
-            //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-            //    Debug.Log(1);
-            //}
-            //else
-            //{
-            //    chapter = sceneLoad.startChapter;
-            //    Debug.Log(2);
-            //}
-            // 教学关
-            if (chapter == 0 && !hasMap)
+        //if (PlayerPrefs.HasKey("Chapter"))
+        //{
+        //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //    Debug.Log(1);
+        //}
+        //else
+        //{
+        //    chapter = sceneLoad.startChapter;
+        //    Debug.Log(2);
+        //}
+        // 教学关
+        if (chapter == 0 && !hasMap)
             {
                 Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
                 hasMap = true;
@@ -211,6 +213,8 @@ public class MapManager : MonoBehaviour {
             {
                 Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
                 hasMap = true;
+                BossB.enabled = true;
+                BossW.enabled = true;
                 mapMakerIn4.enabled = true;
             }
 
@@ -288,6 +292,8 @@ public class MapManager : MonoBehaviour {
         //第四关
         if(chapter == 4 && !hasMap)
         {
+            BossB.enabled = true;
+            BossW.enabled = true;
             Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
             hasMap = true;
         }
@@ -297,10 +303,12 @@ public class MapManager : MonoBehaviour {
             if (Input.GetMouseButtonDown(2) && Camera.main.transform.position.x - playerTransform.position.x >= 5.2f)
             {
                 playerMove.enabled = true;
-                BossB.enabled = true;
-                BossW.enabled = true;
+                //BossB.enabled = true;
+                //BossW.enabled = true;
                 rb.velocity = new Vector3(0, 0, 0);
             }
+
+            /*老旧版本*/
             //if (chapter != 1)
             //{
             //    if (thisGround == null && lastGround == null)
@@ -339,7 +347,7 @@ public class MapManager : MonoBehaviour {
         }
 
         /*当作游戏结束条件 进入排行榜场景*/
-        if (BossTag.IsEat == true||playerMove.IsDead == true)
+        if (BossTag.IsEat == true || playerMove.IsDead == true)
         {
             BossTag.GetComponent<BossMove>().IsEat = false;
             playerMove.IsDead = false;

@@ -93,7 +93,7 @@ public class RotatePlayer : MonoBehaviour {
         }
         if (playerHeight > 0 && blackAnim)
         {
-            Debug.Log("白下");
+            //Debug.Log("白下");
             ParticleSystem ps = explosion.GetComponentInChildren<ParticleSystem>();
             /*改变颜色*/
             ps.startColor = new Color(0, 0, 0);

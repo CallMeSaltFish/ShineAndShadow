@@ -46,8 +46,8 @@ public class FollowWithPlayer : MonoBehaviour {
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, transform.position.y, endPosition.z), ref cameraVelocity, cameraSpeed);
                 if (transform.position.x - playerTransform.position.x >= offset.x - 0.1f && Input.GetMouseButtonDown(2))
                 {
-                    BossB.enabled = true;
-                    BossW.enabled = true;
+                    //BossB.enabled = true;
+                    //BossW.enabled = true;
                     playerMove.enabled = true;
                     isStd = true;
                 }

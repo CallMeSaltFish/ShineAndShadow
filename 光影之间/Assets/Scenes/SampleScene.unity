@@ -2060,7 +2060,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 1
+  chapter: 4
   chapterPortalTimes: 0
   isPause: 0
   passPanelAnimator: {fileID: 197580915}
@@ -3965,7 +3965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716520127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.2, y: 1.42, z: 0}
+  m_LocalPosition: {x: -9.69, y: 0.67, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1.3368707}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3983,7 +3983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc367d5806fcef34fbe830353a995cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 3
   isEat: 0
   bossBlood: 300
 --- !u!61 &1716520132
@@ -3999,7 +3999,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.2818675, y: -1.7853024}
+  m_Offset: {x: -2.2818675, y: 1.175751}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4010,7 +4010,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.73622, y: 17.48061}
+  m_Size: {x: 9.73622, y: 11.558506}
   m_EdgeRadius: 0
 --- !u!50 &1716520133
 Rigidbody2D:
@@ -4633,7 +4633,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56ba3448be635944c843125754b876e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d65b1cbc866261c43b059762b6343832, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4652,7 +4652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821301978}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -16.2, y: -1.42, z: 0}
+  m_LocalPosition: {x: -9.69, y: -3.03, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4670,7 +4670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc367d5806fcef34fbe830353a995cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 3
   isEat: 0
   bossBlood: 300
 --- !u!61 &1821301983
@@ -4686,7 +4686,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.281837, y: -1.0354762}
+  m_Offset: {x: -2.281837, y: 1.2755911}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4697,7 +4697,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.736327, y: 15.980952}
+  m_Size: {x: 9.736327, y: 11.358818}
   m_EdgeRadius: 0
 --- !u!50 &1821301984
 Rigidbody2D:

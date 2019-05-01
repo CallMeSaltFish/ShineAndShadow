@@ -186,7 +186,7 @@ public class FlyMonsterMove : MonoBehaviour
     void Far()
     {
         if (attackMode == 0 || attackMode == 1)
-            transform.position = new Vector3(player.transform.position.x + 14, transform.position.y, 0);
+            transform.position = new Vector3(player.transform.position.x + 12, transform.position.y, 0);
     }
 
     /// <summary>
@@ -195,7 +195,7 @@ public class FlyMonsterMove : MonoBehaviour
     void Approach()
     {
         if (attackMode == 0 || attackMode == 1)
-            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 9, transform.position.y, 0), moveSpeed);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 8, transform.position.y, 0), moveSpeed);
     }
 
     /// <summary>
@@ -205,10 +205,10 @@ public class FlyMonsterMove : MonoBehaviour
     {
         //transform.position = new Vector3(player.transform.position.x + 7, transform.position.y, 0);
         if (attackMode == 0)
-        { transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 9, transform.position.y, 0), moveSpeed); }
+        { transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 8, transform.position.y, 0), moveSpeed); }
         if (attackMode == 1)
         {
-            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 9, player.transform.position.y, 0), moveSpeed);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 8, player.transform.position.y, 0), moveSpeed);
         }
         /**/
         //if(transform.localRotation.z<360)
@@ -224,7 +224,7 @@ public class FlyMonsterMove : MonoBehaviour
     {
         //transform.position = new Vector3(player.transform.position.x + 7, transform.position.y, 0);
         if (attackMode == 0 || attackMode == 1)
-        { transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 9, transform.position.y, 0), moveSpeed); }
+        { transform.position = Vector3.Lerp(transform.position, new Vector3(player.transform.position.x + 8, transform.position.y, 0), moveSpeed); }
 
     }
 

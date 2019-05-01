@@ -30,13 +30,7 @@ public class PlayerMove : MonoBehaviour {
     /*单个加分道具分数*/
     //private int singleScore = 5;
 
-    /*落至地面的音乐*/
-    public int groundMusic = 0;
-    /*吃食物的音乐*/
-    public int foodMusic = 0;
-    /*吃拼图的音乐*/
-    public int jigMusic = 0;
-
+    
 
     /*吃到了攻击怪物道具*/
     private bool eatJig = false;
@@ -69,8 +63,10 @@ public class PlayerMove : MonoBehaviour {
 
     /*飞刀怪*/
     public GameObject flyMonster;
+    public GameObject flyBird;
+
     /*是否启用抛物线运动脚本*/
-    //private bool flyCruveState;
+    private bool flyCruveState = false;
 
     /*一组飞刀总个数*/
     private int flyNum = 0;
@@ -85,6 +81,8 @@ public class PlayerMove : MonoBehaviour {
     private Texture2D whiteKnife;
     private Texture2D blackKnife;
     private GameObject myBackParticle;
+    private SoundEffectController SoundC;
+    private GameObject mainCamera;
     /*上坡坡度*/
     public float angle1 = 0;
     /*下坡坡度*/
@@ -137,6 +135,8 @@ public class PlayerMove : MonoBehaviour {
     // Use this for initialization
     void Start() {
         //flyCruveState = false;
+        mainCamera = GameObject.FindWithTag("MainCamera");
+        SoundC = GameObject.FindWithTag("MainCamera").GetComponent<SoundEffectController>();
         jumpFallPS = jumpFallexplosion.GetComponentInChildren<ParticleSystem>();
         myBackParticle = GameObject.Find("Player/Particle System");
         spriteRenderer = flyMonsterMove.GetComponent<SpriteRenderer>();
@@ -162,7 +162,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (IsGrounded&&canMakeJumpFall)
         {
-            groundMusic++;
+            AudioSource.PlayClipAtPoint(SoundC.songs[3], mainCamera.transform.position);
             rb.velocity = new Vector2(rb.velocity.x, 0);
             jumpFallPS.startSpeed = 0.1f*localVelocity;
             if (rotatePlayer.playerHeight > 0)
@@ -196,6 +196,11 @@ public class PlayerMove : MonoBehaviour {
         //}
         if (canFly == true && currentFlyNum < flyNum)
         {
+            if (flyCruveState)
+            {
+                GameObject b = Instantiate(flyBird, new Vector3(transform.position.x + 12,
+                -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
+            }
             if (mapManager.chapter == 1) 
             {
                 GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
@@ -206,13 +211,13 @@ public class PlayerMove : MonoBehaviour {
             {
                 //if (flyCruveState)
                 //{
-                    Debug.Log("启用抛物线");
+                    //Debug.Log("启用抛物线");
                     //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
                 //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
                     //flyCruveState = false;
                 //}
                 //Debug.Log(transform.position.y - 0.5f + 0.6f * randArray[i]);
-                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 14, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
                 //a.GetComponent<FlyMonsterMoveCruve>().enabled = true;
                 
                 if (a.transform.position.y < 4.6f)
@@ -473,13 +478,13 @@ public class PlayerMove : MonoBehaviour {
         {
             col.gameObject.GetComponent<TrailRenderer>().enabled = true;
             scores++;
-            foodMusic ++;
+            AudioSource.PlayClipAtPoint(SoundC.songs[1], mainCamera.transform.position);
         }
         //拼图
         if (col.tag == "Jig")
         {
             jigNum++;
-            jigMusic++;
+            AudioSource.PlayClipAtPoint(SoundC.songs[2], mainCamera.transform.position);
             eatJig = true;
         }
         //飞刀和障碍
@@ -497,7 +502,7 @@ public class PlayerMove : MonoBehaviour {
         if (mapManager.chapter != 4) { 
             if (col.tag == "FlyMonster1")
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -507,7 +512,7 @@ public class PlayerMove : MonoBehaviour {
             }
             if (col.tag == "FlyMonster3")
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -517,7 +522,7 @@ public class PlayerMove : MonoBehaviour {
             }
             if (col.tag == "FlyMonster5")
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -529,7 +534,7 @@ public class PlayerMove : MonoBehaviour {
         if (mapManager.chapter == 4) { 
             if (col.tag == "FlyMonster1" && eatJig) 
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -539,7 +544,7 @@ public class PlayerMove : MonoBehaviour {
             }
             if (col.tag == "FlyMonster3" && eatJig) 
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -549,7 +554,7 @@ public class PlayerMove : MonoBehaviour {
             }
             if (col.tag == "FlyMonster5" && eatJig)
             {
-                flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+               // flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -560,7 +565,7 @@ public class PlayerMove : MonoBehaviour {
         }
         if (col.tag == "FlyMonsterStay")
         {
-            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+            //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
             flyMonsterMove.attackMode = 1;
             //i = Random.Range(0, 3);
             i = 2;
@@ -571,12 +576,13 @@ public class PlayerMove : MonoBehaviour {
         {
             Debug.Log("碰到曲线");
             //flyCruveState = true;
-            flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+            //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
             flyMonsterMove.attackMode = -1;
             //i = Random.Range(0, 3);
             i = 2;
             flyNum = 1;
             canFly = true;
+            flyCruveState = true;
         }
 
         if (col.tag == "Tip")

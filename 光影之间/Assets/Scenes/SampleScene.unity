@@ -2060,7 +2060,7 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 4
+  chapter: 2
   chapterPortalTimes: 0
   isPause: 0
   passPanelAnimator: {fileID: 197580915}
@@ -4862,6 +4862,12 @@ PrefabInstance:
       propertyPath: jumpFallexplosion
       value: 
       objectReference: {fileID: 1950574595408592, guid: 84693a470fcdaae488b6b023ab9ee827,
+        type: 3}
+    - target: {fileID: 114236371805037388, guid: 1129f91414bb76147b0b145557fcf0a3,
+        type: 3}
+      propertyPath: flyBird
+      value: 
+      objectReference: {fileID: 1428989434194548, guid: 2d0fde41887a39f4f846fc714a9030cc,
         type: 3}
     - target: {fileID: 4560028605411918, guid: 1129f91414bb76147b0b145557fcf0a3, type: 3}
       propertyPath: m_LocalPosition.x

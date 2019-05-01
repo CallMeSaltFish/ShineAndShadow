@@ -15,8 +15,10 @@ public class FlyMonsterMoveCruve : MonoBehaviour
 
     private float dTime = 0;        // 时间线 (一直在增长)
 
+
     void Start()
     {
+
         pointA = GameObject.FindGameObjectWithTag("StartPoint").transform;
         pointB = GameObject.FindGameObjectWithTag("EndPoint").transform;
         // 将物体置于A点
@@ -34,6 +36,7 @@ public class FlyMonsterMoveCruve : MonoBehaviour
 
     void Update()
     {
+
         // 重力模拟
         Gravity.y = g * (dTime += Time.deltaTime);  //v=gt
         // 模拟位移

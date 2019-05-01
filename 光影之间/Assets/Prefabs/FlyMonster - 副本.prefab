@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4173298137881406}
   - component: {fileID: 212933099751659348}
-  - component: {fileID: 114569686397227964}
   - component: {fileID: 8068426011572499397}
+  - component: {fileID: 1427659431019232908}
   m_Layer: 0
-  m_Name: FlyMonster
+  m_Name: "FlyMonster - \u526F\u672C"
   m_TagString: FlyMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1428989434194548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.12, y: 4.22, z: -1}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 0.31979027, y: 0.31979027, z: 0.10659676}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6e3c7deef9e54e74bb14b747d4f5cbc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e007ff974b6316c4ebb6bce59f931342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,19 +81,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114569686397227964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1428989434194548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d737df1d5d5348a4e8f9456e1d2d12d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackMode: 0
 --- !u!61 &8068426011572499397
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -107,16 +94,30 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.02}
+  m_Offset: {x: 0.03319812, y: -0.4349772}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.69, y: 0.28}
+    oldSize: {x: 2.98, y: 1.85}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5573947, y: 0.02}
+  m_Size: {x: 2.814877, y: 0.40731305}
   m_EdgeRadius: 0
+--- !u!114 &1427659431019232908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428989434194548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73386e04c4ff04048bef8b9fc0d97767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 1
+  g: -5

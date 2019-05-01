@@ -24,14 +24,6 @@ public class SoundEffectController : MonoBehaviour
         audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        getFoodMusic();
-        getJigMusic();
-        getGroundMusic();
-    }
-
     void GetSceneName()
     {
         SceneName = SceneManager.GetActiveScene().name;
@@ -41,9 +33,10 @@ public class SoundEffectController : MonoBehaviour
     /// </summary>
     public void buttonClickMusic()
     {
-        audioSource.clip = songs[0];
-        audioSource.Play();
-        Debug.Log("点击了一下");
+        //audioSource.clip = songs[0];
+        //audioSource.Play();
+        //Debug.Log("点击了一下");
+        AudioSource.PlayClipAtPoint(songs[0], transform.position);
     }
     /// <summary>
     /// 吃食物的音乐
@@ -52,11 +45,12 @@ public class SoundEffectController : MonoBehaviour
     {
         if (playerMove != null)
         {
-            if (playerMove.foodMusic > foodMusic)
-            {
+            //if (playerMove.foodMusic > foodMusic)
+            //{
+                
                 audioSource.clip = songs[1];
                 audioSource.Play(); foodMusic++;
-            }
+           // }
         }
     }
     /// <summary>
@@ -66,11 +60,12 @@ public class SoundEffectController : MonoBehaviour
     {
         if (playerMove != null)
         {
-            if (playerMove.jigMusic > jigMusic)
-            {
+            //if (playerMove.jigMusic > jigMusic)
+           // {
+                
                 audioSource.clip = songs[2];
                 audioSource.Play(); jigMusic++;
-            }
+           // }
         }
     }
 
@@ -78,11 +73,12 @@ public class SoundEffectController : MonoBehaviour
     {
         if (playerMove != null)
         {
-            if (playerMove.groundMusic > groundMusic)
-            {
+            //if (playerMove.groundMusic > groundMusic)
+            //{
+                
                 audioSource.clip = songs[3];
                 audioSource.Play();groundMusic++;
-            }
+            //}
         }
     }
 }

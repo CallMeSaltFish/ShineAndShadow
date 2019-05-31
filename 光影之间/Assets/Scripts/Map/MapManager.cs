@@ -111,110 +111,124 @@ public class MapManager : MonoBehaviour {
         pausePanelAnimator = GameObject.Find("Canvas/PausePanel").GetComponent<Animator>();
         isPause = false;
 
-        //教学关
-        if (chapter == 0 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //第一关
-        if (chapter == 1 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-        }
-        //第二关
-        if (chapter == 2 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-            /*以下三行都是方便直接修改chapter进行演示*/
-            rotatePlayer.playerHeight *= -1;
-            playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-            rotatePlayer.enabled = false;
-        }
-        //第三关
-        if (chapter == 3 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-            mapMaker.enabled = true;
-            Debug.Log("hhh");
-        }
-        //第四关
-        if (chapter == 4 && !hasMap)
-        {
-            Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
-            hasMap = true;
-            BossB.enabled = true;
-            BossW.enabled = true;
-            mapMakerIn4.enabled = true;
-        }
+        ///*打包时用*/
+        //if (sceneLoad != null)
+        //{
+        //    if (PlayerPrefs.HasKey("Chapter"))
+        //    {
+        //        chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //        Debug.Log(1);
+        //    }
+        //    else
+        //    {
+        //        chapter = sceneLoad.startChapter;
+        //        Debug.Log(2);
+        //    }
+        //    //教学关
+        //    if (chapter == 0 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //    }
+        //    //第一关
+        //    if (chapter == 1 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //    }
+        //    //第二关
+        //    if (chapter == 2 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        /*以下三行都是方便直接修改chapter进行演示*/
+        //        rotatePlayer.playerHeight *= -1;
+        //        playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+        //        rotatePlayer.enabled = false;
+        //    }
+        //    //第三关
+        //    if (chapter == 3 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        mapMaker.enabled = true;
+        //        Debug.Log("hhh");
+        //    }
+        //    //第四关
+        //    if (chapter == 4 && !hasMap)
+        //    {
+        //        Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+        //        hasMap = true;
+        //        BossB.enabled = true;
+        //        BossW.enabled = true;
+        //        mapMakerIn4.enabled = true;
+        //    }
+        //}
 
         /*打包时用*/
-        // if (sceneLoad != null)
-        // {
-        //     if (PlayerPrefs.HasKey("Chapter"))
-        //     {
-        //         chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
-        //         //Debug.Log(1);
-        //     }
-        //     else
-        //     {
-        //         chapter = sceneLoad.startChapter;
-        //         //Debug.Log(2);
-        //     }
-        //     // 教学关
-        //     if (chapter == 0 && !hasMap)
-        //     {
-        //         Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
-        //         hasMap = true;
-        //     }
-        //     //第一关
-        //     if (chapter == 1 && !hasMap)
-        //     {
-        //         Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
-        //         hasMap = true;
-        //     }
-        //     //第二关
-        //     if (chapter == 2 && !hasMap)
-        //     {
-        //         Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
-        //         hasMap = true;
-        //         /*以下三行都是方便直接修改chapter进行演示*/
-        //         rotatePlayer.playerHeight *= -1;
-        //         playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-        //         rotatePlayer.enabled = false;
-        //     }
-        //     //第三关
-        //     if (chapter == 3 && !hasMap)
-        //     {
-        //         Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
-        //         hasMap = true;
-        //         mapMaker.enabled = true;
-        //         //Debug.Log("hhh");
-        //     }
-        //     //第四关
-        //     if (chapter == 4 && !hasMap)
-        //     {
-        //         Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
-        //         hasMap = true;
-        //         BossB.enabled = true;
-        //         BossW.enabled = true;
-        //         mapMakerIn4.enabled = true;
-        //     }
+        //if (sceneLoad != null)
+        //{
+        //if (PlayerPrefs.HasKey("Chapter"))
+        //{
+        //    chapter = (sceneLoad.startChapter <= PlayerPrefs.GetInt("Chapter")) ? PlayerPrefs.GetInt("Chapter") : sceneLoad.startChapter;
+        //    Debug.Log(1);
+        //}
+        //else
+        //{
+        //    chapter = sceneLoad.startChapter;
+        //    Debug.Log(2);
+        //}
+        // 教学关
+        if (chapter == 0 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/0"), new Vector3(23.6f, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+            }
+            //第一关
+            if (chapter == 1 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/1"), new Vector3(10.3f, -0.4f, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+            }
+            //第二关
+            if (chapter == 2 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/2"), new Vector3(2.8f, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                /*以下三行都是方便直接修改chapter进行演示*/
+                rotatePlayer.playerHeight *= -1;
+                playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
+                rotatePlayer.enabled = false;
+            }
+            //第三关
+            if (chapter == 3 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                mapMaker.enabled = true;
+                Debug.Log("hhh");
+            }
+            //第四关
+            if (chapter == 4 && !hasMap)
+            {
+                Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+                hasMap = true;
+                BossB.enabled = true;
+                BossW.enabled = true;
+                mapMakerIn4.enabled = true;
+            }
 
 
-        //         //if (chapter != 0 && chapter != 1)
-        //         //{
-        //         //    /*改一下来测试*/
-        //         //    lastGround = Instantiate(groundList1[0], cameraPosition, Quaternion.identity, mapTransform) as GameObject;
-        //         //    thisGround = Instantiate(groundList1[0], new Vector3(15.8f, 0, 0), lastGround.transform.rotation, mapTransform) as GameObject;
-        //         //    /*初始化动态数组并取消勾选下栅栏*/
-        //         //    UpdateListOfUp_Down(ups, downs);
-        //         //}
-        //         //UICamera = GameObject.Find("UI Camera").GetComponent<Camera>();
-        // }
+            //if (chapter != 0 && chapter != 1)
+            //{
+            //    /*改一下来测试*/
+            //    lastGround = Instantiate(groundList1[0], cameraPosition, Quaternion.identity, mapTransform) as GameObject;
+            //    thisGround = Instantiate(groundList1[0], new Vector3(15.8f, 0, 0), lastGround.transform.rotation, mapTransform) as GameObject;
+            //    /*初始化动态数组并取消勾选下栅栏*/
+            //    UpdateListOfUp_Down(ups, downs);
+            //}
+            //UICamera = GameObject.Find("UI Camera").GetComponent<Camera>();
+        //}
     }
     // Update is called once per frame
     void Update()
@@ -562,7 +576,7 @@ public class MapManager : MonoBehaviour {
             case 1:
                 playerTransform.position = new Vector3(-7f, -0.6f, -2f);
                 playerMove.lastHit3 = new Vector3(-7f, -1.16f, -2f);
-                //rotatePlayer.enabled = false;
+                rotatePlayer.enabled = false;
                 rotatePlayer.playerHeight *= -1;
                 playerAnimator.SetFloat("playerHeight", rotatePlayer.playerHeight);
                 break;

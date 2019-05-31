@@ -91,8 +91,8 @@ public class BossMove : MonoBehaviour {
         if (col.tag == "FlyMonster" && mapManager.chapter == 4) 
         {
             Debug.Log("Boss扣血了");
-            StopCoroutine("BossHurt");
-            StartCoroutine("BossHurt");
+            //StopCoroutine("BossHurt");
+            //StartCoroutine("BossHurt");
             //isChange = true;
             bossBlood -= 30;
         }
@@ -117,28 +117,43 @@ public class BossMove : MonoBehaviour {
     {
         SpriteRenderer sp = this.GetComponent<SpriteRenderer>();
         Color color = sp.color;
-        for(float i = 1f;i >= 0.5f;i -= 0.01f)
+        //for(float i = 1f;i >= 0.5f;i -= 0.001f)
+        //{
+        //    color.a = i;
+        //    sp.color = color;
+        //    yield return new WaitForSeconds(0.005f);
+        //}
+        //for (float i = 0.5f; i <= 1f; i += 0.001f)
+        //{
+        //    color.a = i;
+        //    sp.color = color;
+        //    yield return new WaitForSeconds(0.005f);
+        //}
+        float[] hp = { 0.5f, 1 };
+        for(int i = 0;i < hp.Length; i++)
         {
-           color.a = i;
-           sp.color = color;
-           yield return 0;
+            color.a = hp[i];
+            while(sp.color.a != hp[i])
+            {
+                sp.color = Color.Lerp(sp.color, color, 0.1f);
+                yield return null;
+            }
+            Debug.Log(1);
         }
-        for (float i = 0.5f; i <= 1f; i += 0.01f)
-        {
-           color.a = i;
-           sp.color = color;
-           yield return 0;
-        }
-        // float[] hp = { 0.5f, 1 };
-        // for(int i = 0;i < hp.Length; i++)
-        // {
-        //     color.a = hp[i];
-        //     while(sp.color.a != hp[i])
-        //     {
-        //         sp.color = Color.Lerp(sp.color, color, 0.1f);
-        //         yield return null;
-        //     }
-        //     Debug.Log(1);
-        // }
+        //color.a = 0.5f;
+        //while(sp.color.a != 0.5f)
+        //{
+        //    sp.color = Color.Lerp(sp.color, color, 0.5f);
+        //    Debug.Log(1);
+        //    yield return null;
+        //}
+        //color.a = 1f;
+        //while (sp.color.a != 1)
+        //{
+        //    Debug.Log(2);
+        //    Debug.Log(color.a);
+        //    sp.color = Color.Lerp(sp.color, color, 0.5f);
+        //    yield return null;
+        //}
     }
 }

@@ -25,6 +25,7 @@ TagManager:
   - DownTrap
   - SceneSwitchManager
   - FlyMonster
+  - FlyMonsterCruveOn
   layers:
   - Default
   - TransparentFX

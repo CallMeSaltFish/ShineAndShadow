@@ -167,11 +167,12 @@ public class PlayerMove : MonoBehaviour {
             jumpFallPS.startSpeed = 0.1f*localVelocity;
             if (rotatePlayer.playerHeight > 0)
             {
-                jumpFallPS.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Debug.Log("正方向");
+                jumpFallPS.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
             if (rotatePlayer.playerHeight < 0)
             {
-                jumpFallPS.transform.rotation = Quaternion.Euler(180, 0, 0);
+                jumpFallPS.transform.rotation = Quaternion.Euler(new Vector3(180, 0, 0));
             }
             GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position-new Vector3(-0.5f,rb.gravityScale*0.35f,0.0f), Quaternion.identity);//位置要改
             canMakeJumpFall = false;
@@ -196,58 +197,62 @@ public class PlayerMove : MonoBehaviour {
         //}
         if (canFly == true && currentFlyNum < flyNum)
         {
+            if (!flyCruveState) { 
+                if (mapManager.chapter == 1) 
+                {
+                    GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
+                    -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
+                
+                }
+                if (mapManager.chapter == 2)
+                {
+                    //if (flyCruveState)
+                    //{
+                        //Debug.Log("启用抛物线");
+                        //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+                    //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
+                        //flyCruveState = false;
+                    //}
+                    //Debug.Log(transform.position.y - 0.5f + 0.6f * randArray[i]);
+                    GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+                    //a.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+                
+                    if (a.transform.position.y < 4.6f)
+                    {
+                        SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
+                        Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                        spriteRenderer.sprite = sprite;
+                    }
+                    if (a.transform.position.y > 4.6f|| a.transform.position.y == 4.6f) 
+                    {
+                        SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
+                        Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
+                        spriteRenderer.sprite = sprite;
+                    }
+                }
+                if (mapManager.chapter == 3 || mapManager.chapter == 4) 
+                {
+                    GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
+                    gameObject.transform.position.y-0.6f + 0.6f * randArray[i], 0), Quaternion.identity);
+                }
+                
+                //Debug.Log("currentFlyNum" + currentFlyNum);
+            }
             if (flyCruveState)
             {
                 GameObject b = Instantiate(flyBird, new Vector3(transform.position.x + 12,
                 -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
-            }
-            if (mapManager.chapter == 1) 
-            {
-                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
-                -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
-                
-            }
-            if (mapManager.chapter == 2)
-            {
-                //if (flyCruveState)
-                //{
-                    //Debug.Log("启用抛物线");
-                    //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
-                //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
-                    //flyCruveState = false;
-                //}
-                //Debug.Log(transform.position.y - 0.5f + 0.6f * randArray[i]);
-                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
-                //a.GetComponent<FlyMonsterMoveCruve>().enabled = true;
-                
-                if (a.transform.position.y < 4.6f)
-                {
-                    SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
-                    Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
-                    spriteRenderer.sprite = sprite;
-                }
-                if (a.transform.position.y > 4.6f|| a.transform.position.y == 4.6f) 
-                {
-                    SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
-                    Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
-                    spriteRenderer.sprite = sprite;
-                }
-            }
-            if (mapManager.chapter == 3 || mapManager.chapter == 4) 
-            {
-                GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
-                gameObject.transform.position.y-0.6f + 0.6f * randArray[i], 0), Quaternion.identity);
+                flyCruveState = false;
             }
             currentFlyNum++;
             i++;
-            //Debug.Log("currentFlyNum" + currentFlyNum);
         }
         if (currentFlyNum == flyNum)
         {
             canFly = false;
             currentFlyNum = 0;
         }
-
+        
         if (moveSpeed != 0)
         {
             nowSpeed = moveSpeed;
@@ -583,6 +588,7 @@ public class PlayerMove : MonoBehaviour {
             flyNum = 1;
             canFly = true;
             flyCruveState = true;
+            col.gameObject.tag = "FlyMonsterCruveOn";
         }
 
         if (col.tag == "Tip")
@@ -624,7 +630,6 @@ public class PlayerMove : MonoBehaviour {
         {
             rotatePlayer.playerHeight = -rotatePlayer.playerHeight;
             animator.SetFloat("playerHeight", rotatePlayer.playerHeight);
-
         }
     }
 

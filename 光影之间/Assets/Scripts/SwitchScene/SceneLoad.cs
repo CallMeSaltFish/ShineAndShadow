@@ -4,8 +4,8 @@ using System.Collections;
 //淡入淡出跳转场景
 public class SceneLoad : MonoBehaviour
 {
-    const float a = 0.1f;
-    const float b = 11.0f;
+    const float a = 2.7f;
+    const float b = 18.0f;
     public int startChapter;
     //载入图的绘制深度
     public int guiDepth = 0;
@@ -75,9 +75,9 @@ public class SceneLoad : MonoBehaviour
         //载入图位置大小判断
         if (logoPositioning == LogoPositioning.Centered)
         {
-            for (int i = 0; i < 8; i++) { 
-                splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo[i].width * 0.5f) + 10 *b;
-                splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo[i].height * 0.5f) + 80 * b;
+            for (int i = 0; i < 40; i++) {
+                splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo[i].width * 0.5f) - 23.0f * b;
+                splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo[i].height * 0.5f) - 14.0f * b;
 
                 splashLogoPos.width = splashLogo[i].width * a;
                 splashLogoPos.height = splashLogo[i].height * a;
@@ -86,7 +86,7 @@ public class SceneLoad : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 40; i++)
             {
                 splashLogoPos.x = (Screen.width * 0.5f) - (splashLogo[i].width * 0.5f);
                 splashLogoPos.y = (Screen.height * 0.5f) - (splashLogo[i].height * 0.5f);
@@ -132,7 +132,7 @@ public class SceneLoad : MonoBehaviour
         switch (status)
         {
             case FadeStatus.FadeIn:
-                alpha += fadeSpeed * Time.deltaTime;
+                alpha += fadeSpeed * 5 * Time.deltaTime;
                 break;
             case FadeStatus.FadeWaiting:
                 if ((!waitForInput && Time.time >= timeFadingInFinished + waitTime) || (waitForInput && Input.anyKey))
@@ -157,15 +157,15 @@ public class SceneLoad : MonoBehaviour
             GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, Mathf.Clamp01(alpha));
             GUI.DrawTexture(splashLogoPos, splashLogo[0]);
         }
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 40; i++)
         {
             if (splashLogo[i] != null)
             { 
                 GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, Mathf.Clamp01(alpha));
                 GUI.DrawTexture(splashLogoPos, splashLogo[i]);
             }
-            if (alpha > (i + 1) * 0.14f)
-                splashLogo[7 - i] = null;
+            if (alpha > (i + 1) * 0.05f)
+                splashLogo[39 - i] = null;
         }
         
         if (alpha > 1.0f)

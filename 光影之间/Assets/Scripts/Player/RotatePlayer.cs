@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class RotatePlayer : MonoBehaviour {
     /*物体本身的高度*/
-    public float playerHeight=1.0f;
+    public float playerHeight = 1.0f;
     /*以供实例化的爆炸粒子特效*/
     public GameObject explosion;
     private GameObject explosions;

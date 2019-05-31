@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4888202684432633439}
   - component: {fileID: 7014166206547724166}
   m_Layer: 0
-  m_Name: "\u7B2C\u4E09\u5173\u697C\u68AF-\u5BBD"
+  m_Name: "\u7B2C\u4E09\u5173\u697C\u68AF-\u5BBD\u4F20\u9001\u95E8"
   m_TagString: BackGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,7 +129,7 @@ PrefabInstance:
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.27
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}

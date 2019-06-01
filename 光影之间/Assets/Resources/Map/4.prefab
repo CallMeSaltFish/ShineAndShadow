@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5949830163822327744}
   - component: {fileID: 3500892359648446729}
   - component: {fileID: 3977055224944578870}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u7B2C\u4E09\u5173\u697C\u68AF-\u5BBD 2 (1)"
   m_TagString: BackGround
   m_Icon: {fileID: 0}

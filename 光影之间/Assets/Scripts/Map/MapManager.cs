@@ -48,7 +48,7 @@ public class MapManager : MonoBehaviour {
     private RotatePlayer rotatePlayer;
     /*关卡参量*/
     public int chapter;
-    public int chapterPortalTimes;
+    //public int chapterPortalTimes;
     /*防止地图重复加载*/
     private bool hasMap;
     /*暂停面板*/
@@ -586,8 +586,11 @@ public class MapManager : MonoBehaviour {
                 rotatePlayer.enabled = false;
                 break;
             case 3:
-                playerTransform.position = new Vector3(-7f, 0.5f, -2f);
-                //playerMove.lastHit3 = new Vector3(-7f, 0f, -2f);
+                playerTransform.position = new Vector3(-7f, 0.09806012f, -2f);
+                playerAnimator.SetBool("isStop",false);
+                break;
+            case 4:
+                playerTransform.position = new Vector3(-7f, -0.6779403f, -2f);
                 break;
         }
         playerTransform.rotation = Quaternion.Euler(0, 0, 0);
@@ -608,7 +611,7 @@ public class MapManager : MonoBehaviour {
         }
         if(num == 1)
         {
-            Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(83.6f, -0.08f, 0), Quaternion.identity, mapTransform);
+            Instantiate(Resources.Load("Map/2-2") as GameObject, new Vector3(83.6f, 0, 0), Quaternion.identity, mapTransform);
         }
     }
 

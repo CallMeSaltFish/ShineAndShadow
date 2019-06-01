@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerMove : MonoBehaviour
+{
     /*判断物体是否接触地面*/
     private bool isGrounded = true;
     /*物体运动的动画曲线*/
@@ -30,7 +31,7 @@ public class PlayerMove : MonoBehaviour {
     /*单个加分道具分数*/
     //private int singleScore = 5;
 
-    
+
 
     /*吃到了攻击怪物道具*/
     private bool eatJig = false;
@@ -75,7 +76,7 @@ public class PlayerMove : MonoBehaviour {
     /*允许产生飞刀*/
     private bool canFly = false;
 
-    public Animator anim;       
+    public Animator anim;
     public FlyMonsterMove flyMonsterMove;
     private SpriteRenderer spriteRenderer;
     private Texture2D whiteKnife;
@@ -88,7 +89,7 @@ public class PlayerMove : MonoBehaviour {
     /*下坡坡度*/
     public float angle2 = 0;
 
-    private int[] randArray = new int[] { -2,-1,0,1,2,3,4,5 };
+    private int[] randArray = new int[] { -2, -1, 0, 1, 2, 3, 4, 5 };
     private int i = 2;
     /*记录是当前帧的刚体*/
     private float localVelocity;
@@ -118,7 +119,7 @@ public class PlayerMove : MonoBehaviour {
     }
 
     public float MoveSpeed
-    { 
+    {
         set
         {
             moveSpeed = value;
@@ -127,13 +128,15 @@ public class PlayerMove : MonoBehaviour {
         {
             return moveSpeed;
         }
-    }  
+    }
     void Awake()
     {
         savePos = new Vector3(PlayerPrefs.GetInt("playerPosition"), 0.549f, 0);
+        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
     }
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         //flyCruveState = false;
         mainCamera = GameObject.FindWithTag("MainCamera");
         SoundC = GameObject.FindWithTag("MainCamera").GetComponent<SoundEffectController>();
@@ -144,14 +147,13 @@ public class PlayerMove : MonoBehaviour {
         whiteKnife = (Texture2D)Resources.Load("Sprites/障碍-飞刀0");
         rb = GetComponent<Rigidbody2D>();
         animator = this.GetComponent<Animator>();
-        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         followWith = GameObject.Find("MainCamera").GetComponent<FollowWithPlayer>();
         rotatePlayer = GetComponent<RotatePlayer>();
-        mapManager.chapterPortalTimes = 0;
         //transform.position = savePos;
     }
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (rb.velocity.y != 0)
         {
             localVelocity = Mathf.Abs(2.0f * rb.velocity.y);
@@ -160,25 +162,25 @@ public class PlayerMove : MonoBehaviour {
         {
             canMakeJumpFall = true;
         }
-        if (IsGrounded&&canMakeJumpFall)
+        if (IsGrounded && canMakeJumpFall)
         {
             AudioSource.PlayClipAtPoint(SoundC.songs[3], mainCamera.transform.position);
             rb.velocity = new Vector2(rb.velocity.x, 0);
-            jumpFallPS.startSpeed = 0.1f*localVelocity;
+            jumpFallPS.startSpeed = 0.1f * localVelocity;
             if (rotatePlayer.playerHeight > 0)
             {
-                Debug.Log("正方向");
+                //Debug.Log("正方向");
                 jumpFallPS.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             }
             if (rotatePlayer.playerHeight < 0)
             {
                 jumpFallPS.transform.rotation = Quaternion.Euler(new Vector3(180, 0, 0));
             }
-            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position-new Vector3(-0.5f,rb.gravityScale*0.35f,0.0f), Quaternion.identity);//位置要改
+            GameObject jumpfallexplosion = Instantiate(jumpFallexplosion, transform.position - new Vector3(-0.5f, rb.gravityScale * 0.35f, 0.0f), Quaternion.identity);//位置要改
             canMakeJumpFall = false;
             Destroy(jumpfallexplosion, 1.0f);
         }
-         
+
         //Debug.Log(rb.velocity.y);
         //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
 
@@ -197,45 +199,46 @@ public class PlayerMove : MonoBehaviour {
         //}
         if (canFly == true && currentFlyNum < flyNum)
         {
-            if (!flyCruveState) { 
-                if (mapManager.chapter == 1) 
+            if (!flyCruveState)
+            {
+                if (mapManager.chapter == 1)
                 {
                     GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
                     -0.5f + 0.6f * randArray[i], 0), Quaternion.identity);
-                
+
                 }
                 if (mapManager.chapter == 2)
                 {
                     //if (flyCruveState)
                     //{
-                        //Debug.Log("启用抛物线");
-                        //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
+                    //Debug.Log("启用抛物线");
+                    //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = true;
                     //Debug.Log(flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled);
-                        //flyCruveState = false;
+                    //flyCruveState = false;
                     //}
                     //Debug.Log(transform.position.y - 0.5f + 0.6f * randArray[i]);
-                    GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y-1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
+                    GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12, transform.position.y - 1.0f + 0.6f * randArray[i], 0), Quaternion.identity);
                     //a.GetComponent<FlyMonsterMoveCruve>().enabled = true;
-                
+
                     if (a.transform.position.y < 4.6f)
                     {
                         SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
                         Sprite sprite = Sprite.Create(whiteKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
                         spriteRenderer.sprite = sprite;
                     }
-                    if (a.transform.position.y > 4.6f|| a.transform.position.y == 4.6f) 
+                    if (a.transform.position.y > 4.6f || a.transform.position.y == 4.6f)
                     {
                         SpriteRenderer spriteRenderer = a.GetComponent<SpriteRenderer>();
                         Sprite sprite = Sprite.Create(blackKnife, spriteRenderer.sprite.textureRect, new Vector2(0.5f, 0.5f));
                         spriteRenderer.sprite = sprite;
                     }
                 }
-                if (mapManager.chapter == 3 || mapManager.chapter == 4) 
+                if (mapManager.chapter == 3 || mapManager.chapter == 4)
                 {
                     GameObject a = Instantiate(flyMonster, new Vector3(transform.position.x + 12,
-                    gameObject.transform.position.y-0.6f + 0.6f * randArray[i], 0), Quaternion.identity);
+                    gameObject.transform.position.y - 0.6f + 0.6f * randArray[i], 0), Quaternion.identity);
                 }
-                
+
                 //Debug.Log("currentFlyNum" + currentFlyNum);
             }
             if (flyCruveState)
@@ -252,7 +255,7 @@ public class PlayerMove : MonoBehaviour {
             canFly = false;
             currentFlyNum = 0;
         }
-        
+
         if (moveSpeed != 0)
         {
             nowSpeed = moveSpeed;
@@ -268,10 +271,10 @@ public class PlayerMove : MonoBehaviour {
         RaycastHit2D hit2 = Physics2D.Linecast(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0));
         //Debug.DrawLine(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0), Color.blue);
         //向下 检测下坡还是峭壁
-        RaycastHit2D hit3 = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale);
-        //Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale, Color.cyan);
+        RaycastHit2D hit3 = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale,1<<LayerMask.NameToLayer("Ground"));
+        Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale, Color.cyan);
 
-        if (hit_ && (hit_.transform.tag == "Portal" || hit_.transform.tag == "Tip") && hit_.point.x - transform.position.x <= 0.64f)
+        if (hit_ && (hit_.transform.tag == "Portal" || hit_.transform.tag == "Tip" || hit_.transform.tag == "Internal") && hit_.point.x - transform.position.x <= 0.64f)
         {
             isStop = true;
             isInteractable = true;
@@ -288,9 +291,9 @@ public class PlayerMove : MonoBehaviour {
         //平地
         else
         {
-            if (mapManager.chapter != 3)
+            if (mapManager.chapter != 3 )
             {
-                animator.SetBool("isStop", false);
+                animator.SetBool("isStop", false);//
             }
             transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
             angle1 = 0;
@@ -308,15 +311,14 @@ public class PlayerMove : MonoBehaviour {
             //碰墙
             if (Mathf.Abs(hit2.point.x - hit1.point.x) <= 0.01f && hit2.transform.tag == "BackGround" && hit1.transform.tag == "BackGround")
             {
-                if(mapManager.chapter != 3)
+                if (mapManager.chapter != 3)
                 {
                     moveSpeed = 0;
-                    Debug.Log(1);
                 }
                 animator.SetBool("isStop", true);
             }
         }
-        else if(!hit2 && !hit1)
+        else if (!hit2 && !hit1)
         {
             moveSpeed = nowSpeed;
         }
@@ -328,11 +330,11 @@ public class PlayerMove : MonoBehaviour {
                 float offset = hit3.point.y - lastHit3.y;
                 if (rb.gravityScale > 0)
                 {
-                    if (offset < -0.01 && offset > -0.5 && isGrounded)//下滑
+                    if (offset < -0.01 && offset > -0.4 && isGrounded)//下滑
                     {
                         animator.SetBool("isSlip", true);
                         angle2 = Mathf.Atan(-offset / (hit3.point.x - lastHit3.x)) * rb.gravityScale;
-                        Debug.Log("下坡");
+                        //Debug.Log("下坡");
                         rb.velocity = new Vector3(0, Mathf.Tan(angle2) * rb.gravityScale * moveSpeed, 0) * (-1);
                         angle1 = -angle2;
                     }
@@ -342,6 +344,7 @@ public class PlayerMove : MonoBehaviour {
                     }
                     if (offset < -0.4f && isGrounded)//下落
                     {
+                        Debug.Log("there");
                         animator.SetBool("isDrop", true);
                         isGrounded = false;
                     }
@@ -371,17 +374,18 @@ public class PlayerMove : MonoBehaviour {
 
         /*控制摄像机移动的脚本*/
         if ((Camera.main.transform.position.x - transform.position.x <= 5.3f && mapManager.chapter != 4/*&& Camera.main.transform.position.x - transform.position.x >= 5.2f*/)
-            ||(mapManager.chapter == 4 && Camera.main.transform.position.x - transform.position.x <= 2.7f))
+            || (mapManager.chapter == 4 && Camera.main.transform.position.x - transform.position.x <= 2.7f))
         {
             followWith.enabled = true;
             followWith.isStd = true;
         }
-        if (hit_ && hit_.transform.tag == "Portal")
+        if (hit_ && (hit_.transform.tag == "Portal" || hit_.transform.tag == "Internal"))
         {
 
             if ((mapManager.chapter == 0 && hit_.transform.position.x - transform.position.x < 12.66f) ||
                 (mapManager.chapter == 1 && hit_.transform.position.x - transform.position.x < 13.46f) ||
-                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 12.66f))
+                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 13.06f) ||
+                (mapManager.chapter == 3 && hit_.transform.position.x - transform.position.x < 13.06f))
             {
                 followWith.enabled = false;
             }
@@ -391,7 +395,7 @@ public class PlayerMove : MonoBehaviour {
         if (isGrounded && Input.GetMouseButtonDown(1) && !isInteractable)
         {
             animator.SetBool("isGrounded", false);
-            if(mapManager.chapter == 3)
+            if (mapManager.chapter == 3)
                 animator.SetBool("isStop", false);
             rb.velocity = Vector3.zero;
             rb.AddForce(new Vector3(0, jumpSpeed * rb.gravityScale, 0), ForceMode2D.Impulse);
@@ -420,7 +424,7 @@ public class PlayerMove : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //传送门
+        //下一关传送门
         if (col.tag == "Portal")
         {
             GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
@@ -430,50 +434,37 @@ public class PlayerMove : MonoBehaviour {
             isStop = false;
             ChangeIsInteractable();
             //删除传送门
-            col.transform.position += new Vector3(0f, 100f, 0f);
+            col.gameObject.SetActive(false);
+            anim.Play("EndGame Animation");
+        }
+        //里场景传送门
+        if (col.tag == "Internal")
+        {
+            GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
+            GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
+            moveSpeed = 0;
+            transform.GetComponent<PlayerMove>().enabled = false;
+            isStop = false;
+            ChangeIsInteractable();
+            //删除传送门
+            col.gameObject.SetActive(false);
             switch (mapManager.chapter)
             {
-                case 0:
-                    anim.Play("EndGame Animation");
-                    break;
                 case 1:
-                    switch (mapManager.chapterPortalTimes)
-                    {
-                        case 1:
-                            anim.Play("EndGame Animation");
-                            mapManager.chapterPortalTimes = 0;
-                            break;
-                        case 0:
-                            GoIntoInternal(new Vector3(transform.position.x, -0.605f, -2f));
-                            mapManager.chapterPortalTimes = 1;
-                            break;
-                    }
+                    GoIntoInternal(new Vector3(transform.position.x, -0.605f, -2f));
                     break;
                 case 2:
-                    switch(mapManager.chapterPortalTimes)
+                    if (isTrigger)
                     {
-                        case 1:
-                            anim.Play("EndGame Animation");
-                            mapManager.chapterPortalTimes = 0;
-                            break;
-                        case 0:
-                            if (isTrigger)
-                            {
-                                mapManager.InstantiateSecondSubMap(0);
-                                GoIntoInternal(new Vector3(39.3f, -1.88794f, -2f));
-                                followWith.isSpecial = true;
-                            }
-                            else
-                            {
-                                mapManager.InstantiateSecondSubMap(1);
-                                GoIntoInternal(new Vector3(39.9f, 1.02342f, -2f));
-                            }
-                            mapManager.chapterPortalTimes = 1;
-                            break;
+                        mapManager.InstantiateSecondSubMap(0);
+                        GoIntoInternal(new Vector3(39.3f, -1.88794f, -2f));
+                        followWith.isSpecial = true;
                     }
-                    break;
-                case 3:
-
+                    else
+                    {
+                        mapManager.InstantiateSecondSubMap(1);
+                        GoIntoInternal(new Vector3(39.9f, 1.02342f, -2f));
+                    }
                     break;
             }
         }
@@ -493,18 +484,19 @@ public class PlayerMove : MonoBehaviour {
             eatJig = true;
         }
         //飞刀和障碍
-        if (col.tag == "Trap" || col.tag=="DownTrap")
+        if (col.tag == "Trap" || col.tag == "DownTrap")
         {
             //IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
         //飞刀和障碍
-        if (col.tag == "FlyMonster" && mapManager.chapter != 4) 
+        if (col.tag == "FlyMonster" && mapManager.chapter != 4)
         {
             //IsDead = true;
             PlayerPrefs.SetInt("Chapter", mapManager.chapter);
         }
-        if (mapManager.chapter != 4) { 
+        if (mapManager.chapter != 4)
+        {
             if (col.tag == "FlyMonster1")
             {
                 //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
@@ -536,8 +528,9 @@ public class PlayerMove : MonoBehaviour {
                 eatJig = false;
             }
         }
-        if (mapManager.chapter == 4) { 
-            if (col.tag == "FlyMonster1" && eatJig) 
+        if (mapManager.chapter == 4)
+        {
+            if (col.tag == "FlyMonster1" && eatJig)
             {
                 //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
@@ -547,7 +540,7 @@ public class PlayerMove : MonoBehaviour {
                 canFly = true;
                 eatJig = false;
             }
-            if (col.tag == "FlyMonster3" && eatJig) 
+            if (col.tag == "FlyMonster3" && eatJig)
             {
                 //flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
@@ -559,7 +552,7 @@ public class PlayerMove : MonoBehaviour {
             }
             if (col.tag == "FlyMonster5" && eatJig)
             {
-               // flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
+                // flyMonster.GetComponent<FlyMonsterMoveCruve>().enabled = false;
                 flyMonsterMove.attackMode = 0;
                 //i = Random.Range(0, 3);
                 i = 2;
@@ -603,11 +596,11 @@ public class PlayerMove : MonoBehaviour {
             Destroy(col.gameObject);
         }
         //chapter2中的旋转人物触发
-        if(col.name == "Trigger")
+        if (col.name == "Trigger")
         {
             rotatePlayer.enabled = true;
         }
-        if(col.name == "Trigger1")
+        if (col.name == "Trigger1")
         {
             rotatePlayer.enabled = false;
         }
@@ -637,5 +630,13 @@ public class PlayerMove : MonoBehaviour {
     void ChangeIsInteractable()
     {
         isInteractable = false;
+    }
+    private void OnEnable() {
+        if(mapManager.chapter == 3)
+        {
+            RaycastHit2D tempHit = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale,1<<LayerMask.NameToLayer("Ground"));
+            Debug.Log("here");
+            lastHit3 = tempHit.point;
+        }
     }
 }

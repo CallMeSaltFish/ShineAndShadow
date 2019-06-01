@@ -20,7 +20,8 @@ public class MapMaker : MonoBehaviour
     private float newPositionX;
 
     private int scores;
-
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -115,12 +116,12 @@ public class MapMaker : MonoBehaviour
                         newPositionY += 1.5f;
                         newPositionX += 24.25f;
                     }
-                if (number > 5)
+                if (scores > 10)
                 {
-                    Instantiate(newFloor[8], new Vector3(newPositionX - 12.5f, newPositionY + 2.0f, -0.1f), Quaternion.identity);
-                    //newPositionY += 2.8f;
-                    //newPositionX += 24.25f;
-                    this.enabled = false;   
+                    Instantiate(newFloor[8], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    newPositionY += 2.8f;
+                    newPositionX += 24.25f;
+                    this.enabled = false;
                 }
             }
         }

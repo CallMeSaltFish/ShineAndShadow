@@ -7700,7 +7700,7 @@ GameObject:
   - component: {fileID: 7972942744533656540}
   - component: {fileID: 7972942744533656542}
   - component: {fileID: 7972942744533656541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u68EE\u6797\u8352\u6F20-\u6A2A\u67614"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -7776,7 +7776,7 @@ GameObject:
   - component: {fileID: 7972942744622373847}
   - component: {fileID: 7972942744622373841}
   - component: {fileID: 7972942744622373840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67612"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -7852,7 +7852,7 @@ GameObject:
   - component: {fileID: 7972942744664772821}
   - component: {fileID: 7972942744664772823}
   - component: {fileID: 7972942744664772822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67614"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -7928,7 +7928,7 @@ GameObject:
   - component: {fileID: 7972942744672054617}
   - component: {fileID: 7972942744672054619}
   - component: {fileID: 7972942744672054618}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67616"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8004,7 +8004,7 @@ GameObject:
   - component: {fileID: 7972942744789789422}
   - component: {fileID: 7972942744789789421}
   - component: {fileID: 1190857364373382891}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u53F3\u4FA7"
   m_TagString: BackGround
   m_Icon: {fileID: 0}
@@ -8148,7 +8148,7 @@ GameObject:
   - component: {fileID: 7972942744987985742}
   - component: {fileID: 7972942744987985736}
   - component: {fileID: 7972942744987985743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67613"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8224,7 +8224,7 @@ GameObject:
   - component: {fileID: 7972942745030932957}
   - component: {fileID: 7972942745030932959}
   - component: {fileID: 7972942745030932958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u68EE\u6797\u8352\u6F20-\u6A2A\u67611"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8383,7 +8383,7 @@ GameObject:
   - component: {fileID: 7972942745220291442}
   - component: {fileID: 7972942745220291436}
   - component: {fileID: 7972942745220291443}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67611"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8715,7 +8715,7 @@ GameObject:
   - component: {fileID: 7972942745759075008}
   - component: {fileID: 7972942745759075010}
   - component: {fileID: 7972942745759075009}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u68EE\u6797\u8352\u6F20-\u6A2A\u67612"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8791,7 +8791,7 @@ GameObject:
   - component: {fileID: 7972942745895269073}
   - component: {fileID: 7972942745895269075}
   - component: {fileID: 7972942745895269074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67617"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -8867,7 +8867,7 @@ GameObject:
   - component: {fileID: 7972942746307178477}
   - component: {fileID: 7972942746307178476}
   - component: {fileID: 1279538002434282203}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5DE6\u4FA7\u5730\u9762"
   m_TagString: BackGround
   m_Icon: {fileID: 0}
@@ -9048,7 +9048,7 @@ GameObject:
   - component: {fileID: 7972942746397718386}
   - component: {fileID: 7972942746397718380}
   - component: {fileID: 7972942746397718387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u5BFA\u5E99\u5185-\u6A2A\u67615"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -9124,7 +9124,7 @@ GameObject:
   - component: {fileID: 7972942746432876741}
   - component: {fileID: 7972942746432876743}
   - component: {fileID: 7972942746432876742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u68EE\u6797\u8352\u6F20-\u6A2A\u67613"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -11585,6 +11585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Portal_Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 936219849248729727, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Internal
       objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}

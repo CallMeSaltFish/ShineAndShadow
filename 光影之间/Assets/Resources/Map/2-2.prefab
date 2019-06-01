@@ -97,7 +97,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e9b9a5fa3e5dc9249b682ffee2f1708a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 3021987402188331949}
   - component: {fileID: 7912548446117027810}
   - component: {fileID: 975115939599533480}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674613"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 1463372313956589856}
   - component: {fileID: 8835542068456289948}
   - component: {fileID: 3998265542543743421}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 8673260148159670517}
   - component: {fileID: 1297440397793945136}
   - component: {fileID: 9158047637273536666}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674610"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 1514943802226557970}
   - component: {fileID: 2735416871662806302}
   - component: {fileID: 4646303083126256704}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67463"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1215,7 +1215,7 @@ GameObject:
   - component: {fileID: 3319359369914351315}
   - component: {fileID: 3130400462244886921}
   - component: {fileID: 3401990659372569129}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67466"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1423,7 +1423,7 @@ GameObject:
   - component: {fileID: 3979960595772765692}
   - component: {fileID: 4432877107280328344}
   - component: {fileID: 5404021268486800768}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674615"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1580,7 +1580,7 @@ GameObject:
   - component: {fileID: 7853901627607705100}
   - component: {fileID: 3629682059896709733}
   - component: {fileID: 6550531870378847312}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674617"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -2065,7 +2065,7 @@ GameObject:
   - component: {fileID: 1200555247892406969}
   - component: {fileID: 8272937670504461232}
   - component: {fileID: 7095696477987553990}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67468"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -2141,7 +2141,7 @@ GameObject:
   - component: {fileID: 476109783483713399}
   - component: {fileID: 1441131850733858672}
   - component: {fileID: 4098980928799977531}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67465"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -2217,7 +2217,7 @@ GameObject:
   - component: {fileID: 7127231429834287498}
   - component: {fileID: 1041436115144043008}
   - component: {fileID: 2969650750916244682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u7B2C\u4E09\u5173\uFF082\u90091\uFF09"
   m_TagString: BackGround
   m_Icon: {fileID: 0}
@@ -2379,7 +2379,7 @@ GameObject:
   - component: {fileID: 6820779855469631554}
   - component: {fileID: 6669031029303293365}
   - component: {fileID: 370413358797757010}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67469"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3140,7 +3140,7 @@ GameObject:
   - component: {fileID: 5609151887916412517}
   - component: {fileID: 5749607957026192807}
   - component: {fileID: 1497055549809132524}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67467"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3216,7 +3216,7 @@ GameObject:
   - component: {fileID: 1397729511724057781}
   - component: {fileID: 1793288848366561835}
   - component: {fileID: 7784853469645646564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67462"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3292,7 +3292,7 @@ GameObject:
   - component: {fileID: 6346212412235269055}
   - component: {fileID: 2479491080343800316}
   - component: {fileID: 7010042893767173107}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674614"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3534,7 +3534,7 @@ GameObject:
   - component: {fileID: 8802966104943444488}
   - component: {fileID: 842142074184044135}
   - component: {fileID: 539818981502236005}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674616"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3670,7 +3670,7 @@ GameObject:
   - component: {fileID: 41004358314914201}
   - component: {fileID: 5347198997038732934}
   - component: {fileID: 3793223677118678370}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67464"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -3933,7 +3933,7 @@ GameObject:
   - component: {fileID: 3618942454751965592}
   - component: {fileID: 2417477167105438980}
   - component: {fileID: 3398996969374536496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674611"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -4274,7 +4274,7 @@ GameObject:
   - component: {fileID: 3879812703644169152}
   - component: {fileID: 1538334061969414616}
   - component: {fileID: 5090803050069646657}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u674612"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ PrefabInstance:
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.42
+      value: 46.18
       objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}

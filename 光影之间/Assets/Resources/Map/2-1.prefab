@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1938364153388227931}
   - component: {fileID: 5321370928139095162}
   - component: {fileID: 8647514602682997352}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (12)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8808302711375712116}
   - component: {fileID: 7695829932068988483}
   - component: {fileID: 1865343153603586192}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (6)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 8164856228480413173}
   - component: {fileID: 2228192453521090390}
   - component: {fileID: 4021162566303214899}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 4747257418269926805}
   - component: {fileID: 891665852845465624}
   - component: {fileID: 4446602198667261581}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (15)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 8357841720845676069}
   - component: {fileID: 1456929106782763303}
   - component: {fileID: 3167834762829097139}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (7)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 2503858013211235469}
   - component: {fileID: 1320876230952613443}
   - component: {fileID: 6027251317681431334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (9)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 382549627218617469}
   - component: {fileID: 4630035098718225219}
   - component: {fileID: 5887596422663870087}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (4)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 2368281410456634709}
   - component: {fileID: 1324147462795407326}
   - component: {fileID: 4624936800125727161}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (11)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1006,7 +1006,7 @@ GameObject:
   - component: {fileID: 7578333870737494965}
   - component: {fileID: 2010118961160116887}
   - component: {fileID: 4040417395147759034}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (14)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1131,7 +1131,7 @@ GameObject:
   - component: {fileID: 2747443612326959318}
   - component: {fileID: 1647171711134567786}
   - component: {fileID: 1708290758854858732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (10)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 1565153799742747325}
   - component: {fileID: 7591077905743947746}
   - component: {fileID: 260899309756939614}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (2)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 1329117344725635686}
   - component: {fileID: 315430120835547293}
   - component: {fileID: 1367318305864269146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (3)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1502,7 +1502,7 @@ GameObject:
   - component: {fileID: 3391594772484326450}
   - component: {fileID: 3062207628023898291}
   - component: {fileID: 3243803688963276354}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (5)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1624,7 +1624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9072004103280201269}
   - component: {fileID: 6330088373935689535}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: BackGround
   m_Icon: {fileID: 0}
@@ -1678,7 +1678,7 @@ GameObject:
   - component: {fileID: 2849529762247764845}
   - component: {fileID: 6555352529563387715}
   - component: {fileID: 3270959034953704491}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (13)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1754,7 +1754,7 @@ GameObject:
   - component: {fileID: 4575574714125397447}
   - component: {fileID: 6381541045562824839}
   - component: {fileID: 7368479314339154943}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (1)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 2904012513340398507}
   - component: {fileID: 2688889414908526095}
   - component: {fileID: 8042416163135984760}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (8)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1906,7 +1906,7 @@ GameObject:
   - component: {fileID: 8284129955268211817}
   - component: {fileID: 7259847530650451546}
   - component: {fileID: 2915002304410754621}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "\u6A2A\u67461 (16)"
   m_TagString: Respawn
   m_Icon: {fileID: 0}
@@ -1978,6 +1978,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2062171435142281318}
     m_Modifications:
+    - target: {fileID: 936219849248729727, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
+        type: 3}
+      propertyPath: m_Name
+      value: Portal_Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 7506535804568164374, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2032,11 +2037,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 936219849248729727, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2,
-        type: 3}
-      propertyPath: m_Name
-      value: Portal_Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b45bd6f31a80ed4bb5f92aeadda66f2, type: 3}

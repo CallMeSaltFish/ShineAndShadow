@@ -316,7 +316,7 @@ public class PlayerMove : MonoBehaviour {
                 animator.SetBool("isStop", true);
             }
         }
-        else
+        else if(!hit2 && !hit1)
         {
             moveSpeed = nowSpeed;
         }

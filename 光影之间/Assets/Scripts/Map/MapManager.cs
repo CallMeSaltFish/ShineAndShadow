@@ -286,7 +286,7 @@ public class MapManager : MonoBehaviour {
         if (chapter == 3 && !hasMap)
         {
             Instantiate(Resources.Load("Map/3"), new Vector3(67.86f, 5.72f, 0), Quaternion.identity, mapTransform);
-            //mapMaker.enabled = true;
+            mapMaker.enabled = true;
             hasMap = true;
         }
         //第四关
@@ -295,6 +295,7 @@ public class MapManager : MonoBehaviour {
             BossB.enabled = true;
             BossW.enabled = true;
             Instantiate(Resources.Load("Map/4"), new Vector3(0, 0, 0), Quaternion.identity, mapTransform);
+            mapMakerIn4.enabled = true;
             hasMap = true;
         }
 

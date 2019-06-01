@@ -105,7 +105,6 @@ public class PlayerMove : MonoBehaviour
             return isGrounded;
         }
     }
-
     public bool IsDead
     {
         set

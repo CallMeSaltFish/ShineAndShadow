@@ -19,13 +19,20 @@ public class FollowWithPlayer : MonoBehaviour {
     public bool isStd;
     [HideInInspector]
     public bool isSpecial;
-	// Use this for initialization
-	void Start () {
+    [HideInInspector]
+    public bool chapter3Special;
+
+    private void Awake()
+    {
+        mapManager = GameObject.FindWithTag("GameController").GetComponent<MapManager>();
+    }
+    // Use this for initialization
+    void Start () {
         offset = transform.position - playerTransform.position;
         playerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
-        mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         BossB = GameObject.Find("BossB").GetComponent<BossMove>();
         BossW = GameObject.Find("BossW").GetComponent<BossMove>();
+        chapter3Special = false;
     }
 
     // Update is called once per frame
@@ -37,7 +44,15 @@ public class FollowWithPlayer : MonoBehaviour {
         }
         if(mapManager.chapter == 3)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, playerTransform.position.y, transform.position.z), ref cameraVelocity, cameraSpeed);
+            if(chapter3Special)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * 2);
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(transform.position.x, playerTransform.position.y, transform.position.z), ref cameraVelocity, cameraSpeed);
+            }
+            else
+            {
+                transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, playerTransform.position.y, transform.position.z), ref cameraVelocity, cameraSpeed);
+            }
         }
         else
         {
@@ -46,8 +61,6 @@ public class FollowWithPlayer : MonoBehaviour {
                 transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, transform.position.y, endPosition.z), ref cameraVelocity, cameraSpeed);
                 if (transform.position.x - playerTransform.position.x >= offset.x - 0.1f && Input.GetMouseButtonDown(2))
                 {
-                    //BossB.enabled = true;
-                    //BossW.enabled = true;
                     playerMove.enabled = true;
                     isStd = true;
                 }
@@ -56,6 +69,14 @@ public class FollowWithPlayer : MonoBehaviour {
             {
                 transform.position = new Vector3(endPosition.x, transform.position.y, endPosition.z);
             }
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (mapManager.chapter == 4)
+        {
+            offset = transform.position - playerTransform.position;
         }
     }
 }

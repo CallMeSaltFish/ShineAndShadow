@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1957555665167396727}
   - component: {fileID: 1957555665167396725}
-  - component: {fileID: 1957555665167396724}
   - component: {fileID: 3838216110505807636}
   m_Layer: 0
   m_Name: "\u7B2C\u4E09\u5173\u80CC\u666F"
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957555665167396726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69.67, y: -4.63, z: 0}
+  m_LocalPosition: {x: -67.4, y: -4.63, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1957555666343989785}
@@ -81,19 +80,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1957555665167396724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957555665167396726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 571b8eface984c14994433db37d50608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
 --- !u!114 &3838216110505807636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +191,26 @@ PrefabInstance:
     - target: {fileID: 4888202684432633438, guid: d433f65c5eb1ea4468513491cac935b9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888202684432633438, guid: d433f65c5eb1ea4468513491cac935b9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888202684432633438, guid: d433f65c5eb1ea4468513491cac935b9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888202684432633439, guid: d433f65c5eb1ea4468513491cac935b9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6695881377296726699, guid: d433f65c5eb1ea4468513491cac935b9,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

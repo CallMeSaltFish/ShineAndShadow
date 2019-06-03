@@ -14,7 +14,7 @@ public class FollowWithPlayerTest : MonoBehaviour
 
     void Start()
     {
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        playerTransform = Camera.main.transform;
         offset = transform.position - playerTransform.position;
     }
     // Update is called once per frame
@@ -23,4 +23,5 @@ public class FollowWithPlayerTest : MonoBehaviour
         endPosition = playerTransform.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, new Vector3(endPosition.x, playerTransform.position.y, transform.position.z), ref cameraVelocity, cameraSpeed);
     }
+    
 }

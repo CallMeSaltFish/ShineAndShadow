@@ -18,7 +18,7 @@ public class MapMaker : MonoBehaviour
     private MapManager mapManager;
     private float newPositionY;
     private float newPositionX;
-
+    private Transform chapter3Child;
     private int scores;
 
     // Start is called before the first frame update
@@ -28,6 +28,11 @@ public class MapMaker : MonoBehaviour
         mapManager = GameObject.Find("Manager").GetComponent<MapManager>();
         player = GameObject.FindWithTag("Player");
         playerMove = player.GetComponent<PlayerMove>();
+        chapter3Child = GameObject.FindWithTag("Map").GetComponent<Transform>();
+        if(!chapter3Child.name.Equals("3(Clone)"))
+        {
+            chapter3Child = null;
+        }
     }
 
     // Update is called once per frame
@@ -60,7 +65,10 @@ public class MapMaker : MonoBehaviour
             int a = Random.Range(0, 35);
             if (number == 1)
             {
-                Instantiate(newFloor[4], new Vector3(newPositionX + 55, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                if(chapter3Child != null)
+                {
+                    Instantiate(newFloor[4], new Vector3(newPositionX + 55, newPositionY + 1.5f, -0.1f), Quaternion.identity, chapter3Child);
+                }
                 newPositionY += 1.5f;
                 newPositionX += 79.25f;
                 //newPositionX += 42.5f;
@@ -69,55 +77,82 @@ public class MapMaker : MonoBehaviour
             {
                 if ((a < 2 && a > 0) || a == 0)
                 {
-                    Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[0], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity, chapter3Child);
+                    }
                     newPositionY += 2.8f;
                     newPositionX += 24.25f;
                 }
                 if (a > 1 && a < 4)
                 {
-                    Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[1], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity, chapter3Child);
+                    }
                     newPositionY += 2.8f;
                     newPositionX += 24.25f;
                 }
                 if (a > 3 && a < 8)
                 {
-                    Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[2], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity, chapter3Child);
+                    }
                     newPositionY += 2.8f;
                     newPositionX += 24.25f;
                 }
                 if (a > 7 && a < 14)
                 {
-                    Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[3], new Vector3(newPositionX, newPositionY + 2.0f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     newPositionY += 2.8f;
                     newPositionX += 24.25f;
                 }
                 if (a > 13 && a < 17)
                 {
-                    Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[4], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     newPositionY += 1.5f;
                     newPositionX += 24.25f;
                 }
                 if (a > 16 && a < 20)
                 {
-                    Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[5], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     newPositionY += 1.5f;
                     newPositionX += 24.25f;
                 }
                 if (a > 19 && a < 26)
                 {
-                    Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[6], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     newPositionY += 1.5f;
                     newPositionX += 24.25f;
                 }
                 if (a > 25 && a < 35)
                 {
-                    Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[7], new Vector3(newPositionX, newPositionY + 1.5f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     newPositionY += 1.5f;
                     newPositionX += 24.25f;
                 }
-                if (number > 5)
+                if (number > 0)
                 {
-                    Instantiate(newFloor[8], new Vector3(newPositionX - 12.5f, newPositionY + 2.0f, -0.1f), Quaternion.identity);
+                    if(chapter3Child != null)
+                    {
+                        Instantiate(newFloor[8], new Vector3(newPositionX - 12.5f, newPositionY + 2.0f, -0.1f), Quaternion.identity,chapter3Child);
+                    }
                     //newPositionY += 2.8f;
                     //newPositionX += 24.25f;
                     this.enabled = false;

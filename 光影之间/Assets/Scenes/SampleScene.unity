@@ -1563,6 +1563,7 @@ MonoBehaviour:
   cameraSpeed: 0.5
   isStd: 0
   isSpecial: 0
+  chapter3Special: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2060,10 +2061,11 @@ MonoBehaviour:
   downs: []
   panel: {fileID: 1765732595}
   isInternal: 0
-  chapter: 2
+  chapter: 3
   isPause: 0
   passPanelAnimator: {fileID: 197580915}
   defeatPanelAnimator: {fileID: 1765732598}
+  isPacked: 0
 --- !u!4 &799680269
 Transform:
   m_ObjectHideFlags: 0
@@ -2419,7 +2421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &897168369
 RectTransform:
   m_ObjectHideFlags: 0

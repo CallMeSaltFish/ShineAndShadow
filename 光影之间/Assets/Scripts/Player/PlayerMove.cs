@@ -93,7 +93,7 @@ public class PlayerMove : MonoBehaviour
     private int i = 2;
     /*记录是当前帧的刚体*/
     private float localVelocity;
-
+    private RaycastHit2D hit4;
     public bool IsGrounded
     {
         set
@@ -153,6 +153,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+                Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0), transform.position + new Vector3(0, -50f, 0), Color.blue);
         if (rb.velocity.y != 0)
         {
             localVelocity = Mathf.Abs(2.0f * rb.velocity.y);
@@ -271,7 +272,8 @@ public class PlayerMove : MonoBehaviour
         //Debug.DrawLine(transform.position + new Vector3(0.16f, -0.4f * rb.gravityScale, 0), transform.position + new Vector3(0.56f, -0.4f * rb.gravityScale, 0), Color.blue);
         //向下 检测下坡还是峭壁
         RaycastHit2D hit3 = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale,1<<LayerMask.NameToLayer("Ground"));
-        Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale, Color.cyan);
+        //Debug.DrawLine(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale, Color.cyan);
+        hit4 = Physics2D.Linecast(transform.position, transform.position + new Vector3(1, 0, 0));
 
         if (hit_ && (hit_.transform.tag == "Portal" || hit_.transform.tag == "Tip" || hit_.transform.tag == "Internal") && hit_.point.x - transform.position.x <= 0.64f)
         {
@@ -284,7 +286,14 @@ public class PlayerMove : MonoBehaviour
         //遇到传送门或者指示板
         if (isStop)
         {
-            transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed);
+            int temp = 1;
+            if(mapManager.chapter == 3)
+            {
+                temp = 5;
+                point = hit_.transform.position;
+                rotatePlayer.enabled = false;
+            }
+            transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime * speed * temp);
             animator.SetBool("isStop", true);
         }
         //平地
@@ -292,7 +301,7 @@ public class PlayerMove : MonoBehaviour
         {
             if (mapManager.chapter != 3 )
             {
-                animator.SetBool("isStop", false);//
+                animator.SetBool("isStop", false);
             }
             transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * moveSpeed);
             angle1 = 0;
@@ -317,7 +326,7 @@ public class PlayerMove : MonoBehaviour
                 animator.SetBool("isStop", true);
             }
         }
-        else if (!hit2 && !hit1)
+        else if (!hit2 && !hit1 && hit4.transform.tag == "Player")
         {
             moveSpeed = nowSpeed;
         }
@@ -343,7 +352,6 @@ public class PlayerMove : MonoBehaviour
                     }
                     if (offset < -0.4f && isGrounded)//下落
                     {
-                        Debug.Log("there");
                         animator.SetBool("isDrop", true);
                         isGrounded = false;
                     }
@@ -383,10 +391,13 @@ public class PlayerMove : MonoBehaviour
 
             if ((mapManager.chapter == 0 && hit_.transform.position.x - transform.position.x < 12.66f) ||
                 (mapManager.chapter == 1 && hit_.transform.position.x - transform.position.x < 13.46f) ||
-                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 13.06f) ||
-                (mapManager.chapter == 3 && hit_.transform.position.x - transform.position.x < 13.06f))
+                (mapManager.chapter == 2 && hit_.transform.position.x - transform.position.x < 13.06f))
             {
                 followWith.enabled = false;
+            }
+            if (mapManager.chapter == 3 && hit_.transform.position.x - transform.position.x < 13.06f)
+            {
+                followWith.chapter3Special = true;
             }
         }
 
@@ -426,8 +437,10 @@ public class PlayerMove : MonoBehaviour
         //下一关传送门
         if (col.tag == "Portal")
         {
-            GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
-            GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
+            if(followWith.isActiveAndEnabled)
+            {
+                followWith.enabled = false;
+            }
             moveSpeed = 0;
             transform.GetComponent<PlayerMove>().enabled = false;
             isStop = false;
@@ -439,8 +452,6 @@ public class PlayerMove : MonoBehaviour
         //里场景传送门
         if (col.tag == "Internal")
         {
-            GameObject.Find("BossB").GetComponent<BossMove>().enabled = false;
-            GameObject.Find("BossW").GetComponent<BossMove>().enabled = false;
             moveSpeed = 0;
             transform.GetComponent<PlayerMove>().enabled = false;
             isStop = false;
@@ -630,12 +641,12 @@ public class PlayerMove : MonoBehaviour
     {
         isInteractable = false;
     }
-    private void OnEnable() {
-        if(mapManager.chapter == 3)
+    private void OnEnable() 
+    {      
+        RaycastHit2D tempHit = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0), transform.position + new Vector3(0, -50f, 0), 1<<LayerMask.NameToLayer("Ground"));     
+        if(tempHit)
         {
-            RaycastHit2D tempHit = Physics2D.Linecast(transform.position + new Vector3(0, -0.55f, 0) * rb.gravityScale, transform.position + new Vector3(0, -50f, 0) * rb.gravityScale,1<<LayerMask.NameToLayer("Ground"));
-            Debug.Log("here");
-            lastHit3 = tempHit.point;
+            lastHit3 = tempHit.point;     
         }
     }
 }

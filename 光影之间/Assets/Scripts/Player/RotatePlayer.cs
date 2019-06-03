@@ -63,6 +63,7 @@ public class RotatePlayer : MonoBehaviour {
             //Debug.Log(ps.startRotation3D);
             Destroy(explosions, 1.0f);
             playerHeight = -playerHeight;
+            //Debug.Log("here it is");
             animator.SetFloat("playerHeight", playerHeight);
             time = 0;
         }
